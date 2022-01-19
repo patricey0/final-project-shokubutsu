@@ -2,6 +2,9 @@
 
 BEGIN;
 
--- XXX Add DDLs here.
+DROP TABLE "bookmarked";
+DROP TABLE "announce";
+DROP TABLE "user";
+
 
 COMMIT;
