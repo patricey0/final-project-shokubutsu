@@ -1,0 +1,4 @@
+%syntax-version=1.0.0
+%project=shokubutsu
+
+init 2022-01-19T14:18:50Z patricey0 <patrice.yolle@gmail.com> # database init/creation
