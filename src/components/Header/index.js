@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { changeField, login, logout } from 'src/actions/user';
+import { NavLink } from 'react-router-dom';
 import './style.scss';
 // import logo from 'src/assets/logo.png';
 import LoginForm from 'src/components/LoginForm';
@@ -20,10 +21,10 @@ export default function AppHeader() {
       {/* Changer avec le composant Navlink | Link de react router */}
       <nav>
         <ul className="navheader">
-          <li><a href="/">Home</a></li>
-          <li><a href="/annonces">annonces</a></li>
-          <li><a href="/tuto">tuto</a></li>
-          <li><a href="/contact">contact</a></li>
+          <li><NavLink to="/">Home</NavLink></li>
+          <li><NavLink to="/annonces">Annonces</NavLink></li>
+          <li><NavLink to="/tuto">Tuto</NavLink></li>
+          <li><NavLink to="/contact">Contact</NavLink></li>
           <LoginForm
             email={email}
             password={password}
