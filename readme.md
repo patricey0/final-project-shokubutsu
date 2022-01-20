@@ -8,14 +8,14 @@ Le cahier des charges est actuellement en cours de rédaction et sera prochainem
 
 ## Utilisation du repo
 
-Installer le projet : yarn
-Démarrer le projet : yarn start
+Installer le projet : `yarn`
+Démarrer le projet : `yarn start`
 
 ## Pour récuperer le contenu de front-preprod sur une nouvelle branche
 
 - s'assurer d'être bien sur la branche front-preprod
-- git checkout -b nouveauNomDeBranche
+- `git checkout -b nouveauNomDeBranche`
 
 ## Pour récuperer le contenu de front-preprod sur une branche
 
-- git pull origin front-preprod
+- `git pull origin front-preprod`
