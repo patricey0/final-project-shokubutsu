@@ -38,8 +38,8 @@ const reducer = (state = initialState, action = {}) => {
         // logged: action.payload.logged,
         // token: action.payload.token,
         ...action.payload,
-        email: '',
-        password: '',
+        // email: '',
+        // password: '',
       };
     }
     case LOGOUT: {
