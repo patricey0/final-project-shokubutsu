@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 
 const router = require('./app/router');
+
 const {cleaner} = require('./app/middlewares');
 
 const app = express();
@@ -56,3 +57,5 @@ expressJSDocSwagger(app)(options);
 app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}`);
 });
+
+module.exports = app;
