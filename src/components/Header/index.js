@@ -18,7 +18,6 @@ export default function AppHeader() {
   return (
     <header className="header">
       {/* <img src={logo} className="header-logo" alt="Logo oRecipes" /> */}
-      {/* Changer avec le composant Navlink | Link de react router */}
       <nav>
         <ul className="navheader">
           <li><NavLink to="/">Home</NavLink></li>

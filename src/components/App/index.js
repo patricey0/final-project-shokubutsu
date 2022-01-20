@@ -15,7 +15,6 @@ import Error from 'src/components/Error';
 const App = () => (
   <div className="app">
     <Header />
-    <p>Nos composants</p>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/annonces" element={<Announces />} />
