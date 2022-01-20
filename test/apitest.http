@@ -13,9 +13,9 @@ POST {{baseUrl}}/users HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "newUser",
-    "mail": "newuser@tata.fr",
-    "password": "12345",
+    "nickname": "newUser2",
+    "mail": "newuser2@tata.fr",
+    "password": "12345123",
     "city": "Totocity",
     "isAdmin": "false"
 }

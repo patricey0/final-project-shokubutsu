@@ -1,4 +1,5 @@
 const CoreModel = require (`./coreModel`);
+const bcrypt = require(`bcrypt`);
 
 /**
  * An entity representing an User
@@ -22,6 +23,8 @@ class User extends CoreModel {
     }
 
     static async create(json) {
+        const password = await bcrypt.hash(json.password, 10);
+        json.password = password
         return new User(await CoreModel.getRow('SELECT * FROM new_user($1)', [json]));
     }
 
