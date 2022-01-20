@@ -48,7 +48,7 @@
     "webpack-merge": "*"
   },
   "dependencies": {
-    "prop-types": "*",
+    "prop-types": "^15.8.1",
     "react": "*",
     "react-dom": "*",
     "react-redux": "^7.2.6",
