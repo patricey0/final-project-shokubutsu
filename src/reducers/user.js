@@ -9,23 +9,11 @@ export const initialState = {
   logged: false,
   email: '',
   password: '',
-  favorites: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case CHANGE_FIELD: {
-      // if (action.payload.name === 'email') {
-      //   return {
-      //     ...state,
-      //     email: action.payload.value,
-      //   };
-      // }
-      // return {
-      //   ...state,
-      //   password: action.payload.value,
-      // };
-
       return {
         ...state,
         [action.payload.name]: action.payload.value,
@@ -34,12 +22,7 @@ const reducer = (state = initialState, action = {}) => {
     case SAVE_USER: {
       return {
         ...state,
-        // pseudo: action.payload.pseudo,
-        // logged: action.payload.logged,
-        // token: action.payload.token,
         ...action.payload,
-        // email: '',
-        // password: '',
       };
     }
     case LOGOUT: {
@@ -52,7 +35,6 @@ const reducer = (state = initialState, action = {}) => {
     case SAVE_FAV: {
       return {
         ...state,
-        // favorites: action.payload.favorites
         ...action.payload,
       };
     }

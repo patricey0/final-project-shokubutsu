@@ -20,8 +20,10 @@ const LoginForm = ({
 
   return (
     <div className="login-form">
+      {/* si c'est vrai */}
       {isLogged && (
         <div className="login-form-logged">
+          {/* ici on ajoutera le composant <Profile/> */}
           <p className="login-form-message">
             {loggedMessage}
           </p>
