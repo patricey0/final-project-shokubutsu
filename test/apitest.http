@@ -1,0 +1,22 @@
+@protocol=http://
+@host=localhost
+@port=:5000
+@prefix=/v1
+@baseUrl={{protocol}}{{host}}{{port}}{{prefix}}
+
+# GET {{baseUrl}}/users HTTP/1.1
+
+
+
+
+POST {{baseUrl}}/users HTTP/1.1
+content-type: application/json
+
+{
+    "nickname": "newUser",
+    "mail": "newuser@tata.fr",
+    "password": "12345",
+    "city": "Totocity",
+    "isAdmin": "false"
+}
+

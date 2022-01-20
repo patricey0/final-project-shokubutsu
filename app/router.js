@@ -1,15 +1,17 @@
 const {Router} = require(`express`);
-const { user } = require("pg/lib/defaults");
-const {userController} = require(`./controllers`);
+const {userController, announceController, adminController} = require(`./controllers`);
 
-const {
-
-} = require(`./middlewares`);
+const { } = require(`./middlewares`);
 
 const router = Router();
 
-router.get(`/users`, userController.AllUsers);
-router.get(`/user/:id`, userController.OneUser);
+
+router.route(`/users`)
+    .get(userController.getAllUsers)
+    .post(userController.createUser)
+
+router.route(`/users/:id`)
+    .get(userController.getOneUser)
 
 
 module.exports = router;

@@ -14,6 +14,8 @@ const port = process.env.PORT || 5000;
 // middleware to mitigate XSS Attacks
 app.use(cleaner);
 
+app.use(express.json());
+
 app.use('/v1', router);
 
 const options = {
