@@ -1,0 +1,17 @@
+footer {
+  background-color: #556b2f;
+  display: flex;
+  justify-content:space-between;
+  color: #ffffff;
+}
+.navfooter {
+  display: flex;
+  &__item{
+    display: block;
+    margin: 1rem;
+  }
+}
+
+footer p {
+  margin: 1rem;
+}

@@ -10,6 +10,7 @@ import Announces from 'src/components/Announces';
 import Tuto from 'src/components/Tuto';
 import Contact from 'src/components/Contact';
 import Error from 'src/components/Error';
+import Footer from 'src/components/Footer';
 
 // == Composant
 const App = () => (
@@ -22,6 +23,7 @@ const App = () => (
       <Route path="/contact" element={<Contact />} />
       <Route path="*" element={<Error />} />
     </Routes>
+    <Footer />
   </div>
 );
 
