@@ -6,6 +6,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import rootReducer from 'src/reducers';
 import logMiddleware from '../middleware/logMiddleware';
 import authMiddleware from '../middleware/auth';
+import anouncesMiddleware from '../middleware/anounces';
 
 // == Enhancers
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -14,6 +15,7 @@ const enhancers = composeEnhancers(
   applyMiddleware(
     logMiddleware,
     authMiddleware,
+    anouncesMiddleware,
     // secondMiddleware,
   ),
 );
