@@ -24,7 +24,10 @@ const userController = {
     createUser: async (req, res) => {
         try {
             console.log(req.body);
-            res.json(await User.create(req.body));
+            const user = await User.create(req.body);
+            const token = jwt.makeToken(user.id);
+            user["jwt"] = token;
+            res.json(user);
         } catch (error) {
             console.log(error);
             res.status(500).json(error.message);
@@ -38,8 +41,8 @@ const userController = {
             console.log(user);
             const token = jwt.makeToken(user.id);
             console.log(token);
-            res.setHeader('Authorization', token);
-            res.status(200).json(user);
+            user["jwt"] = token;
+            res.json(user);
         } catch (error) {
             console.log(error);
             res.status(500).json(error.message);
@@ -49,8 +52,10 @@ const userController = {
     updateUser: async (req, res) => {
         try {
             console.log(req.body);
+            res.json(await User.update(req.body));
         } catch (error) {
-            
+            console.log(error);
+            res.status(500).json(error.message);
         }
     }
 }

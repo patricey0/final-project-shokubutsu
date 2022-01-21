@@ -14,8 +14,8 @@ POST {{baseUrl}}/users HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "carotte",
-    "mail": "carotte@tata.fr",
+    "nickname": "pommedeterre",
+    "mail": "pommedeterre@tata.fr",
     "password": "qwerty",
     "city": "Totocity",
     "isAdmin": "true"
@@ -29,6 +29,19 @@ content-type: application/json
 {
     "nickname": "carotte",
     "mail": "carotte@tata.fr",
+    "password": "qwerty",
+    "city": "Totocity",
+    "isAdmin": "true"
+}
+
+
+### Update user
+PATCH {{baseUrl}}/users/3 HTTP/1.1
+content-type: application/json
+
+{
+    "nickname": "Titi",
+    "mail": "titi@tata.fr",
     "password": "qwerty",
     "city": "Totocity",
     "isAdmin": "true"
