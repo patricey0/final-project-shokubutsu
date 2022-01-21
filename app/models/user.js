@@ -16,7 +16,7 @@ class User extends CoreModel {
 
     static async findAll() {
         try {
-            return new User(await CoreModel.getArray(`SELECT * FROM "user"`));
+            return new User(await CoreModel.getArray(`SELECT * FROM "visitor"`));
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -56,11 +56,10 @@ class User extends CoreModel {
         
     }
 
-    async update() {
+    static async update(data) {
         try {
-            console.log('data:', this)
-            const user = await CoreModel.getRow('SELECT * FROM update_visitor($1)', [this]);
-            return user;
+            console.log('data:', data)
+            return new User(await CoreModel.getRow('SELECT update_visitor($1) AS id', [data]));
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -71,23 +70,13 @@ class User extends CoreModel {
         
     }
 
-    async delete() {
-        try {
-            console.log('data:', this.id)
-            const user = await CoreModel.getRow('DELETE FROM visitor WHERE id=$1', [this.id]);
-            return user;
-        } catch (error) {
-            console.log(error);
-            if (error.detail) {
-                throw new Error(error.detail);
-            }
-            throw error;
-        }
+    static async delete(id) {
+        
     }
 
     async login() {
         try {
-            const user = await CoreModel.getRow('SELECT * FROM "user" WHERE nickname=$1', [this.nickname]);
+            const user = await CoreModel.getRow('SELECT * FROM "visitor" WHERE nickname=$1', [this.nickname]);
             if (!user) { throw new Error ('Identification failed, username or password invalid.')};
             const isPwdValid = await bcrypt.compare(this.password, user.password);
             if (!isPwdValid) { throw new Error ('Identification failed, username or password invalid.')} 
