@@ -19,3 +19,8 @@ Démarrer le projet : `yarn start`
 ## Pour récuperer le contenu de front-preprod sur une branche
 
 - `git pull origin front-preprod`
+
+
+## Pour récuperer le contenu de front-preprod sur une branche
+- s'assurer d'être bien sur la branche front-preprod
+- `git merge nomDeLaBranche`
