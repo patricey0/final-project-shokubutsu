@@ -1,4 +1,27 @@
+// nav {
+//   display: flex;
+//   width: 100vw;
+// }
+.header {
+  display: flex;
+  background-color: #eeeeee;
+  align-items: center;
+  &__title {
+    color: #356619;
+    font-weight: bold;
+    font-size: x-large;
+  }
+}
+nav {
+ height:auto;
+ display: flex;
+ width: 100%;
+}
 .navheader{
   display:flex;
   justify-content: space-around;
+  align-items: center;
+  color: #356619;
+  font-weight: bold;
+  width: 100%;
 }
