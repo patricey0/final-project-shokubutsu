@@ -1,4 +1,5 @@
 const { User } = require(`../models`);
+const jwt = require('../services/jwt');
 
 const userController = {
     
@@ -28,7 +29,22 @@ const userController = {
             console.log(error);
             res.status(500).json(error.message);
         }
-    }
+    },
+
+    login: async (req, res) => {
+        try {
+            console.log(req.body);
+            const user = await new User(req.body).login;
+            console.log(user);
+            const token = jwt.makeToken(user.id);
+            console.log(token);
+            res.setHeader('Authorization', token);
+            res.status(200).json(user);
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error.message);
+        }
+    },
 }
 
 module.exports = userController;

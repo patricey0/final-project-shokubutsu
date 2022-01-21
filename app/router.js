@@ -13,5 +13,8 @@ router.route(`/users`)
 router.route(`/users/:id`)
     .get(userController.getOneUser)
 
+router.route(`/login`)
+    .post(userController.login)
+
 
 module.exports = router;

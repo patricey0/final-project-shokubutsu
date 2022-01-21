@@ -4,19 +4,33 @@
 @prefix=/v1
 @baseUrl={{protocol}}{{host}}{{port}}{{prefix}}
 
-# GET {{baseUrl}}/users HTTP/1.1
+### Test get users
+GET {{baseUrl}}/users HTTP/1.1
 
 
 
-
+### Test create
 POST {{baseUrl}}/users HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "newUser2",
-    "mail": "newuser2@tata.fr",
-    "password": "12345123",
+    "nickname": "carotte",
+    "mail": "carotte@tata.fr",
+    "password": "qwerty",
     "city": "Totocity",
-    "isAdmin": "false"
+    "isAdmin": "true"
+}
+
+
+### Test login
+POST {{baseUrl}}/login HTTP/1.1
+content-type: application/json
+
+{
+    "nickname": "carotte",
+    "mail": "carotte@tata.fr",
+    "password": "qwerty",
+    "city": "Totocity",
+    "isAdmin": "true"
 }
 
