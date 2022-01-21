@@ -1,6 +1,8 @@
 // == Import
 import './styles.scss';
 import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 // == Composant
 const Footer = () => (
   <footer>
@@ -16,7 +18,7 @@ const Footer = () => (
       <p>Mentions légales @ 2022 Shokubutsu</p>
     </div>
     <div className="social">
-      <p> Vous pouvez aussi nous retrouvez sur *Font awesome Insta*</p>
+      <p> Vous pouvez aussi nous retrouvez sur <FontAwesomeIcon icon={faInstagram} /></p>
     </div>
   </footer>
 );
