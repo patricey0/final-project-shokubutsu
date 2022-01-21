@@ -2,7 +2,7 @@ import { SAVE_ANOUNCES, FETCH_ANOUNCES } from 'src/actions/anounces';
 
 export const initialState = {
   list: [],
-  loading: true,
+  loading: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -10,7 +10,7 @@ const reducer = (state = initialState, action = {}) => {
     case FETCH_ANOUNCES: {
       return {
         ...state,
-        loading: true,
+        loading: false,
       };
     }
     case SAVE_ANOUNCES: {

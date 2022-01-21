@@ -45,7 +45,6 @@ const auth = (store) => (next) => (action) => {
     case LOGOUT: {
       // suppression du token dans le localStorage
       localStorage.removeItem('token');
-
       // on traite cette action dans le user reducer
       // il faut donc la passer
       next(action);
