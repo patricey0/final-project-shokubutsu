@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { changeField, login, logout } from 'src/actions/user';
 import { NavLink } from 'react-router-dom';
 import './style.scss';
-// import logo from 'src/assets/logo.png';
+import logo from 'src/assets/img/logo2.png';
 import LoginForm from 'src/components/LoginForm';
 
 export default function AppHeader() {
@@ -17,7 +17,10 @@ export default function AppHeader() {
 
   return (
     <header className="header">
-      {/* <img src={logo} className="header-logo" alt="Logo oRecipes" /> */}
+      <NavLink to="/" className="header">
+        <img src={logo} className="header-logo" alt="Logo oRecipes" />
+        <h1 className="header__title">SHOKUBUTSU</h1>
+      </NavLink>
       <nav>
         <ul className="navheader">
           <li><NavLink to="/">Home</NavLink></li>
