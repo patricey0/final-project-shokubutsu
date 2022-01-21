@@ -21,6 +21,6 @@ Démarrer le projet : `yarn start`
 - `git pull origin front-preprod`
 
 
-## Pour récuperer le contenu de front-preprod sur une branche
+## Pour mérger une branche sur front-preprod
 - s'assurer d'être bien sur la branche `front-preprod`
 - `git merge nomDeLaBranche`
