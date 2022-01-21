@@ -2,5 +2,5 @@
 %project=shokubutsu
 
 init 2022-01-19T14:18:50Z patricey0 <patrice.yolle@gmail.com> # database init/creation
-new_user 2022-01-20T14:31:58Z patricey0 <patrice.yolle@gmail.com> # adding an SQL function to create a new user
+newUser_function 2022-01-20T14:31:58Z patricey0 <patrice.yolle@gmail.com> # adding an SQL function to create a new user
 update_user 2022-01-21T13:44:28Z patricey0 <patrice.yolle@gmail.com> # function for updating users
