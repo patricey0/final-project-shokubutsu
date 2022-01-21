@@ -5,7 +5,7 @@
 @baseUrl={{protocol}}{{host}}{{port}}{{prefix}}
 
 ### Test get users
-GET {{baseUrl}}/users HTTP/1.1
+GET {{baseUrl}}/users/1 HTTP/1.1
 
 
 
@@ -14,10 +14,11 @@ POST {{baseUrl}}/users HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "pommedeterre",
-    "mail": "pommedeterre@tata.fr",
+    "nickname": "toto",
+    "mail": "toto@tata.fr",
     "password": "qwerty",
     "city": "Totocity",
+    "picture": "http://mypicture",
     "isAdmin": "true"
 }
 
@@ -27,23 +28,29 @@ POST {{baseUrl}}/login HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "carotte",
-    "mail": "carotte@tata.fr",
+    "nickname": "toto",
+    "mail": "toto@tata.fr",
     "password": "qwerty",
     "city": "Totocity",
+    "picture": "http://mypicture",
     "isAdmin": "true"
 }
 
 
 ### Update user
-PATCH {{baseUrl}}/users/3 HTTP/1.1
+PATCH {{baseUrl}}/users/1 HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "Titi",
-    "mail": "titi@tata.fr",
+    "nickname": "tutu",
+    "mail": "tutu@tata.fr",
     "password": "qwerty",
     "city": "Totocity",
-    "isAdmin": "true"
+    "picture": "http://mypicture",
+    "isAdmin": "false"
 }
+
+### Delete user
+DELETE {{baseUrl}}/users/1 HTTP/1.1
+content-type: application/json
 

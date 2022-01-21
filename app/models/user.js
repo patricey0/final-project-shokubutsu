@@ -29,7 +29,7 @@ class User extends CoreModel {
 
     static async findById(id) {
         try {
-            return new User(await CoreModel.getRow('SELECT * FROM "user" WHERE id=$1', [id]));
+            return new User(await CoreModel.getRow('SELECT * FROM "visitor" WHERE id=$1', [id]));
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -40,12 +40,12 @@ class User extends CoreModel {
         
     }
 
-    static async create(json) {
+    static async create(data) {
         try {
-            const password = await bcrypt.hash(json.password, 10);
-            json.password = password
-            console.log(json);
-            return new User(await CoreModel.getRow('SELECT * FROM new_user($1)', [json]));
+            const password = await bcrypt.hash(data.password, 10);
+            data.password = password
+            console.log(data);
+            return new User(await CoreModel.getRow('SELECT * FROM new_visitor($1)', [data]));
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -56,9 +56,11 @@ class User extends CoreModel {
         
     }
 
-    static async update(json) {
+    async update() {
         try {
-            return new User(await CoreModel.getRow('SELECT * FROM update_user($1)', [json]));
+            console.log('data:', this)
+            const user = await CoreModel.getRow('SELECT * FROM update_visitor($1)', [this]);
+            return user;
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -67,6 +69,20 @@ class User extends CoreModel {
             throw error;
         }
         
+    }
+
+    async delete() {
+        try {
+            console.log('data:', this.id)
+            const user = await CoreModel.getRow('DELETE FROM visitor WHERE id=$1', [this.id]);
+            return user;
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail);
+            }
+            throw error;
+        }
     }
 
     async login() {

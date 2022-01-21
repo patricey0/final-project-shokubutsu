@@ -8,11 +8,20 @@ class CoreModel {
     }
 
     static async getArray(...args) {
-        return (await db.query(...args)).rows;
+        console.log("core model",...args);
+        try {
+            return (await db.query(...args)).rows;
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     static async getRow(...args) {
-        return (await this.getArray(...args))[0];
+        try {
+            return (await this.getArray(...args))[0];
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 

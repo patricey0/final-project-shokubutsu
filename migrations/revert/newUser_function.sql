@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP FUNCTION new_user(json);
+DROP FUNCTION new_visitor(json);
 
 COMMIT;
