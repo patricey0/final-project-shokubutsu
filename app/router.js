@@ -12,6 +12,7 @@ router.route(`/users`)
 
 router.route(`/users/:id`)
     .get(userController.getOneUser)
+    .patch(userController.updateUser)
 
 router.route(`/login`)
     .post(userController.login)

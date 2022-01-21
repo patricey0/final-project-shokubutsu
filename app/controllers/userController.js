@@ -34,7 +34,7 @@ const userController = {
     login: async (req, res) => {
         try {
             console.log(req.body);
-            const user = await new User(req.body).login;
+            const user = await new User(req.body).login();
             console.log(user);
             const token = jwt.makeToken(user.id);
             console.log(token);
@@ -45,6 +45,14 @@ const userController = {
             res.status(500).json(error.message);
         }
     },
+
+    updateUser: async (req, res) => {
+        try {
+            console.log(req.body);
+        } catch (error) {
+            
+        }
+    }
 }
 
 module.exports = userController;

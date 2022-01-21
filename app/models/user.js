@@ -69,14 +69,13 @@ class User extends CoreModel {
         
     }
 
-    async login(json) {
+    async login() {
         try {
-            const nickname = JSON.parse(json.nickname)
-            const user = new User(await CoreModel.getRow('SELECT * FROM "user" WHERE nickname=$1', [nickname]));
+            const user = await CoreModel.getRow('SELECT * FROM "user" WHERE nickname=$1', [this.nickname]);
             if (!user) { throw new Error ('Identification failed, username or password invalid.')};
-            const isPwdValid = await bcrypt.compare(json.password, user.password);
+            const isPwdValid = await bcrypt.compare(this.password, user.password);
             if (!isPwdValid) { throw new Error ('Identification failed, username or password invalid.')} 
-            return new User(await CoreModel.getRow('SELECT * FROM "user" WHERE nickname=$1', [nickname]));
+            return user;
         } catch (error) {
             console.log(error);
             if (error.detail) {
