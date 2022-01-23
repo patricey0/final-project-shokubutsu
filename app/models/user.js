@@ -59,7 +59,7 @@ class User extends CoreModel {
     static async update(data) {
         try {
             console.log('data:', data)
-            return new User(await CoreModel.getRow('SELECT update_visitor($1) AS id', [data]));
+            return new User(await CoreModel.getRow('SELECT * FROM update_visitor($1) AS visitor', [data]));
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -70,8 +70,18 @@ class User extends CoreModel {
         
     }
 
-    static async delete(id) {
-        
+    async delete() {
+        try {
+            console.log('data:', this.id)
+            const user = await CoreModel.getRow('DELETE FROM visitor WHERE id=$1', [this.id]);
+            return user;
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail);
+            }
+            throw error;
+        }
     }
 
     async login() {
