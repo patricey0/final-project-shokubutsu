@@ -8,7 +8,7 @@ class CoreModel {
     }
 
     static async getArray(...args) {
-        console.log("core model",...args);
+        //console.log("core model",...args);
         try {
             return (await db.query(...args)).rows;
         } catch (error) {

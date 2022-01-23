@@ -56,19 +56,35 @@ class User extends CoreModel {
         
     }
 
-    static async update(data) {
-        try {
-            console.log('data:', data)
-            return new User(await CoreModel.getRow('SELECT * FROM update_visitor($1) AS visitor', [data]));
-        } catch (error) {
-            console.log(error);
-            if (error.detail) {
-                throw new Error(error.detail);
-            }
-            throw error;
-        }
+    // async update() {
+    //     try {
+    //         console.log('data:', this)
+    //         const user = new User(await CoreModel.getRow(`SELECT * FROM update_visitor($1)`, [this]));
+    //         return user;
+    //     } catch (error) {
+    //         console.log(error);
+    //         if (error.detail) {
+    //             throw new Error(error.detail);
+    //         }
+    //         throw error;
+    //     }
         
-    }
+    // }
+    async update() {
+		try {
+			const result = await CoreModel.getRow(
+				"SELECT * FROM update_visitor($1)",
+				[this]
+			);
+			return result ? new User(result) : undefined;
+		} catch (error) {
+			console.log(error);
+			if (error.detail) {
+				throw new Error(error.detail);
+			}
+			throw error;
+		}
+	}
 
     async delete() {
         try {
