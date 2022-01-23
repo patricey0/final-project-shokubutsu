@@ -12,7 +12,7 @@ router.route(`/users`)
 
 router.route(`/users/:id`)
     .get(userController.getOneUser)
-    .patch(userController.updateUser)
+    .post(userController.updateUser)
     .delete(userController.deleteUser)
 
 router.route(`/login`)

@@ -38,15 +38,15 @@ content-type: application/json
 
 
 ### Update user
-PATCH {{baseUrl}}/users/1 HTTP/1.1
+POST {{baseUrl}}/users/1 HTTP/1.1
 content-type: application/json
 
 {
     "nickname": "tutu",
     "mail": "tutu@tata.fr",
-    "password": "qwerty",
-    "city": "Totocity",
-    "picture": "http://mypicture",
+    "password": "123415",
+    "city": "Tutucity",
+    "picture": "http://mypicture2",
     "isAdmin": "false"
 }
 

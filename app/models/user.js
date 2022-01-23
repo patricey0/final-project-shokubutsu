@@ -9,6 +9,7 @@ const bcrypt = require(`bcrypt`);
  * @property {text} mail
  * @property {password} password
  * @property {text} city
+ * @property {text} picture
  * @property {boolean} isAdmin
  */
 
@@ -56,35 +57,23 @@ class User extends CoreModel {
         
     }
 
-    // async update() {
-    //     try {
-    //         console.log('data:', this)
-    //         const user = new User(await CoreModel.getRow(`SELECT * FROM update_visitor($1)`, [this]));
-    //         return user;
-    //     } catch (error) {
-    //         console.log(error);
-    //         if (error.detail) {
-    //             throw new Error(error.detail);
-    //         }
-    //         throw error;
-    //     }
-        
-    // }
     async update() {
-		try {
-			const result = await CoreModel.getRow(
-				"SELECT * FROM update_visitor($1)",
-				[this]
-			);
-			return result ? new User(result) : undefined;
-		} catch (error) {
-			console.log(error);
-			if (error.detail) {
-				throw new Error(error.detail);
-			}
-			throw error;
-		}
-	}
+        try {
+            console.log('data:', this)
+            const data = {id:this.id, nickname:this.nickname};
+            console.log(data);
+            const user = new User(await CoreModel.getRow(`SELECT * FROM update_visitor($1)`, [data]));
+            return user;
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail);
+            }
+            throw error;
+        }
+        
+    }
+
 
     async delete() {
         try {

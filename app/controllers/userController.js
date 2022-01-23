@@ -50,31 +50,18 @@ const userController = {
         }
     },
 
-    // updateUser: async (req, res) => {
-    //     try {
-    //         console.log(req.body);
-    //         const user = await new User({id:+req.params.id, ...req.body}).update();
-    //         console.log("user after update: ", user);
-    //         //const user = db.query('SELECT * FROM update_visitor($1)', [{id:+req.params.id, ...req.body}]);
-    //         res.json(user);
-    //     } catch (error) {
-    //         console.log(error);
-    //         res.status(500).json(error.message);
-    //     }
-    // },
-    async updateUser (req, res) {
-		try {
-			//delete req.body.repeat_password;
-			if (req.body.nickname === "") delete req.body.nickname;
-			const user = await new User({
-				id: +req.params.id,
-				...req.body,
-			}).update();
-			res.json(user);
-		} catch (err) {
-			res.json(new BaseError(err));
-		}
-	},
+    updateUser: async (req, res) => {
+        try {
+            //console.log(req.body);
+            const user = await new User({id:+req.params.id, ...req.body}).update();
+            console.log("user after update: ", user);
+            //const user = db.query('SELECT * FROM update_visitor($1)', [{id:+req.params.id, ...req.body}]);
+            res.json(user);
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error.message);
+        }
+    },
 
     deleteUser: async (req, res) => {
         try {
