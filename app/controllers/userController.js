@@ -39,9 +39,9 @@ const userController = {
         try {
             console.log(req.body);
             const user = await new User(req.body).login();
-            console.log(user);
+            //console.log(user);
             const token = jwt.makeToken(user.id);
-            console.log(token);
+            //console.log(token);
             user["jwt"] = token;
             res.json(user);
         } catch (error) {

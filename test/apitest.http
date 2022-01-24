@@ -18,16 +18,16 @@ content-type: application/json
 
 {
     "nickname": "vincent",
-    "mail": "vincent@tata.fr",
+    "mail": "vincent@oclock.io",
     "password": "qwerty",
-    "city": "Totocity",
-    "picture": "http://mypicture",
+    "city": "Paris",
+    "picture": "https://media-exp1.licdn.com/dms/image/D4E35AQES9YjdYcnlYQ/profile-framedphoto-shrink_400_400/0/1642097948572?e=1643112000&v=beta&t=qSnlLfHnqkiWvlY1Dc8XgHHPFJTdbtrGT6iFhjTli5A",
     "isAdmin": "true"
 }
 
 
 ### Test create announce
-POST {{baseUrl}}/announces HTTP/1.1
+POST https://shokubutsu.herokuapp.com/v1/announces HTTP/1.1
 content-type: application/json
 
 {
@@ -35,7 +35,7 @@ content-type: application/json
     "image": "https://images.de.cactus",
     "description": "C'est le cactus de vincent.",
     "category": "Donnation",
-    "visitor_id": "2"
+    "visitor_id": "1"
 }
 
 
@@ -44,12 +44,8 @@ POST {{baseUrl}}/login HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "vincent",
-    "mail": "vincent@tata.fr",
-    "password": "qwerty",
-    "city": "Totocity",
-    "picture": "http://mypicture",
-    "isAdmin": "true"
+    "mail": "vincent@oclock.io",
+    "password": "qwerty"
 }
 
 
@@ -86,5 +82,5 @@ content-type: application/json
 
 
 ### Delete announce
-DELETE {{baseUrl}}/announces/2 HTTP/1.1
+DELETE https://shokubutsu.herokuapp.com/v1/announces/1 HTTP/1.1
 content-type: application/json
