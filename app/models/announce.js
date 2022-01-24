@@ -54,21 +54,20 @@ class Announce extends CoreModel {
         
     }
 
-    // async update() {
-    //     try {
-    //         console.log('data:', this)
-    //         console.log(data);
-    //         const announce = new Announce(await CoreModel.getRow(`SELECT * FROM update_announce($1)`, [this]));
-    //         return announce;
-    //     } catch (error) {
-    //         console.log(error);
-    //         if (error.detail) {
-    //             throw new Error(error.detail);
-    //         }
-    //         throw error;
-    //     }
+    async update() {
+        try {
+            console.log('data:', this)
+            const announce = new Announce(await CoreModel.getRow(`SELECT * FROM update_announce($1)`, [this]));
+            return announce;
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail);
+            }
+            throw error;
+        }
         
-    // }
+    }
 
 
     async delete() {
