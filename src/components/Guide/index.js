@@ -2,11 +2,11 @@
 import './styles.scss';
 
 // == Composant
-const Tuto = () => (
+const Guide = () => (
   <div>
-    <p>Composant : Tuto</p>
+    <p>Composant : Guide</p>
   </div>
 );
 
 // == Export
-export default Tuto;
+export default Guide;

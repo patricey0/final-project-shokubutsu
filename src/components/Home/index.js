@@ -4,7 +4,7 @@ import './styles.scss';
 // == Composant
 const Home = () => (
   <div>
-    <p>Composant : Home</p>
+    <h1 className="title">Bienvenue sur Shokubutsu</h1>
   </div>
 );
 

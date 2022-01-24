@@ -1,0 +1,19 @@
+body{
+  background-color: cornsilk;
+}
+
+.title{
+  height: 100vh;
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-transform: uppercase;
+};
+
+// @media (min-width: 768px) {
+//   body {
+//     background-color: red;
+//   }; 
+// };
