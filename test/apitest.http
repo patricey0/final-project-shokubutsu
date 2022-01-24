@@ -12,7 +12,21 @@ GET {{baseUrl}}/announces HTTP/1.1
 
 
 
-### Test create
+### Test create user
+POST {{baseUrl}}/users HTTP/1.1
+content-type: application/json
+
+{
+    "nickname": "toto",
+    "mail": "toto@tata.fr",
+    "password": "qwerty",
+    "city": "Totocity",
+    "picture": "http://mypicture",
+    "isAdmin": "true"
+}
+
+
+### Test create announce
 POST {{baseUrl}}/users HTTP/1.1
 content-type: application/json
 

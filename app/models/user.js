@@ -60,9 +60,7 @@ class User extends CoreModel {
     async update() {
         try {
             console.log('data:', this)
-            const data = {id:this.id, nickname:this.nickname};
-            console.log(data);
-            const user = new User(await CoreModel.getRow(`SELECT * FROM update_visitor($1)`, [data]));
+            const user = new User(await CoreModel.getRow(`SELECT * FROM update_visitor($1)`, [this]));
             return user;
         } catch (error) {
             console.log(error);
