@@ -40,7 +40,7 @@ content-type: application/json
 
 
 ### Test login
-POST {{baseUrl}}/login HTTP/1.1
+POST https://shokubutsu.herokuapp.com/v1/login HTTP/1.1
 content-type: application/json
 
 {
