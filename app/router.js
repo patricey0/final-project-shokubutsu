@@ -5,11 +5,22 @@ const { } = require(`./middlewares`);
 
 const router = Router();
 
-console.log();
+
 
 router.route(`/users`)
+    /**
+     * Respond with a json that contains all users
+     * @route GET /users
+     * @returns {Users} 200 - A JSON with all users
+     */
     .get(userController.getAllUsers)
+        /**
+     * Respond with a json that contains one user after his creation in database
+     * @route POST /users
+     * @returns {User} 200 - A JSON with user informations
+     */
     .post(userController.createUser)
+
 router.route(`/users/:id`)
     .get(userController.getOneUser)
     .post(userController.updateUser)
