@@ -1,8 +1,7 @@
-
 .header {
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(186,222,199,1) 0%, rgba(228,242,233,1) 100%);
   border-bottom: 3px solid #366D4B;
-  padding: 0.25rem 1rem;
+  padding: 0.8rem 1rem;
   
   &__principal {
     display: flex;
@@ -20,11 +19,19 @@
     };
   }
 
-  &__sign{
+  &__items{
     display: flex;
     justify-content: flex-end;
     gap: 0.5rem;
     width: 100%;
+    font-weight: bold;
+    .first{
+      display: none;
+    }
+    .second{
+      display: flex;
+      gap: 0.5rem;
+    }
   }
 
   &__button {
@@ -33,7 +40,6 @@
     border: 1.5px solid #366D4B;
     border-radius: 5px;
     color: #366D4B;
-    font-weight: bold;
     &:hover{
       background-color: #366D4B;
       color:white;
@@ -65,12 +71,42 @@
       cursor: pointer;
       transition: all 0.2s ease-out;
     }
-  }
+  };
+
+  &__logo {
+    display: none;
+  }; 
 
   .border {
     border-bottom: 1px solid #366D4B;
     width: 90%;
     border-radius: 5px;
-  }
+  };
+};
 
-}
+@media (min-width: 768px) {
+  .header{
+
+    &__icon {
+      display: none;
+    };
+    &__logo {
+      display: flex;
+      height: 50px;
+      width: 50px;
+    };
+    &__items{
+      display: flex;
+      font-size: 1.3rem;
+      .first{
+        display: flex;
+        justify-content: center;
+        flex-grow: 1;
+        gap: 4rem;
+      }
+    }
+    &__item{
+      color:rgb(84, 143, 105);
+    }
+  };
+};
