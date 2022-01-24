@@ -1,7 +1,7 @@
 const {Router} = require(`express`);
 const {userController, announceController, adminController} = require(`./controllers`);
 
-const { } = require(`./middlewares`);
+const { jwt } = require(`./middlewares`);
 
 const router = Router();
 
@@ -24,19 +24,22 @@ router.route(`/users`)
 router.route(`/users/:id`)
     .get(userController.getOneUser)
     .post(userController.updateUser)
-    .delete(userController.deleteUser)
+    .delete(userController.deleteUser);
 
 router.route(`/login`)
-    .post(userController.login)
+    .post(userController.login);
+
+router.route(`/login/reconnect`)
+    .get(jwt, userController.reconnect);
 
 router.route(`/announces`)
     .get(announceController.getAllAnnounces)
-    .post(announceController.createAnnounce)
+    .post(announceController.createAnnounce);
 
 router.route(`/announces/:id`)
     .get(announceController.getOneAnnounce)
     .post(announceController.updateAnnounce)
-    .delete(announceController.deleteAnnounce)
+    .delete(announceController.deleteAnnounce);
 
 
 module.exports = router;

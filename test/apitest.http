@@ -5,7 +5,7 @@
 @baseUrl={{protocol}}{{host}}{{port}}{{prefix}}
 
 ### Test get users
-GET {{baseUrl}}/users HTTP/1.1
+GET {{baseUrl}}/users/3 HTTP/1.1
 
 ### Test get announces
 GET {{baseUrl}}/announces HTTP/1.1
@@ -40,7 +40,7 @@ content-type: application/json
 
 
 ### Test login
-POST https://shokubutsu.herokuapp.com/v1/login HTTP/1.1
+POST {{baseUrl}}/login HTTP/1.1
 content-type: application/json
 
 {
@@ -48,13 +48,17 @@ content-type: application/json
     "password": "qwerty"
 }
 
+### Test reconnect with token
+GET {{baseUrl}}/login/reconnect HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjozLCJpYXQiOjE2NDMwMzY5OTIsImV4cCI6MTY0MzEyMzM5Mn0.JW6Yk04UdaffKAyRhqE_OhyTjACYG10KkIq59E3bCuk
+
+
 
 ### Update user
 POST {{baseUrl}}/users/1 HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "tata",
     "mail": "tutu@tata.fr",
     "password": "123415",
     "city": "Tutucity",
@@ -84,3 +88,5 @@ content-type: application/json
 ### Delete announce
 DELETE https://shokubutsu.herokuapp.com/v1/announces/1 HTTP/1.1
 content-type: application/json
+
+

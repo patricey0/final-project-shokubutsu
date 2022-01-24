@@ -104,6 +104,20 @@ class User extends CoreModel {
         
     }
 
+    async reconnect() {
+        try {
+            console.log(this);
+            const user = await CoreModel.getRow('SELECT * FROM "visitor" WHERE id=$1', [this]);
+            return user;
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail);
+            }
+            throw error;
+        }
+    }
+
 };
 
 module.exports = User;
