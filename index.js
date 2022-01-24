@@ -19,38 +19,21 @@ app.use(express.json());
 app.use('/v1', router);
 
 const options = {
-    info: {
-        version: '1.0.0',
-        title: `Shokubutsu`,
-        license: {
-        name: 'MIT',
+    swaggerDefinition: {
+        info: {
+            description: 'Shokubutsu API Documentation',
+            title: 'Shokubutsu',
+            version: '1.0.0',
         },
+        host: `localhost:${port}`,
+        basePath: '/v1',
+        produces: [
+            "application/json"
+        ],
+        schemes: ['http', 'https']
     },
-    security: {
-        BasicAuth: {
-        type: 'http',
-        scheme: 'basic',
-        },
-    },
-    baseDir: __dirname,
-    // Glob pattern to find your jsdoc files (multiple patterns can be added in an array)
-    filesPattern: './**/*.js',
-    // URL where SwaggerUI will be rendered
-    swaggerUIPath: '/api-docs',
-    // Expose OpenAPI UI
-    exposeSwaggerUI: true,
-    // Expose Open API JSON Docs documentation in `apiDocsPath` path.
-    exposeApiDocs: false,
-    // Open API JSON Docs endpoint.
-    apiDocsPath: '/v3/api-docs',
-    // Set non-required fields as nullable by default
-    notRequiredAsNullable: false,
-    // You can customize your UI options.
-    // you can extend swagger-ui-express config. You can checkout an example of this
-    // in the `example/configuration/swaggerOptions.js`
-    swaggerUiOptions: {},
-    // multiple option in case you want more that one instance
-    multiple: true,
+    basedir: __dirname, //app absolute path
+    files: ['./app/**/*.js'] //Path to the API handle folder
 };
 
 expressJSDocSwagger(app)(options);
