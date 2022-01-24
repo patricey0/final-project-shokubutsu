@@ -10,7 +10,7 @@ CREATE FUNCTION update_visitor(json) RETURNS visitor AS $$
         city=$1->>'city',
         picture=$1->>'picture',
         isAdmin=($1->>'isAdmin')::boolean
-    WHERE id=($1->>id)::int RETURNING *;
+    WHERE id=($1->>'id')::int RETURNING *;
 $$ LANGUAGE sql STRICT;
 
 COMMIT;

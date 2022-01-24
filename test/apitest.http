@@ -7,9 +7,12 @@
 ### Test get users
 GET {{baseUrl}}/users/1 HTTP/1.1
 
+### Test get announces
+GET {{baseUrl}}/announces HTTP/1.1
 
 
-### Test create
+
+### Test create user
 POST {{baseUrl}}/users HTTP/1.1
 content-type: application/json
 
@@ -20,6 +23,19 @@ content-type: application/json
     "city": "Totocity",
     "picture": "http://mypicture",
     "isAdmin": "true"
+}
+
+
+### Test create announce
+POST {{baseUrl}}/announces HTTP/1.1
+content-type: application/json
+
+{
+    "title": "cactus de vincent",
+    "image": "https://images.de.cactus",
+    "description": "C'est le cactus de vincent.",
+    "category": "Donnation",
+    "visitor_id": "1"
 }
 
 
@@ -49,6 +65,20 @@ content-type: application/json
     "picture": "http://mypicture2",
     "isAdmin": "false"
 }
+
+
+### Update announce
+POST {{baseUrl}}/announces/1 HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Ibiscus de vincent",
+    "image": "https://images.de.cactus",
+    "description": "C'est la demande de vincent. ",
+    "category": "Demande",
+    "visitor_id": "1"
+}
+
 
 ### Delete user
 DELETE {{baseUrl}}/users/1 HTTP/1.1

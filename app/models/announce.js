@@ -1,5 +1,4 @@
 const CoreModel = require (`./coreModel`);
-const bcrypt = require(`bcrypt`);
 
 /**
  * An entity representing an User
@@ -13,11 +12,11 @@ const bcrypt = require(`bcrypt`);
  * @property {boolean} isAdmin
  */
 
-class User extends CoreModel {
+class Announce extends CoreModel {
 
     static async findAll() {
         try {
-            return new User(await CoreModel.getArray(`SELECT * FROM "visitor"`));
+            return new Announce(await CoreModel.getArray(`SELECT * FROM "announce"`));
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -30,7 +29,7 @@ class User extends CoreModel {
 
     static async findById(id) {
         try {
-            return new User(await CoreModel.getRow('SELECT * FROM "visitor" WHERE id=$1', [id]));
+            return new Announce(await CoreModel.getRow('SELECT * FROM "announce" WHERE id=$1', [id]));
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -43,10 +42,8 @@ class User extends CoreModel {
 
     static async create(data) {
         try {
-            const password = await bcrypt.hash(data.password, 10);
-            data.password = password
             console.log(data);
-            return new User(await CoreModel.getRow('SELECT * FROM new_visitor($1)', [data]));
+            return new Announce(await CoreModel.getRow('SELECT * FROM new_announce($1)', [data]));
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -60,8 +57,8 @@ class User extends CoreModel {
     async update() {
         try {
             console.log('data:', this)
-            const user = new User(await CoreModel.getRow(`SELECT * FROM update_visitor($1)`, [this]));
-            return user;
+            const announce = new Announce(await CoreModel.getRow(`SELECT * FROM update_announce($1)`, [this]));
+            return announce;
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -76,8 +73,8 @@ class User extends CoreModel {
     async delete() {
         try {
             console.log('data:', this.id)
-            const user = await CoreModel.getRow('DELETE FROM visitor WHERE id=$1', [this.id]);
-            return user;
+            const announce = await CoreModel.getRow('DELETE FROM announce WHERE id=$1', [this.id]);
+            return announce;
         } catch (error) {
             console.log(error);
             if (error.detail) {
@@ -85,25 +82,8 @@ class User extends CoreModel {
             }
             throw error;
         }
-    }
-
-    async login() {
-        try {
-            const user = await CoreModel.getRow('SELECT * FROM "visitor" WHERE nickname=$1', [this.nickname]);
-            if (!user) { throw new Error ('Identification failed, username or password invalid.')};
-            const isPwdValid = await bcrypt.compare(this.password, user.password);
-            if (!isPwdValid) { throw new Error ('Identification failed, username or password invalid.')} 
-            return user;
-        } catch (error) {
-            console.log(error);
-            if (error.detail) {
-                throw new Error(error.detail);
-            }
-            throw error;
-        }
-        
     }
 
 };
 
-module.exports = User;
+module.exports = Announce;

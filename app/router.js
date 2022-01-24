@@ -10,7 +10,6 @@ console.log();
 router.route(`/users`)
     .get(userController.getAllUsers)
     .post(userController.createUser)
-
 router.route(`/users/:id`)
     .get(userController.getOneUser)
     .post(userController.updateUser)
@@ -18,6 +17,15 @@ router.route(`/users/:id`)
 
 router.route(`/login`)
     .post(userController.login)
+
+router.route(`/announces`)
+    .get(announceController.getAllAnnounces)
+    .post(announceController.createAnnounce)
+
+router.route(`/announces/:id`)
+    .get(announceController.getOneAnnounce)
+    .post(announceController.updateAnnounce)
+    .delete(announceController.deleteAnnounce)
 
 
 module.exports = router;
