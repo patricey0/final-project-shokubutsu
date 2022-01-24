@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 // == Import : local
 // Composants
+import { ChakraProvider } from '@chakra-ui/react'
 import App from 'src/components/App';
 import store from './store';
 
@@ -14,9 +15,11 @@ import store from './store';
 const rootReactElement = (
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ChakraProvider >
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ChakraProvider>
     </Provider>
   </StrictMode>
 );
