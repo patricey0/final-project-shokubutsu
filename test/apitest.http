@@ -5,7 +5,7 @@
 @baseUrl={{protocol}}{{host}}{{port}}{{prefix}}
 
 ### Test get users
-GET {{baseUrl}}/users/1 HTTP/1.1
+GET {{baseUrl}}/users HTTP/1.1
 
 ### Test get announces
 GET {{baseUrl}}/announces HTTP/1.1
@@ -17,8 +17,8 @@ POST {{baseUrl}}/users HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "toto",
-    "mail": "toto@tata.fr",
+    "nickname": "vincent",
+    "mail": "vincent@tata.fr",
     "password": "qwerty",
     "city": "Totocity",
     "picture": "http://mypicture",
@@ -31,11 +31,11 @@ POST {{baseUrl}}/announces HTTP/1.1
 content-type: application/json
 
 {
-    "title": "cactus de vincent",
+    "title": "cactus de myriam",
     "image": "https://images.de.cactus",
     "description": "C'est le cactus de vincent.",
     "category": "Donnation",
-    "visitor_id": "1"
+    "visitor_id": "2"
 }
 
 
@@ -44,8 +44,8 @@ POST {{baseUrl}}/login HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "toto",
-    "mail": "toto@tata.fr",
+    "nickname": "vincent",
+    "mail": "vincent@tata.fr",
     "password": "qwerty",
     "city": "Totocity",
     "picture": "http://mypicture",
@@ -58,7 +58,7 @@ POST {{baseUrl}}/users/1 HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "tutu",
+    "nickname": "tata",
     "mail": "tutu@tata.fr",
     "password": "123415",
     "city": "Tutucity",
@@ -68,19 +68,23 @@ content-type: application/json
 
 
 ### Update announce
-POST {{baseUrl}}/announces/1 HTTP/1.1
+POST {{baseUrl}}/announces/2 HTTP/1.1
 content-type: application/json
 
 {
-    "title": "Ibiscus de vincent",
+    "title": "Ibiscus de myriam",
     "image": "https://images.de.cactus",
     "description": "C'est la demande de vincent. ",
     "category": "Demande",
-    "visitor_id": "1"
+    "visitor_id": "2"
 }
 
 
 ### Delete user
-DELETE {{baseUrl}}/users/1 HTTP/1.1
+DELETE {{baseUrl}}/users/2 HTTP/1.1
 content-type: application/json
 
+
+### Delete announce
+DELETE {{baseUrl}}/announces/2 HTTP/1.1
+content-type: application/json

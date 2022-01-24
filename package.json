@@ -4,12 +4,8 @@
   "description": "## Infos générales Les carnets de bords (personnel et équipe) sont présents dans le wiki du repo.",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
-    "start": "node index.js",
-=======
     "mocha": "mocha",
     "start": "nodemon index.js",
->>>>>>> back-userAPI
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
