@@ -13,10 +13,7 @@ jwt_mw = async (request, response, next) => {
         if (!payload.data) {
             return response.status(401).json('Invalid token');
         }
-        const user = await User.findById(payload.data);
-        console.log(`jwt-mw user :`, user);
-        request.user = user;
-        // request.userId = payload.data;
+        request.userId = payload.data;
         next();
     } catch(error) {
         console.log(error);

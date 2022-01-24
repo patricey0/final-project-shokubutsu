@@ -53,8 +53,8 @@ const userController = {
 
     reconnect: async (req, res) => {
         try {
-            console.log('controller user reconnect :', req.user);
-            const user = req.user;
+            console.log('controller user reconnect :', req.userId);
+            const user = await User.findById(req.userId);
             user["logged"] = true;
             res.status(200).json(user);
         } catch (error) {
