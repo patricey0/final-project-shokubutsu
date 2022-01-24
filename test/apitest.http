@@ -27,16 +27,15 @@ content-type: application/json
 
 
 ### Test create announce
-POST {{baseUrl}}/users HTTP/1.1
+POST {{baseUrl}}/announces HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "toto",
-    "mail": "toto@tata.fr",
-    "password": "qwerty",
-    "city": "Totocity",
-    "picture": "http://mypicture",
-    "isAdmin": "true"
+    "title": "cactus de vincent",
+    "image": "https://images.de.cactus",
+    "description": "C'est le cactus de vincent.",
+    "category": "Donnation",
+    "visitor_id": "1"
 }
 
 
@@ -66,6 +65,20 @@ content-type: application/json
     "picture": "http://mypicture2",
     "isAdmin": "false"
 }
+
+
+### Update announce
+POST {{baseUrl}}/announces/1 HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Ibiscus de vincent",
+    "image": "https://images.de.cactus",
+    "description": "C'est la demande de vincent. ",
+    "category": "Demande",
+    "visitor_id": "1"
+}
+
 
 ### Delete user
 DELETE {{baseUrl}}/users/1 HTTP/1.1
