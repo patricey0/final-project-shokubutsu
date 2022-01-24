@@ -16,6 +16,9 @@ import {
   useDisclosure,
   Button,
   FormControl,
+  Wrap,
+  WrapItem,
+  Avatar,
 } from '@chakra-ui/react';
 
 export default function AppHeader() {
@@ -24,6 +27,7 @@ export default function AppHeader() {
     password,
     logged,
     nickname,
+    picture,
   } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
@@ -85,9 +89,14 @@ export default function AppHeader() {
             </div>
             {logged
             && (
-              <Button onClick={onLoginOpen} colorScheme="teal">
-                Profil de {nickname}
-              </Button>
+              <Wrap>
+                <WrapItem>
+                  <Avatar name="Dan Abrahmov" src={picture}/>
+                </WrapItem>
+                <Button onClick={onLoginOpen} colorScheme="teal">
+                  Profil de {nickname}
+                </Button>
+              </Wrap>
             )}
             {!logged
             && (
