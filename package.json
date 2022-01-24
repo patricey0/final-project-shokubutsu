@@ -53,12 +53,16 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
     "axios": "^0.25.0",
+    "emailjs-com": "^3.2.0",
     "prop-types": "^15.8.1",
     "react": "*",
     "react-dom": "*",
     "react-redux": "^7.2.6",
     "react-router-dom": "6",
     "redux": "^4.1.2",
-    "surge": "^0.23.1"
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.4",
+    "surge": "^0.23.1",
+    "sweetalert2": "^11.3.6"
   }
 }
