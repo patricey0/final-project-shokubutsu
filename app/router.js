@@ -9,7 +9,6 @@ const router = Router();
 router.route(`/users`)
     .get(userController.getAllUsers)
     .post(userController.createUser)
-
 router.route(`/users/:id`)
     .get(userController.getOneUser)
     .post(userController.updateUser)
