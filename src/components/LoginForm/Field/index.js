@@ -1,6 +1,6 @@
 // == Import : npm
 import PropTypes from 'prop-types';
-
+import { Input } from '@chakra-ui/react';
 // == Import : local
 import './style.scss';
 
@@ -20,7 +20,7 @@ const Field = ({
 
   return (
     <div className={value.length > 0 ? 'field field--has-content' : 'field'}>
-      <input
+      <Input
         // React - state
         value={value}
         onChange={handleChange}
@@ -31,7 +31,6 @@ const Field = ({
         placeholder={placeholder}
         name={name}
       />
-
       <label
         htmlFor={inputId}
         className="field-label"

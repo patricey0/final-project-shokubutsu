@@ -11,13 +11,13 @@ const auth = (store) => (next) => (action) => {
     case LOGIN: {
       const state = store.getState();
 
-      axios.post('http://localhost:3001/login', {
-        email: state.user.email,
+      axios.post('https://shokubutsu.herokuapp.com/v1/login', {
+        mail: state.user.mail,
         password: state.user.password,
       })
         .then((res) => {
           // stockage du token dans le localStorage
-          localStorage.setItem('token', res.data.token);
+          localStorage.setItem('token', res.data.jwt);
           // stockage des infos de l'api dans le state
           store.dispatch(saveUser(res.data));
         })
@@ -30,10 +30,10 @@ const auth = (store) => (next) => (action) => {
 
       if (token) {
         // si oui on enverra une requête à l'api pour récupérer le username
-        axios.get('http://localhost:3001/username', {
+        axios.get('https://shokubutsu.herokuapp.com/v1/login/reconnect', {
           // on passe le token dans le header Authorization de notre requête
           headers: {
-            authorization: `Bearer ${token}`,
+            authorization: token,
           },
         })
           .then((res) => store.dispatch(saveUser(res.data)))

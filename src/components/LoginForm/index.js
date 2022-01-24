@@ -1,82 +1,58 @@
 import PropTypes from 'prop-types';
 
+// import { useDisclosure } from '@chakra-ui/react';
 import Field from './Field';
 
 import './style.scss';
 
 const LoginForm = ({
-  email,
+  mail,
   password,
   changeField,
   handleLogin,
-  handleLogout,
-  isLogged,
-  loggedMessage,
+  onClose,
 }) => {
+  // const { isOpen, onOpen, onClose } = useDisclosure();
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     handleLogin();
+    onClose();
   };
 
   return (
     <div className="login-form">
-      {/* si c'est vrai */}
-      {isLogged && (
-        <div className="login-form-logged">
-          {/* ici on ajoutera le composant <Profile/> */}
-          <p className="login-form-message">
-            {loggedMessage}
-          </p>
-          <button
-            type="button"
-            className="login-form-button"
-            onClick={handleLogout}
-          >
-            Déconnexion
-          </button>
-        </div>
-      )}
-      {!isLogged && (
-
-        <form autoComplete="off" className="login-form-element" onSubmit={handleSubmit}>
-          <Field
-            name="email"
-            placeholder="Adresse Email"
-            onChange={changeField}
-            value={email}
-          />
-          <Field
-            name="password"
-            type="password"
-            placeholder="Mot de passe"
-            onChange={changeField}
-            value={password}
-          />
-          <button
-            type="submit"
-            className="login-form-button"
-          >
-            OK
-          </button>
-        </form>
-      )}
+      <form autoComplete="off" className="login-form-element" onSubmit={handleSubmit}>
+        <Field
+          name="mail"
+          placeholder="Adresse Email"
+          onChange={changeField}
+          value={mail}
+        />
+        <Field
+          name="password"
+          type="password"
+          placeholder="Mot de passe"
+          onChange={changeField}
+          value={password}
+        />
+        <button
+          type="submit"
+          className="login-form-button"
+        >
+          Se connecter
+        </button>
+      </form>
     </div>
   );
 };
 
 LoginForm.propTypes = {
-  email: PropTypes.string.isRequired,
+  mail: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   changeField: PropTypes.func.isRequired,
   handleLogin: PropTypes.func.isRequired,
-  handleLogout: PropTypes.func.isRequired,
-  isLogged: PropTypes.bool,
-  loggedMessage: PropTypes.string,
-};
-
-LoginForm.defaultProps = {
-  isLogged: false,
-  loggedMessage: 'Connecté',
+  onClose: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

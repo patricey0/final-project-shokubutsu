@@ -1,10 +1,34 @@
 // import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeField, login, logout } from 'src/actions/user';
 import './style.scss';
 import logo from 'src/assets/img/spider-plant.png';
 import { useState } from 'react';
+import LoginForm from 'src/components/LoginForm';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Button,
+  FormControl,
+} from '@chakra-ui/react';
 
 export default function AppHeader() {
+  const {
+    mail,
+    password,
+    logged,
+    nickname,
+  } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+  const { isOpen: isLoginOpen, onOpen: onLoginOpen, onClose: isLoginClose } = useDisclosure();
+  const { isOpen: isSignUpOpen, onOpen: onSignUpOpen, onClose: isSignUpClose } = useDisclosure();
   // Permet de changer l'icone du menu au click
   const [isClosed, setIsClosed] = useState(true);
   const iconType = isClosed ? 'M4 6h16M4 12h16M4 18h16' : 'M6 18L18 6M6 6l12 12';
@@ -59,18 +83,75 @@ export default function AppHeader() {
             <div className="first">
               {itemElementJSX}
             </div>
+            {logged
+            && (
+              <Button onClick={onLoginOpen} colorScheme="teal">
+                Profil de {nickname}
+              </Button>
+            )}
+            {!logged
+            && (
             <div className="second">
               <li>
-                <NavLink to="/" className="header__button">
-                  Connexion
-                </NavLink>
+                <Button onClick={onLoginOpen} colorScheme="teal">
+                  Se Connecter
+                </Button>
+                <Modal
+                  isOpen={isLoginOpen}
+                  onClose={isLoginClose}
+                >
+                  <ModalOverlay />
+                  <ModalContent>
+                    <ModalHeader>Connectez vous</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody pb={6}>
+                      <FormControl>
+                        <LoginForm
+                          mail={mail}
+                          password={password}
+                          changeField={(value, name) => dispatch(changeField(value, name))}
+                          handleLogin={() => dispatch(login())}
+                          isLogged={logged}
+                          loggedMessage={`Bonjour ${nickname}`}
+                          handleLogout={() => dispatch(logout())}
+                          onClose={isLoginClose}
+                        />
+                      </FormControl>
+                    </ModalBody>
+                  </ModalContent>
+                </Modal>
               </li>
               <li>
-                <NavLink to="/" className="header__button">
+                <Button onClick={onSignUpOpen} colorScheme="teal">
                   Créer un compte
-                </NavLink>
+                </Button>
+                <Modal
+                  isOpen={isSignUpOpen}
+                  onClose={isSignUpClose}
+                >
+                  <ModalOverlay />
+                  <ModalContent>
+                    <ModalHeader>Connectez vous</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody pb={6}>
+                      <FormControl>
+                        <LoginForm
+                          mail={mail}
+                          password={password}
+                          changeField={(value, name) => dispatch(changeField(value, name))}
+                          handleLogin={() => dispatch(login())}
+                          isLogged={logged}
+                          loggedMessage={`Bonjour ${nickname}`}
+                          handleLogout={() => dispatch(logout())}
+                          onClose={isSignUpClose}
+                        />
+                      </FormControl>
+                    </ModalBody>
+                  </ModalContent>
+                </Modal>
               </li>
             </div>
+            )}
           </ul>
         </div>
         <ul className={`header__secondary${isClosed ? '' : '--active'}`}>
