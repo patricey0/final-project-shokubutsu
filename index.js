@@ -24,10 +24,14 @@ const options = {
         description: 'Shokubutsu API Documentation',
         title: `Shokubutsu`,
     },
+    produces: [
+        "application/json"
+    ],
+    schemes: ['http', 'https'],
     basePath:`/v1`,
     baseDir: __dirname,
     // Glob pattern to find your jsdoc files (multiple patterns can be added in an array)
-    filesPattern: './**/*.js',
+    filesPattern: './app/**/*.js',
     // URL where SwaggerUI will be rendered
     swaggerUIPath: '/api-docs',
     // Expose OpenAPI UI
