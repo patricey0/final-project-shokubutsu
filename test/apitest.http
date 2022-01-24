@@ -50,7 +50,7 @@ content-type: application/json
 
 ### Test reconnect with token
 GET {{baseUrl}}/login/reconnect HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjozLCJpYXQiOjE2NDMwMzY5OTIsImV4cCI6MTY0MzEyMzM5Mn0.JW6Yk04UdaffKAyRhqE_OhyTjACYG10KkIq59E3bCuk
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjozLCJpYXQiOjE2NDMwMzc3NzAsImV4cCI6MTY0MzEyNDE3MH0.6YwFETAGxDiEZOXOCvQtBuQp0CthgoDzSXIHEJ1Cs04
 
 
 

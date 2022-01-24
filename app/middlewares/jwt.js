@@ -1,6 +1,7 @@
 const jwt = require('../services/jwt');
+const {User} = require(`../models`);
 
-jwt_mw = (request, response, next) => {
+jwt_mw = async (request, response, next) => {
     try {
         let token = request.headers['authorization'];
         console.log(`jwt-mw token: `, token);
@@ -12,7 +13,10 @@ jwt_mw = (request, response, next) => {
         if (!payload.data) {
             return response.status(401).json('Invalid token');
         }
-        request.userId = payload.data;
+        const user = await User.findById(payload.data);
+        console.log(`jwt-mw user :`, user);
+        request.user = user;
+        // request.userId = payload.data;
         next();
     } catch(error) {
         console.log(error);
