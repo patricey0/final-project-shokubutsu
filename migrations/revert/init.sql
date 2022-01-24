@@ -4,6 +4,6 @@ BEGIN;
 
 DROP TABLE "bookmarked";
 DROP TABLE "announce";
-DROP TABLE "user";
+DROP TABLE "visitor";
 
 COMMIT;

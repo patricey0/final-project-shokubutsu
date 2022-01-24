@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 
 const router = require('./app/router');
+
 const {cleaner} = require('./app/middlewares');
 
 const app = express();
@@ -12,6 +13,8 @@ const port = process.env.PORT || 5000;
 
 // middleware to mitigate XSS Attacks
 app.use(cleaner);
+
+app.use(express.json());
 
 app.use('/v1', router);
 
@@ -56,3 +59,5 @@ expressJSDocSwagger(app)(options);
 app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}`);
 });
+
+module.exports = app;

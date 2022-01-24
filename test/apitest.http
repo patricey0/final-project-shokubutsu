@@ -1,0 +1,56 @@
+@protocol=http://
+@host=localhost
+@port=:5000
+@prefix=/v1
+@baseUrl={{protocol}}{{host}}{{port}}{{prefix}}
+
+### Test get users
+GET {{baseUrl}}/users/1 HTTP/1.1
+
+
+
+### Test create
+POST {{baseUrl}}/users HTTP/1.1
+content-type: application/json
+
+{
+    "nickname": "toto",
+    "mail": "toto@tata.fr",
+    "password": "qwerty",
+    "city": "Totocity",
+    "picture": "http://mypicture",
+    "isAdmin": "true"
+}
+
+
+### Test login
+POST {{baseUrl}}/login HTTP/1.1
+content-type: application/json
+
+{
+    "nickname": "toto",
+    "mail": "toto@tata.fr",
+    "password": "qwerty",
+    "city": "Totocity",
+    "picture": "http://mypicture",
+    "isAdmin": "true"
+}
+
+
+### Update user
+POST {{baseUrl}}/users/1 HTTP/1.1
+content-type: application/json
+
+{
+    "nickname": "tutu",
+    "mail": "tutu@tata.fr",
+    "password": "123415",
+    "city": "Tutucity",
+    "picture": "http://mypicture2",
+    "isAdmin": "false"
+}
+
+### Delete user
+DELETE {{baseUrl}}/users/1 HTTP/1.1
+content-type: application/json
+
