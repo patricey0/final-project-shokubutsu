@@ -4,10 +4,8 @@ import './styles.scss';
 
 // == Composant
 const Home = () => (
-  <div className="title">
-    <Box  w='100%' p={4} color='white'>
-      Home
-    </Box>
+  <div className="home">
+    <h1 className="home__title">Bienvenue sur Shokubutsu</h1>
   </div>
 );
 

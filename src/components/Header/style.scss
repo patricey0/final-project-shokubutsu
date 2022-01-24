@@ -84,7 +84,15 @@
   };
 };
 
-@media (min-width: 768px) {
+
+@media (max-width: 330px) {
+  .header__button {
+    font-size: 0.9rem;
+  }
+};
+
+
+@media (min-width: 920px) {
   .header{
 
     &__icon {
@@ -102,7 +110,7 @@
         display: flex;
         justify-content: center;
         flex-grow: 1;
-        gap: 4rem;
+        gap: 3rem;
       }
     }
     &__item{
