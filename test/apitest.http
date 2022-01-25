@@ -8,12 +8,12 @@
 GET {{baseUrl}}/users/3 HTTP/1.1
 
 ### Test get announces
-GET {{baseUrl}}/announces HTTP/1.1
+GET https://shokubutsu.herokuapp.com/v1/announces HTTP/1.1
 
 
 
 ### Test create user
-POST {{baseUrl}}/users HTTP/1.1
+POST https://shokubutsu.herokuapp.com/v1/users HTTP/1.1
 content-type: application/json
 
 {
