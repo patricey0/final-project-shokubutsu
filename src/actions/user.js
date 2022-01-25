@@ -5,6 +5,7 @@ export const SAVE_USER = 'SAVE_USER';
 export const FETCH_USER = 'FETCH_USER';
 export const FETCH_FAV = 'FETCH_FAV';
 export const SAVE_FAV = 'SAVE_FAV';
+export const SIGNUP = 'SIGNUP';
 
 export const changeField = (value, name) => ({
   type: CHANGE_FIELD,
@@ -42,4 +43,8 @@ export const saveFav = (favorites) => ({
   payload: {
     ...favorites,
   },
+});
+
+export const signUp = () => ({
+  type: SIGNUP,
 });

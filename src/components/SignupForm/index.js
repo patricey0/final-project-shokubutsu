@@ -1,28 +1,37 @@
 import PropTypes from 'prop-types';
 
 // import { useDisclosure } from '@chakra-ui/react';
-import Field from './Field';
+import Field from 'src/components/LoginForm/Field';
 
 import './style.scss';
 
-const LoginForm = ({
+const SignupForm = ({
   mail,
   password,
   changeField,
-  handleLogin,
+  nickname,
+  city,
+  handleSignup,
   onClose,
 }) => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleLogin();
+    handleSignup();
+    // todo handleSignup
     onClose();
   };
 
   return (
     <div className="login-form">
       <form autoComplete="off" className="login-form-element" onSubmit={handleSubmit}>
+        <Field
+          name="nickname"
+          placeholder="Pseudo"
+          onChange={changeField}
+          value={nickname}
+        />
         <Field
           name="mail"
           placeholder="Adresse Email"
@@ -36,23 +45,38 @@ const LoginForm = ({
           onChange={changeField}
           value={password}
         />
+        <Field
+          name="city"
+          placeholder="Ville"
+          onChange={changeField}
+          value={city}
+        />
+        <Field
+          name="picture"
+          type="file"
+          // placeholder="Pseudo"
+          // onChange={changeField}
+          // value={picture}
+        />
         <button
           type="submit"
           className="login-form-button"
         >
-          Se connecter
+          S'inscrire
         </button>
       </form>
     </div>
   );
 };
 
-LoginForm.propTypes = {
+SignupForm.propTypes = {
   mail: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
+  nickname: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
   changeField: PropTypes.func.isRequired,
-  handleLogin: PropTypes.func.isRequired,
+  handleSignup: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
-export default LoginForm;
+export default SignupForm;
