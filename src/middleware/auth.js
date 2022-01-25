@@ -58,6 +58,7 @@ const auth = (store) => (next) => (action) => {
           // stockage du token dans le localStorage
           localStorage.setItem('token', res.data.jwt);
           // stockage des infos de l'api dans le state
+          console.log('result // signup :', res.data);
           store.dispatch(saveUser(res.data));
         })
         .catch((err) => console.log(err));
