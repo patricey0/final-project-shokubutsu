@@ -1,5 +1,4 @@
 // == Import
-import { Box,Text } from '@chakra-ui/react'
 import './styles.scss';
 
 // Data for the team part
