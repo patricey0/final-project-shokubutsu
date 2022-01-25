@@ -48,3 +48,27 @@
     };
 
 };
+
+@media (min-width: 920px) {
+  .home__section{
+    justify-content: center;
+
+    &__title{
+      font-size: 4rem;  
+    };
+
+    &__about{
+      font-size: 2rem;
+      margin: 0 5rem;
+    }
+
+    &__team{
+      font-size: 2rem;
+      margin: 0 5rem;
+    }
+  }
+  .padding{
+    padding: 2rem;
+  }
+}
+
