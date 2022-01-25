@@ -8,8 +8,12 @@ import {
   Input,
   Stack,
   Textarea,
+  Text,
+  VStack,
+  useBreakpointValue,
   // useColorModeValue,
 } from '@chakra-ui/react';
+import bcgImg from 'src/assets/img/plant-8.jpg';
 import emailjs from 'emailjs-com';
 import './styles.scss';
 import Swal from 'sweetalert2';
@@ -41,6 +45,38 @@ const Contact = () => {
   };
   return (
     <div className="form-contact">
+      <Flex
+        w="full"
+        h="100vh"
+        backgroundImage={
+        bcgImg
+      }
+        backgroundSize="cover"
+        backgroundPosition="center center"
+      >
+        <VStack
+          w="full"
+          justify="center"
+          px={useBreakpointValue({ base: 4, md: 8 })}
+          bgGradient="linear(to-r, blackAlpha.600, transparent)"
+        >
+          <Stack maxW="2xl" align="center" spacing={6}>
+            <Text
+              color="white"
+              fontWeight={700}
+              lineHeight={1.2}
+              p={8}
+              borderRadius="2em"
+              bg="rgba(255, 100, 100, 0.4)"
+              fontSize={useBreakpointValue({ base: '2xl', md: '3xl' })}
+            >
+              Vous avez une question ? Une recommendation ?
+              Trop de mauvaises herbes dans votre jardin ?
+              L'équipe Shokubutsu est la pour vous répondre
+            </Text>
+          </Stack>
+        </VStack>
+      </Flex>
       <Flex
         minH="100vh"
         align="center"
