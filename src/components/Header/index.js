@@ -1,11 +1,18 @@
 // import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeField, login, logout } from 'src/actions/user';
+import {
+  changeField,
+  login,
+  logout,
+  signUp,
+} from 'src/actions/user';
 import './style.scss';
 import logo from 'src/assets/img/spider-plant.png';
 import { useState } from 'react';
 import LoginForm from 'src/components/LoginForm';
+import SignupForm from 'src/components/SignupForm';
+
 import {
   Modal,
   ModalOverlay,
@@ -26,6 +33,7 @@ export default function AppHeader() {
     mail,
     password,
     logged,
+    city,
     nickname,
     picture,
   } = useSelector((state) => state.user);
@@ -91,10 +99,13 @@ export default function AppHeader() {
             && (
               <Wrap>
                 <WrapItem>
-                  <Avatar name="Dan Abrahmov" src={picture}/>
+                  <Avatar name={nickname} src={picture} />
                 </WrapItem>
                 <Button onClick={onLoginOpen} colorScheme="teal">
                   Profil de {nickname}
+                </Button>
+                <Button onClick={() => dispatch(logout())} colorScheme="teal">
+                  Deconnexion
                 </Button>
               </Wrap>
             )}
@@ -122,7 +133,7 @@ export default function AppHeader() {
                           handleLogin={() => dispatch(login())}
                           isLogged={logged}
                           loggedMessage={`Bonjour ${nickname}`}
-                          handleLogout={() => dispatch(logout())}
+                          // handleLogout={() => dispatch(logout())}
                           onClose={isLoginClose}
                         />
                       </FormControl>
@@ -140,18 +151,20 @@ export default function AppHeader() {
                 >
                   <ModalOverlay />
                   <ModalContent>
-                    <ModalHeader>Connectez vous</ModalHeader>
+                    <ModalHeader>Inscrivez vous</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
                       <FormControl>
-                        <LoginForm
+                        <SignupForm
                           mail={mail}
                           password={password}
+                          nickname={nickname}
+                          city={city}
                           changeField={(value, name) => dispatch(changeField(value, name))}
-                          handleLogin={() => dispatch(login())}
+                          handleSignup={() => dispatch(signUp())}
                           isLogged={logged}
-                          loggedMessage={`Bonjour ${nickname}`}
-                          handleLogout={() => dispatch(logout())}
+                          // loggedMessage={`Bonjour ${nickname}`}
+                          // handleLogout={() => dispatch(logout())}
                           onClose={isSignUpClose}
                         />
                       </FormControl>

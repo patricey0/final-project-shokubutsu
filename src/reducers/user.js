@@ -3,12 +3,16 @@ import {
   SAVE_USER,
   LOGOUT,
   SAVE_FAV,
+  SIGNUP,
 } from 'src/actions/user';
 
 export const initialState = {
   logged: false,
   mail: '',
   password: '',
+  city: '',
+  nickname: '',
+  picture: '',
 };
 
 const reducer = (state = initialState, action = {}) => {

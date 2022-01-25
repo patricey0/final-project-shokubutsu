@@ -4,6 +4,7 @@ import {
   saveUser,
   FETCH_USER,
   LOGOUT,
+  SIGNUP,
 } from 'src/actions/user';
 
 const auth = (store) => (next) => (action) => {
@@ -40,6 +41,26 @@ const auth = (store) => (next) => (action) => {
           .catch((err) => console.log(err));
       }
 
+      break;
+    }
+    case SIGNUP: {
+      const state = store.getState();
+      console.log(state);
+      axios.post('https://shokubutsu.herokuapp.com/v1/users', {
+        nickname: state.user.nickname,
+        mail: state.user.mail,
+        password: state.user.password,
+        city: state.user.city,
+        picture: state.user.picture,
+        isAdmin: false,
+      })
+        .then((res) => {
+          // stockage du token dans le localStorage
+          localStorage.setItem('token', res.data.jwt);
+          // stockage des infos de l'api dans le state
+          store.dispatch(saveUser(res.data));
+        })
+        .catch((err) => console.log(err));
       break;
     }
     case LOGOUT: {
