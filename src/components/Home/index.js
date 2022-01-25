@@ -2,6 +2,35 @@
 import { Box,Text } from '@chakra-ui/react'
 import './styles.scss';
 
+// Data for the team part
+const team = [
+  {
+    id: 1,
+    name: "Patrice",
+    job: "Lead Dev Back"
+  },
+  {
+    id: 2,
+    name: "Vincent",
+    job: "Product Owner"
+  },
+  {
+    id: 3,
+    name: "Myriam",
+    job: "Lead Dev Front"
+  },
+]
+
+const teamElementJSX = team.map(
+  ({id, name, job}) =>{
+    return (
+      <p key={id} className="home__team__person padding">
+      {name} {job}
+      </p>
+    )
+  }
+)
+
 
 // == Composant
 const Home = () => (
@@ -22,9 +51,7 @@ const Home = () => (
     <section className="home__section__team">
       <div className="home__section__team__block">
         <h2 className="home__team__title padding">L'équipe Shokubutsu</h2>
-        <p className="home__team__person padding">Patrice Lead Dev Back</p>
-        <p className="home__team__person padding">Vincent Product Owner</p>
-        <p className="home__team__person padding">Myriam Lead Dev Front</p>
+        {teamElementJSX}
       </div>
     </section> 
   </div>
