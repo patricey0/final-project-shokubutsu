@@ -84,6 +84,20 @@ class Announce extends CoreModel {
         }
     }
 
+    async deleteByUserId() {
+        try {
+            console.log('data:', this.id)
+            const announce = await CoreModel.getArray('DELETE FROM announce WHERE visitor_id=$1', [this.id]);
+            return announce;
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail);
+            }
+            throw error;
+        }
+    }
+
 };
 
 module.exports = Announce;

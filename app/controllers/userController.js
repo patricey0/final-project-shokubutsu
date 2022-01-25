@@ -1,5 +1,6 @@
 const { User } = require(`../models`);
 const jwt = require('../services/jwt');
+const { Announce } = require(`../models`);
 
 const userController = {
     
@@ -67,6 +68,8 @@ const userController = {
     updateUser: async (req, res) => {
         try {
             //console.log(req.body);
+            const userBeforeUpdate = await User.findById(+req.params.id);
+            console.log(`user before update : `, userBeforeUpdate);
             const user = await new User({id:+req.params.id, ...req.body}).update();
             console.log("user after update: ", user);
             res.json(user);
@@ -79,6 +82,7 @@ const userController = {
     deleteUser: async (req, res) => {
         try {
             console.log(req.params.id);
+            await new Announce(+req.params.id).deleteByUserId();
             const user = await new User({id:+req.params.id}).delete();
             console.log("user controller delete: ", user);
             res.json(user);

@@ -13,7 +13,7 @@ GET https://shokubutsu.herokuapp.com/v1/announces HTTP/1.1
 
 
 ### Test create user
-POST https://shokubutsu.herokuapp.com/v1/users HTTP/1.1
+POST {{baseUrl}}/users HTTP/1.1
 content-type: application/json
 
 {
@@ -44,8 +44,12 @@ POST {{baseUrl}}/login HTTP/1.1
 content-type: application/json
 
 {
-    "mail": "vincent@oclock.io",
-    "password": "qwerty"
+    "nickname": "vincent",
+    "mail": "vincent2@oclock.io",
+    "password": "qwerty",
+    "city": "Paris",
+    "picture": "https://media-exp1.licdn.com/dms/image/D4E35AQES9YjdYcnlYQ/profile-framedphoto-shrink_400_400/0/1642097948572?e=1643112000&v=beta&t=qSnlLfHnqkiWvlY1Dc8XgHHPFJTdbtrGT6iFhjTli5A",
+    "isAdmin": "true"
 }
 
 ### Test reconnect with token
@@ -55,15 +59,16 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjozLCJpYXQiOjE2NDMw
 
 
 ### Update user
-POST {{baseUrl}}/users/1 HTTP/1.1
+POST {{baseUrl}}/users/5 HTTP/1.1
 content-type: application/json
 
 {
-    "mail": "tutu@tata.fr",
-    "password": "123415",
-    "city": "Tutucity",
-    "picture": "http://mypicture2",
-    "isAdmin": "false"
+    "nickname": "vincent",
+    "mail": "blablablablabla",
+    "password": "qwerty",
+    "city": "Paris",
+    "picture": "https://media-exp1.licdn.com/dms/image/D4E35AQES9YjdYcnlYQ/profile-framedphoto-shrink_400_400/0/1642097948572?e=1643112000&v=beta&t=qSnlLfHnqkiWvlY1Dc8XgHHPFJTdbtrGT6iFhjTli5A",
+    "isAdmin": "true"
 }
 
 
@@ -81,7 +86,7 @@ content-type: application/json
 
 
 ### Delete user
-DELETE {{baseUrl}}/users/2 HTTP/1.1
+DELETE {{baseUrl}}/users/1 HTTP/1.1
 content-type: application/json
 
 

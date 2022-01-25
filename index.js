@@ -8,7 +8,8 @@ const {cleaner} = require('./app/middlewares');
 
 const app = express();
 
-const expressJSDocSwagger  = require('express-jsdoc-swagger');
+const expressJSDocSwagger  = require('express-swagger-generator');
+
 
 const port = process.env.PORT || 5000;
 
@@ -21,27 +22,24 @@ app.use(cors());
 
 app.use('/v1', router);
 
-const options = {
-    info: {
-        version: '1.0.0',
-        description: 'Shokubutsu API Documentation',
-        title: `Shokubutsu`,
+let options = {
+    swaggerDefinition: {
+        info: {
+            description: 'Shokubutsu API documentation',
+            title: 'Shokubutsu',
+            version: '1.0.0',
+        },
+        host: `localhost:${port}`,
+        basePath: '/v1',
+        produces: [
+            "application/json"
+        ],
+        schemes: ['http', 'https']
     },
-    produces: [
-        "application/json"
-    ],
-    schemes: ['http', 'https'],
-    basePath:`/v1`,
-    baseDir: __dirname,
-    // Glob pattern to find your jsdoc files (multiple patterns can be added in an array)
-    files: './app/**/*.js',
-    // URL where SwaggerUI will be rendered
-    swaggerUIPath: '/api-docs',
-    // Expose OpenAPI UI
-    exposeSwaggerUI: true,
-    // Open API JSON Docs endpoint.
-    apiDocsPath: '/v3/api-docs',
+    basedir: __dirname, //app absolute path
+    files: ['./app/**/*.js'] //Path to the API handle folder
 };
+
 
 expressJSDocSwagger(app)(options);
 
