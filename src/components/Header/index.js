@@ -101,7 +101,7 @@ export default function AppHeader() {
                 <WrapItem>
                   <Avatar name={nickname} src={picture} />
                 </WrapItem>
-                <Button onClick={onLoginOpen} colorScheme="teal">
+                <Button onClick={onLoginOpen} colorScheme="teal" as={NavLink} to="/profile">
                   Profil de {nickname}
                 </Button>
                 <Button onClick={() => dispatch(logout())} colorScheme="teal">
