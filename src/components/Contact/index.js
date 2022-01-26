@@ -67,12 +67,12 @@ const Contact = () => {
               lineHeight={1.2}
               p={8}
               borderRadius="2em"
-              bg="rgba(255, 100, 100, 0.4)"
+              bg="#badec7"
               fontSize={useBreakpointValue({ base: '2xl', md: '3xl' })}
             >
-              Vous avez une question ? Une recommendation ?
+              Vous avez une question ? Une recommandation ?
               Trop de mauvaises herbes dans votre jardin ?
-              L'équipe Shokubutsu est la pour vous répondre
+              L'équipe Shokubutsu est là pour vous répondre
             </Text>
           </Stack>
         </VStack>
@@ -92,9 +92,9 @@ const Contact = () => {
           boxShadow="lg"
           p={6}
           my={12}
-          bg="grey"
+          bg="#366d4b"
         >
-          <Heading lineHeight={1.1} fontSize={{ base: '2xl', md: '3xl' }}>
+          <Heading lineHeight={1.1} m={5} fontSize={{ base: '2xl', md: '3xl' }}>
             Contactez Shokubutsu
           </Heading>
           <form onSubmit={handleOnSubmit}>
@@ -124,7 +124,7 @@ const Contact = () => {
             </FormControl>
             <Stack spacing={6}>
               <Button
-                bg="tomato"
+                bg="#badec7"
                 color="white"
                 type="submit"
                 mt={2}

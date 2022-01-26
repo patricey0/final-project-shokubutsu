@@ -6,6 +6,10 @@ import {
   Image,
   useColorModeValue,
   Link,
+  Button,
+  Menu,
+  MenuList,
+  MenuItem,
 } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 import logo from 'src/assets/img/spider-plant.png';
@@ -32,18 +36,18 @@ export default function Footer() {
         spacing={4}
         justify="center"
         align="center"
+
       >
         <Image
-  // borderRadius='full'
           boxSize="50px"
           src={logo}
           alt="logo shokubutsu"
         />
-        <Stack direction="row" spacing={6}>
-          <NavLink to="/" onClick={scrollToTop}>Home</NavLink>
-          <NavLink to="/annonces">Annonces</NavLink>
-          <NavLink to="/guide">Guide</NavLink>
-          <NavLink to="/contact" onClick={scrollToTop}>Contact</NavLink>
+        <Stack direction={{ base: 'column', md: 'row' }} spacing={6}>
+          <Button color="#366d4b" onClick={scrollToTop} as={NavLink} to="/" _hover={{ color: '#366d4b' }} _focus={{ boxShadow: ' 0 0 0 3px #366d4b7c' }} _active={{ backgroundColor: '#366d4b', color: 'white'}} bg="none">Home</Button>
+          <Button color="#366d4b" onClick={scrollToTop} as={NavLink} to="/annonces" _hover={{ color: '#366d4b' }} bg="none" _focus={{ boxShadow: ' 0 0 0 3px #366d4b7c' }} _active={{ backgroundColor: '#366d4b', color: 'white'}}>Annonces</Button>
+          <Button color="#366d4b" onClick={scrollToTop} as={NavLink} to="/guide" _hover={{ color: '#366d4b' }} _focus={{ boxShadow: ' 0 0 0 3px #366d4b7c' }} bg="none" _active={{ backgroundColor: '#366d4b', color: 'white'}}>Guide</Button>
+          <Button color="#366d4b" onClick={scrollToTop} as={NavLink} to="/contact" _hover={{ color: '#366d4b' }} _focus={{ boxShadow: ' 0 0 0 3px #366d4b7c' }} bg="none" _active={{ backgroundColor: '#366d4b', color: 'white'}}>Contact</Button>
         </Stack>
       </Container>
 

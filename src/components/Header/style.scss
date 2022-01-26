@@ -10,7 +10,7 @@
   }
 
   &__icon{
-    color: #366D4B;
+    color: #366d4b;
     height: 50px;
     &:hover{
       color: rgb(84, 143, 105);
@@ -21,6 +21,7 @@
 
   &__items{
     display: flex;
+    align-items: center;
     justify-content: flex-end;
     gap: 0.5rem;
     width: 100%;
@@ -41,7 +42,7 @@
     border-radius: 5px;
     color: #366D4B;
     &:hover{
-      background-color: #366D4B;
+      background-color: #366D4B!important;
       color:white;
       cursor: pointer;
       transition: all 0.2s ease-out;

@@ -24,8 +24,8 @@ import {
   Button,
   FormControl,
   Wrap,
-  WrapItem,
-  MenuDivider,
+  // WrapItem,
+  // MenuDivider,
   Center,
   Avatar,
   Menu,
@@ -104,48 +104,51 @@ export default function AppHeader() {
             {logged
             && (
               <Wrap>
-              <Menu>
-                <MenuButton
-                  as={Button}
-                  rounded="full"
-                  variant="link"
-                  cursor="pointer"
-                  minW={0}
-                >
-                  <Avatar
-                    size="sm"
-                    src="https://avatars.dicebear.com/api/male/username.svg"
-                  />
-                </MenuButton>
-                <MenuList alignItems="center" border="1px solid #366d4b">
-                  <br />
-                  <Center>
+                <Menu>
+                  <MenuButton
+                    as={Button}
+                    rounded="full"
+                    variant="link"
+                    cursor="pointer"
+                    minW={0}
+                  >
                     <Avatar
-                      size="2xl"
-                      src="https://avatars.dicebear.com/api/male/username.svg"
+                      size="md"
+                      bg="#badec7"
+                      // name={nickname}
+                      src={picture} // ''
                     />
-                  </Center>
-                  <br />
-                  <Center color="#366d4b">
-                    <p>{nickname}</p>
-                  </Center>
-                  <br />
-                  <MenuDivider />
-                  <MenuItem color="#366d4b" as={NavLink} to="/profile" _hover={{color: '#366d4b'}}>Mon profil</MenuItem>
-                  <MenuItem color="#366d4b" as={NavLink} to="/myannounces" _hover={{color: '#366d4b'}}>Mes Annonces</MenuItem>
-                  <MenuItem color="#366d4b" as={NavLink} to="/myfavorites" _hover={{color: '#366d4b'}}>Mes favoris</MenuItem>
-                  <MenuItem color="#366d4b" as="button" onClick={() => dispatch(logout())}>Déconnexion</MenuItem>
-                </MenuList>
-              </Menu>
-            </Wrap>
+                  </MenuButton>
+                  <MenuList alignItems="center" border="1px solid #366d4b">
+                    <br />
+                    <Center>
+                      <Avatar
+                        size="2xl"
+                        bg="#badec7"
+                        name={nickname}
+                        src={picture}
+                      />
+                    </Center>
+                    <br />
+                    <Center color="#366d4b">
+                      <p>{nickname}</p>
+                    </Center>
+                    <br />
+                    <MenuItem color="#366d4b" as={NavLink} to="/profile" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Mon profil</MenuItem>
+                    <MenuItem color="#366d4b" as={NavLink} to="/myannounces" _hover={{ color: 'white', backgroundColor: '#366d4b'}}>Mes Annonces</MenuItem>
+                    <MenuItem color="#366d4b" as={NavLink} to="/myfavorites" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Mes favoris</MenuItem>
+                    <MenuItem color="#366d4b" as="button" onClick={() => dispatch(logout())}>Déconnexion</MenuItem>
+                  </MenuList>
+                </Menu>
+              </Wrap>
             )}
             {!logged
             && (
             <div className="second">
               <li>
-                <Button onClick={onLoginOpen} colorScheme="teal">
+                <button type="button" onClick={onLoginOpen} className="header__button">
                   Se Connecter
-                </Button>
+                </button>
                 <Modal
                   isOpen={isLoginOpen}
                   onClose={isLoginClose}
@@ -172,9 +175,9 @@ export default function AppHeader() {
                 </Modal>
               </li>
               <li>
-                <Button onClick={onSignUpOpen} colorScheme="teal">
+                <button type="button" onClick={onSignUpOpen} className="header__button">
                   Créer un compte
-                </Button>
+                </button>
                 <Modal
                   isOpen={isSignUpOpen}
                   onClose={isSignUpClose}
@@ -213,15 +216,3 @@ export default function AppHeader() {
     </header>
   );
 }
-
-              {/* <Wrap>
-                <WrapItem>
-                  <Avatar name={nickname} src={picture} />
-                </WrapItem>
-                <Button onClick={onLoginOpen} colorScheme="teal" as={NavLink} to="/profile">
-                  Profil de {nickname}
-                </Button>
-                <Button onClick={() => dispatch(logout())} colorScheme="teal">
-                  Deconnexion
-                </Button>
-              </Wrap> */}
