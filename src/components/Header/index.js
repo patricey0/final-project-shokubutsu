@@ -78,7 +78,7 @@ export default function AppHeader() {
       <li key={id} className="">
         <NavLink
           onClick={() => {
-            setIsClosed(!isClosed);
+            if (window.innerWidth <= 968) setIsClosed(!isClosed);
           }}
           to={path}
           className="header__item"
