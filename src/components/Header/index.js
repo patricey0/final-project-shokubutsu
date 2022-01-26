@@ -117,7 +117,7 @@ export default function AppHeader() {
                     src="https://avatars.dicebear.com/api/male/username.svg"
                   />
                 </MenuButton>
-                <MenuList alignItems="center">
+                <MenuList alignItems="center" border="1px solid #366d4b">
                   <br />
                   <Center>
                     <Avatar
@@ -126,15 +126,15 @@ export default function AppHeader() {
                     />
                   </Center>
                   <br />
-                  <Center color="red">
+                  <Center color="#366d4b">
                     <p>{nickname}</p>
                   </Center>
                   <br />
                   <MenuDivider />
-                  <MenuItem color="red" as={NavLink} to="/profile">Mon profil</MenuItem>
-                  <MenuItem color="red" as={NavLink} to="/myannounces">Mes Annonces</MenuItem>
-                  <MenuItem color="red" as={NavLink} to="/myfavorites">Mes favoris</MenuItem>
-                  <MenuItem color="red" as="button" onClick={() => dispatch(logout())}>Déconnexion</MenuItem>
+                  <MenuItem color="#366d4b" as={NavLink} to="/profile" _hover={{color: '#366d4b'}}>Mon profil</MenuItem>
+                  <MenuItem color="#366d4b" as={NavLink} to="/myannounces" _hover={{color: '#366d4b'}}>Mes Annonces</MenuItem>
+                  <MenuItem color="#366d4b" as={NavLink} to="/myfavorites" _hover={{color: '#366d4b'}}>Mes favoris</MenuItem>
+                  <MenuItem color="#366d4b" as="button" onClick={() => dispatch(logout())}>Déconnexion</MenuItem>
                 </MenuList>
               </Menu>
             </Wrap>
