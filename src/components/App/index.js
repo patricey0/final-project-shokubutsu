@@ -16,6 +16,7 @@ import Error from 'src/components/Error';
 import Footer from 'src/components/Footer';
 import Loading from './Loading';
 import Guide from '../Guide';
+import Profile from '../Profile';
 
 // == Composant
 const App = () => {
@@ -34,12 +35,12 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/announces" element={<Announces />} />
-        {/* <Route path="/tuto" element={<Tuto />} /> */}
         <Route path="/guide" element={<Guide />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<Error />} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
