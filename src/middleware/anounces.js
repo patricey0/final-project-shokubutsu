@@ -17,7 +17,7 @@ const anounces = (store) => (next) => (action) => {
         }
       };
 
-      loadData('http://localhost:3001/recipes');
+      loadData('https://shokubutsu.herokuapp.com/v1/announces');
 
       // axios.get('http://localhost:3001/recipes')
       //   .then((res) => console.log(res))
