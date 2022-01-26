@@ -76,7 +76,13 @@ export default function AppHeader() {
   const itemElementJSX = items.map(
     ({ id, path, name }) => (
       <li key={id} className="">
-        <NavLink to={path} className="header__item">
+        <NavLink
+          onClick={() => {
+            setIsClosed(!isClosed);
+          }}
+          to={path}
+          className="header__item"
+        >
           {name}
         </NavLink>
       </li>
