@@ -119,7 +119,7 @@ export default function AppHeader() {
                       src={picture} // ''
                     />
                   </MenuButton>
-                  <MenuList alignItems="center" border="1px solid #366d4b">
+                  <MenuList alignItems="center" border="1px solid #366d4b" p={10}>
                     <br />
                     <Center>
                       <Avatar
