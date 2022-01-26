@@ -10,27 +10,41 @@ import {
   Image,
 } from '@chakra-ui/react';
 import './styles.scss';
+import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 // == Composant
 const Announces = () => {
-  const hello = 'hello';
+  const { list } = useSelector((state) => state.anounces);
+
+  const formatData = (data) => {
+    const array = [];
+    // eslint-disable-next-line array-callback-return
+    Object.entries(data).map((key, value) => {
+      // console.log(data[value]);
+      array.push(data[value]);
+    });
+    return array;
+  };
+  // console.log();
   return (
-    <SimpleGrid columns={{sm: 1, md: 2, xl: 3}} spacing={10} mt={4}>
-    {/* maper les annonces  */}
-      <Box> <ProductSimple /></Box>
-      <Box> <ProductSimple /></Box>
-      <Box> <ProductSimple /></Box>
-      <Box> <ProductSimple /></Box>
-      <Box> <ProductSimple /></Box>
-      <Box> <ProductSimple /></Box>
-      <Box> <ProductSimple /></Box>
-      <Box> <ProductSimple /></Box>
-      <Box> <ProductSimple /></Box>
-      <Box> <ProductSimple /></Box>
+    <SimpleGrid columns={{ sm: 1, md: 2, xl: 3 }} spacing={10} mt={4}>
+      {formatData(list).map((el) => (
+        <Box key={el.id}>
+          <ProductSimple
+            title={el.title}
+            image={el.image}
+            description={el.description}
+            category={el.category}
+            auth={el.auth}
+            city={el.city}
+          />
+        </Box>
+      ))}
     </SimpleGrid>
   );
 };
-function ProductSimple() {
+function ProductSimple({title, image, description, category, auth, city}) {
   return (
     <Center py={12}>
       <Box
@@ -42,7 +56,8 @@ function ProductSimple() {
         boxShadow="2xl"
         rounded="lg"
         pos="relative"
-        zIndex={0}>
+        zIndex={0}
+      >
         <Box
           rounded="lg"
           mt={-12}
@@ -56,7 +71,7 @@ function ProductSimple() {
             pos: 'absolute',
             top: 5,
             left: 0,
-            backgroundImage: `https://cdn.radiofrance.fr/s3/cruiser-production/2021/10/e624f156-f81a-4a70-87a7-75ac0499eb08/838_gettyimages-1279726754.jpg`,
+            backgroundImage: `${image}`,
             filter: 'blur(15px)',
             zIndex: -1,
           }}
@@ -64,24 +79,25 @@ function ProductSimple() {
             _after: {
               filter: 'blur(20px)',
             },
-          }}>
+          }}
+        >
           <Image
             rounded="lg"
             height={230}
             width={282}
             objectFit="cover"
-            src='https://cdn.radiofrance.fr/s3/cruiser-production/2021/10/e624f156-f81a-4a70-87a7-75ac0499eb08/838_gettyimages-1279726754.jpg'
+            src={image}
           />
         </Box>
         <Stack pt={10} align="center">
           <Text color="gray.500" fontSize="sm" textTransform="uppercase">
-            Brand
+            {category}
           </Text>
-          <Heading fontSize="2xl" fontFamily="body" fontWeight={500}>
-            Nice Chair, pink
+          <Heading fontSize="2xl" fontFamily="body" fontWeight={500} color="green">
+            {title}
           </Heading>
           <Stack direction="row" align="center">
-            <Text fontWeight={800} fontSize="xl" color='green'>
+            <Text fontWeight={800} fontSize="xl" color="green">
               $57
             </Text>
             <Text textDecoration="line-through" color="gray.600">
@@ -95,3 +111,12 @@ function ProductSimple() {
 }
 // == Export
 export default Announces;
+
+ProductSimple.propTypes = {
+  title: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  auth: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+};
