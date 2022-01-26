@@ -25,7 +25,13 @@ import {
   FormControl,
   Wrap,
   WrapItem,
+  MenuDivider,
+  Center,
   Avatar,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from '@chakra-ui/react';
 
 export default function AppHeader() {
@@ -98,16 +104,40 @@ export default function AppHeader() {
             {logged
             && (
               <Wrap>
-                <WrapItem>
-                  <Avatar name={nickname} src={picture} />
-                </WrapItem>
-                <Button onClick={onLoginOpen} colorScheme="teal" as={NavLink} to="/profile">
-                  Profil de {nickname}
-                </Button>
-                <Button onClick={() => dispatch(logout())} colorScheme="teal">
-                  Deconnexion
-                </Button>
-              </Wrap>
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  rounded="full"
+                  variant="link"
+                  cursor="pointer"
+                  minW={0}
+                >
+                  <Avatar
+                    size="sm"
+                    src="https://avatars.dicebear.com/api/male/username.svg"
+                  />
+                </MenuButton>
+                <MenuList alignItems="center">
+                  <br />
+                  <Center>
+                    <Avatar
+                      size="2xl"
+                      src="https://avatars.dicebear.com/api/male/username.svg"
+                    />
+                  </Center>
+                  <br />
+                  <Center color="red">
+                    <p>{nickname}</p>
+                  </Center>
+                  <br />
+                  <MenuDivider />
+                  <MenuItem color="red" as={NavLink} to="/profile">Mon profil</MenuItem>
+                  <MenuItem color="red" as={NavLink} to="/myannounces">Mes Annonces</MenuItem>
+                  <MenuItem color="red" as={NavLink} to="/myfavorites">Mes favoris</MenuItem>
+                  <MenuItem color="red" as="button" onClick={() => dispatch(logout())}>Déconnexion</MenuItem>
+                </MenuList>
+              </Menu>
+            </Wrap>
             )}
             {!logged
             && (
@@ -183,3 +213,15 @@ export default function AppHeader() {
     </header>
   );
 }
+
+              {/* <Wrap>
+                <WrapItem>
+                  <Avatar name={nickname} src={picture} />
+                </WrapItem>
+                <Button onClick={onLoginOpen} colorScheme="teal" as={NavLink} to="/profile">
+                  Profil de {nickname}
+                </Button>
+                <Button onClick={() => dispatch(logout())} colorScheme="teal">
+                  Deconnexion
+                </Button>
+              </Wrap> */}

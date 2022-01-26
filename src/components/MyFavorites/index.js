@@ -2,11 +2,11 @@
 import './styles.scss';
 
 // == Composant
-const Profile = () => (
+const MyFavorites = () => (
   <div className="div">
-    <p>Composant : Profile</p>
+    <p>Composant : MyFavorites</p>
   </div>
 );
 
 // == Export
-export default Profile;
+export default MyFavorites;

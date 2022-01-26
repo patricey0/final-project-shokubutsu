@@ -14,9 +14,11 @@ import Announces from 'src/components/Announces';
 import Contact from 'src/components/Contact';
 import Error from 'src/components/Error';
 import Footer from 'src/components/Footer';
+import MyAnnounces from '../MyAnnounces';
 import Loading from './Loading';
 import Guide from '../Guide';
 import Profile from '../Profile';
+import MyFavorites from '../MyFavorites';
 
 // == Composant
 const App = () => {
@@ -38,6 +40,9 @@ const App = () => {
         <Route path="/guide" element={<Guide />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/myannounces" element={<MyAnnounces />} />
+        <Route path="/myfavorites" element={<MyFavorites />} />
+
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />

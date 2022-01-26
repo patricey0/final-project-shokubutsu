@@ -2,11 +2,11 @@
 import './styles.scss';
 
 // == Composant
-const Profile = () => (
+const MyAnnounces = () => (
   <div className="div">
-    <p>Composant : Profile</p>
+    <p>Composant : MyAnnounces</p>
   </div>
 );
 
 // == Export
-export default Profile;
+export default MyAnnounces;
