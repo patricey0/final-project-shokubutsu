@@ -16,7 +16,7 @@ class Announce extends CoreModel {
 
     static async findAll() {
         try {
-            return new Announce(await CoreModel.getArray(`SELECT * FROM "announce"`));
+            return new Announce(await CoreModel.getArray(`SELECT * FROM announces_with_author`));
         } catch (error) {
             console.log(error);
             if (error.detail) {

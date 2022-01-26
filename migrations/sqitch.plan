@@ -6,3 +6,4 @@ newUser_function 2022-01-20T14:31:58Z patricey0 <patrice.yolle@gmail.com> # addi
 update_user 2022-01-21T13:44:28Z patricey0 <patrice.yolle@gmail.com> # function for updating users
 new_announce 2022-01-24T09:44:19Z patricey0 <patrice.yolle@gmail.com> # sql function to creat new announce
 update_announce 2022-01-24T10:04:49Z patricey0 <patrice.yolle@gmail.com> # sql function to update an announce
+announces_with_author 2022-01-26T14:11:35Z patricey0 <patrice.yolle@gmail.com> # get all announces with authors and cities
