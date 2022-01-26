@@ -1,15 +1,15 @@
 const CoreModel = require (`./coreModel`);
 
 /**
- * An entity representing an User
- * @typedef User
+ * An entity representing an Announce
+ * @typedef Announce
  * @property {number} id
- * @property {text} nickname
- * @property {text} mail
- * @property {password} password
- * @property {text} city
- * @property {text} picture
- * @property {boolean} isAdmin
+ * @property {text} title
+ * @property {text} images
+ * @property {timestamp} creation_date
+ * @property {timestamp} update_date
+ * @property {text} description
+ * @property {text} category
  */
 
 class Announce extends CoreModel {
