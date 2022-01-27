@@ -13,12 +13,11 @@ POST {{baseUrl}}/users HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "Myriam",
-    "mail": "Myriam@oclock.io",
+    "nickname": "Patrice",
+    "mail": "Patrice@oclock.io",
     "password": "qwerty",
-    "city": "Lille",
-    "picture": "http://pictures.com",
-    "isAdmin": "true"
+    "city": "Paris",
+    "picture": "pictures.com"
 }
 
 
@@ -57,6 +56,6 @@ content-type: application/json
 
 
 ### Delete user
-DELETE {{baseUrl}}/users/1 HTTP/1.1
+DELETE {{baseUrl}}/users/10 HTTP/1.1
 content-type: application/json
 

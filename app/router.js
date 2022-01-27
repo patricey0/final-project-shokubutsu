@@ -1,9 +1,16 @@
 const {Router} = require(`express`);
 const {userController, announceController, adminController} = require(`./controllers`);
+const userCheck = require(`./schemas/user`);
+const announceCheck = require(`./schemas/announce`);
+const {validateBody} = require('./services/validator');
 
 const { jwt } = require(`./middlewares`);
 
 const router = Router();
+
+const checkError = (res, err) => {
+    res.json(err);
+};
 
 
 
@@ -27,7 +34,7 @@ router.get(`/users`, userController.getAllUsers)
  * @returns {string} 404 - Page not found
  * @returns {string} 500 - Server or database error
  */
-router.post(`/users`, userController.createUser)
+router.post(`/users`, validateBody(userCheck, checkError), userController.createUser)
 
 
 /**
