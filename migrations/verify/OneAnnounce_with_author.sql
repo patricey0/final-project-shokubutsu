@@ -2,6 +2,5 @@
 
 BEGIN;
 
-SELECT * FROM announce_with_author WHERE false;
 
 ROLLBACK;

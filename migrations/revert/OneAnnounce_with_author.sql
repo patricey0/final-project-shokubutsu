@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP VIEW announce_with_author;
+DROP function announce_with_author;
 
 COMMIT;
