@@ -35,7 +35,7 @@ const teamElementJSX = team.map(
 const Home = () => (
   <div className="home">
     <section className="home__section">
-      <h1 className="home__section__title padding">Bienvenue sur Shokobutsu</h1>
+      <h1 className="home__section__title padding">Bienvenue sur Shokubutsu</h1>
     </section>
     <section className="home__section__about">
       <div className="home__section__about__block">

@@ -2,6 +2,9 @@
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(186,222,199,1) 0%, rgba(228,242,233,1) 100%);
   border-bottom: 3px solid #366D4B;
   padding: 0.8rem 1rem;
+  position: sticky;
+  top:0;
+  z-index: 1;
   
   &__principal {
     display: flex;
