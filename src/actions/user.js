@@ -1,4 +1,5 @@
 export const CHANGE_FIELD = 'CHANGE_FIELD';
+export const SET_URL = 'SET_URL';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const SAVE_USER = 'SAVE_USER';
@@ -47,4 +48,9 @@ export const saveFav = (favorites) => ({
 
 export const signUp = () => ({
   type: SIGNUP,
+});
+
+export const setUrl = (url) => ({
+  type: SET_URL,
+  payload: url
 });

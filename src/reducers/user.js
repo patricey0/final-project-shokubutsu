@@ -3,6 +3,7 @@ import {
   SAVE_USER,
   LOGOUT,
   SAVE_FAV,
+  SET_URL,
 } from 'src/actions/user';
 
 export const initialState = {
@@ -39,6 +40,12 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         ...action.payload,
+      };
+    }
+    case SET_URL: {
+      return {
+        ...state,
+        picture : action.payload,
       };
     }
     default:
