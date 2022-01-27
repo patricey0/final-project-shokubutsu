@@ -5,7 +5,12 @@ const user = Joi.object({
     mail: Joi.string().email().required(),
     password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{6,30}$')).required(),
     city: Joi.string().min(1).required(),
-    picture: Joi.string().allow('').optional()
+    picture: Joi.string().uri({
+        scheme: [
+            'http://',
+            'https://'
+        ]
+    }).optional()
 });
 
 module.exports = user;
