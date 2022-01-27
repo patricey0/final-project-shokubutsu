@@ -41,7 +41,11 @@ class Announce extends CoreModel {
 
     static async findById(id) {
         try {
-            return new Announce(await CoreModel.getRow('SELECT * FROM "announce" WHERE id=$1', [id]));
+            return new Announce(await CoreModel.getRow(
+                `SELECT announce.*, visitor.nickname as author, visitor.city as city 
+                FROM announce
+                JOIN visitor ON visitor.id = announce.visitor_id
+                WHERE announce.id = $1`, [id]));
         } catch (error) {
             console.log(error);
             if (error.detail) {
