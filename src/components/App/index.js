@@ -19,6 +19,7 @@ import Loading from './Loading';
 import Guide from '../Guide';
 import Profile from '../Profile';
 import MyFavorites from '../MyFavorites';
+import AnnounceCard from '../Announces/AnnounceCard';
 
 // == Composant
 const App = () => {
@@ -36,12 +37,14 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/announces" element={<Announces />} />
+        <Route path="/announces" element={<Announces />} >
+          <Route path="/announces/:id" element={<AnnounceCard />} />
+        </Route>
         <Route path="/guide" element={<Guide />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/myannounces" element={<MyAnnounces />} />
-        <Route path="/myfavorites" element={<MyFavorites />} />
+        <Route path="/my-announces" element={<MyAnnounces />} />
+        <Route path="/my-favorites" element={<MyFavorites />} />
 
         <Route path="*" element={<Error />} />
       </Routes>

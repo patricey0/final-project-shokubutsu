@@ -141,8 +141,8 @@ export default function AppHeader() {
                     </Center>
                     <br />
                     <MenuItem color="#366d4b" as={NavLink} to="/profile" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Mon profil</MenuItem>
-                    <MenuItem color="#366d4b" as={NavLink} to="/myannounces" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Mes Annonces</MenuItem>
-                    <MenuItem color="#366d4b" as={NavLink} to="/myfavorites" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Mes favoris</MenuItem>
+                    <MenuItem color="#366d4b" as={NavLink} to="/my-announces" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Mes Annonces</MenuItem>
+                    <MenuItem color="#366d4b" as={NavLink} to="/my-favorites" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Mes favoris</MenuItem>
                     <MenuItem color="#366d4b" as="button" onClick={() => dispatch(logout())}>Déconnexion</MenuItem>
                   </MenuList>
                 </Menu>

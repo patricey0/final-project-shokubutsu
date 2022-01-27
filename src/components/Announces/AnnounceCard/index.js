@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
-function Announce({title, image, category}) {
+function AnnounceCard({title, image, category}) {
   return (
     <Center py={12}>
       <Box
@@ -75,7 +75,7 @@ function Announce({title, image, category}) {
   );
 }
 
-Announce.propTypes = {
+AnnounceCard.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
@@ -85,4 +85,4 @@ Announce.propTypes = {
 };
 
 
-export default Announce;
+export default AnnounceCard;

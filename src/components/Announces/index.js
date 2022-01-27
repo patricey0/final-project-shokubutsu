@@ -3,7 +3,8 @@ import {
   SimpleGrid,
   Box,
 } from '@chakra-ui/react';
-import Announce from 'src/components/Announces/Announce';
+import { NavLink } from 'react-router-dom';
+import AnnounceCard from 'src/components/Announces/AnnounceCard';
 import './styles.scss';
 import { useSelector } from 'react-redux';
 
@@ -21,12 +22,13 @@ const Announces = () => {
     });
     return array;
   };
-  // console.log();
   return (
     <SimpleGrid columns={{ sm: 1, md: 2, xl: 3 }} spacing={10} mt={4}>
-      {formatData(list).map((el) => (
-        <Box key={el.id}>
-          <Announce
+      {formatData(list).map((el) => {
+        return (
+        
+        <Box key={el.id} as={NavLink} to={`/announces/${el.id}`}>
+          <AnnounceCard
             title={el.title}
             image={el.image}
             description={el.description}
@@ -35,7 +37,7 @@ const Announces = () => {
             city={el.city}
           />
         </Box>
-      ))}
+      )})}
     </SimpleGrid>
   );
 };
