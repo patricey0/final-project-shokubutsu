@@ -48,7 +48,7 @@ router.get(`/users/:id`, userController.getOneUser)
 router.get(`/users/:id/announces`, announceController.getAllAnnouncesByUser)
 /**
  * Respond with a json that contains the user's  informations after update
- * @route POST /users/:id
+ * @route PATCH /users/:id
  * @param {String} nickname.path.required the user's nickname
  * @param {String} mail.path.required the user's mail
  * @param {String} password.path.required the user's password
@@ -128,7 +128,7 @@ router.route(`/announces/:id`)
     .get(announceController.getOneAnnounce)
     /**
      * Respond with a json that contains one announce after his update in database
-     * @route POST /announces/:id
+     * @route PATCH /announces/:id
      * @param {number} announceId.path.required the announce id 
      * @param {String} title.path.required The announce's title
      * @param {String} image.path.required The announce's image link

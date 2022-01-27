@@ -8,7 +8,7 @@
 GET https://shokubutsu.herokuapp.com/v1/announces HTTP/1.1
 
 ### Test get announces
-GET {{baseUrl}}/users/1/announces HTTP/1.1
+GET {{baseUrl}}/users/7/announces HTTP/1.1
 
 ### Test create announce
 POST {{baseUrl}}/announces HTTP/1.1
