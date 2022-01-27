@@ -1,0 +1,62 @@
+@protocol=http://
+@host=localhost
+@port=:5000
+@prefix=/v1
+@baseUrl={{protocol}}{{host}}{{port}}{{prefix}}
+
+### Test get users
+GET {{baseUrl}}/users/3 HTTP/1.1
+
+
+### Test create user
+POST {{baseUrl}}/users HTTP/1.1
+content-type: application/json
+
+{
+    "nickname": "Myriam",
+    "mail": "Myriam@oclock.io",
+    "password": "qwerty",
+    "city": "Lille",
+    "picture": "http://pictures.com",
+    "isAdmin": "true"
+}
+
+
+
+### Test login
+POST {{baseUrl}}/login HTTP/1.1
+content-type: application/json
+
+{
+    "nickname": "vincent",
+    "mail": "vincent2@oclock.io",
+    "password": "qwerty",
+    "city": "Paris",
+    "picture": "https://media-exp1.licdn.com/dms/image/D4E35AQES9YjdYcnlYQ/profile-framedphoto-shrink_400_400/0/1642097948572?e=1643112000&v=beta&t=qSnlLfHnqkiWvlY1Dc8XgHHPFJTdbtrGT6iFhjTli5A",
+    "isAdmin": "true"
+}
+
+### Test reconnect with token
+GET {{baseUrl}}/login/reconnect HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjozLCJpYXQiOjE2NDMwMzc3NzAsImV4cCI6MTY0MzEyNDE3MH0.6YwFETAGxDiEZOXOCvQtBuQp0CthgoDzSXIHEJ1Cs04
+
+
+
+### Update user
+POST {{baseUrl}}/users/5 HTTP/1.1
+content-type: application/json
+
+{
+    "nickname": "vincent",
+    "mail": "blablablablabla",
+    "password": "qwerty",
+    "city": "Paris",
+    "picture": "https://media-exp1.licdn.com/dms/image/D4E35AQES9YjdYcnlYQ/profile-framedphoto-shrink_400_400/0/1642097948572?e=1643112000&v=beta&t=qSnlLfHnqkiWvlY1Dc8XgHHPFJTdbtrGT6iFhjTli5A",
+    "isAdmin": "true"
+}
+
+
+### Delete user
+DELETE {{baseUrl}}/users/1 HTTP/1.1
+content-type: application/json
+

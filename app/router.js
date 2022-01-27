@@ -37,6 +37,15 @@ router.post(`/users`, userController.createUser)
  * @returns {User} 200 - A JSON with user informations
  */
 router.get(`/users/:id`, userController.getOneUser)
+
+/**
+ * Respond with a json that contains all announces about one user
+ * @route GET /users/:id/announces
+ * @returns {Announce} 200 - A JSON with all announces for one user
+ * @returns {string} 404 - Page not found
+ * @returns {string} 500 - Server or database error
+ */
+router.get(`/users/:id/announces`, announceController.getAllAnnouncesByUser)
 /**
  * Respond with a json that contains the user's  informations after update
  * @route POST /users/:id

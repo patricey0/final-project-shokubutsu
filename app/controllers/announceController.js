@@ -11,6 +11,15 @@ const announceController = {
         }
     },
 
+    getAllAnnouncesByUser: async (req, res) => {
+        try {
+            res.json(await Announce.findAllByUser(+req.params.id));
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error.message);
+        }
+    },
+
     getOneAnnounce: async (req, res) => {
         try {
             res.json(await Announce.findById(+req.params.id));

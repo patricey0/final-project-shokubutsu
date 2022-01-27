@@ -27,6 +27,18 @@ class Announce extends CoreModel {
         
     }
 
+    static async findAllByUser(userId) {
+        try {
+            return new Announce(await CoreModel.getArray(`SELECT * FROM announce WHERE visitor_id=$1`, [userId]));
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail);
+            }
+            throw error;
+        }
+    }
+
     static async findById(id) {
         try {
             return new Announce(await CoreModel.getRow('SELECT * FROM "announce" WHERE id=$1', [id]));
