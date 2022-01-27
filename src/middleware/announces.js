@@ -1,16 +1,18 @@
 import axios from 'axios';
-import { FETCH_ANOUNCES, saveAnounces } from 'src/actions/anounces';
+import { FETCH_ANNOUNCES, saveAnnounces } from 'src/actions/announces';
 
-const anounces = (store) => (next) => (action) => {
+const announces = (store) => (next) => (action) => {
   switch (action.type) {
-    case FETCH_ANOUNCES: {
+    case FETCH_ANNOUNCES: {
       const loadData = async (url) => {
         try {
           const res = await axios.get(url);
           // une fois les data reçues, on dispatch
           // l'action pour modifier le state
           // on utilise le store mis à disposition dans les params
-          store.dispatch(saveAnounces(res.data));
+          // Transforme la data reçu en array. Pour faciliter sa manipulation
+          const announces = Object.values(res.data);
+          store.dispatch(saveAnnounces(announces));
         }
         catch (error) {
           console.log(error);
@@ -33,4 +35,4 @@ const anounces = (store) => (next) => (action) => {
   }
 };
 
-export default anounces;
+export default announces;

@@ -1,4 +1,4 @@
-import { SAVE_ANOUNCES, FETCH_ANOUNCES } from 'src/actions/anounces';
+import { SAVE_ANNOUNCES, FETCH_ANNOUNCES } from 'src/actions/announces';
 
 export const initialState = {
   list: [],
@@ -7,13 +7,13 @@ export const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case FETCH_ANOUNCES: {
+    case FETCH_ANNOUNCES: {
       return {
         ...state,
         loading: false,
       };
     }
-    case SAVE_ANOUNCES: {
+    case SAVE_ANNOUNCES: {
       return {
         ...state,
         list: action.payload,

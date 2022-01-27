@@ -7,10 +7,23 @@ import {
   Stack,
   Image,
 } from '@chakra-ui/react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { findAnnounce } from '../../selectors/announces';
 
-function AnnounceCard({title, image, category}) {
+function Announce() {
+
+  const { id } = useParams();
+
   
+  const announce = useSelector((state) => findAnnounce(state.announces.list, Number(id)));
+  
+  if (!announce) {
+    return <Navigate to="/error" replace />;
+  }
+
+  const {title, image, category } = announce;
   return (
     <Center py={12}>
       <Box
@@ -76,14 +89,4 @@ function AnnounceCard({title, image, category}) {
   );
 }
 
-AnnounceCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  auth: PropTypes.string,
-  city: PropTypes.string.isRequired,
-};
-
-
-export default AnnounceCard;
+export default Announce;

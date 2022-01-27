@@ -1,9 +1,11 @@
 // ! SPE-E16 | Combiner les reducers
 import { combineReducers } from 'redux';
 import userReducer from './user';
-import anouncesReducer from './anounces';
+import announcesReducer from './announces';
 
-export default combineReducers({
+const rootReducer = combineReducers({
+  announces: announcesReducer,
   user: userReducer,
-  anounces: anouncesReducer,
 });
+
+export default rootReducer;
