@@ -16,8 +16,7 @@ const SignupForm = ({
   nickname,
   city,
   handleSignup,
-  onClose,
-  picture
+  onClose
 }) => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
@@ -92,7 +91,6 @@ SignupForm.propTypes = {
   changeField: PropTypes.func.isRequired,
   handleSignup: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
-  picture: PropTypes.string.isRequired,
 };
 
 export default SignupForm;

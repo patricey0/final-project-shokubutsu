@@ -45,7 +45,7 @@ export default function Footer() {
         />
         <Stack direction={{ base: 'column', md: 'row' }} spacing={6}>
           <Button color="#366d4b" onClick={scrollToTop} as={NavLink} to="/" _hover={{ color: '#366d4b' }} _focus={{ boxShadow: ' 0 0 0 3px #366d4b7c' }} _active={{ backgroundColor: '#366d4b', color: 'white'}} bg="none">Home</Button>
-          <Button color="#366d4b" onClick={scrollToTop} as={NavLink} to="/annonces" _hover={{ color: '#366d4b' }} bg="none" _focus={{ boxShadow: ' 0 0 0 3px #366d4b7c' }} _active={{ backgroundColor: '#366d4b', color: 'white'}}>Annonces</Button>
+          <Button color="#366d4b" onClick={scrollToTop} as={NavLink} to="/announces" _hover={{ color: '#366d4b' }} bg="none" _focus={{ boxShadow: ' 0 0 0 3px #366d4b7c' }} _active={{ backgroundColor: '#366d4b', color: 'white'}}>Annonces</Button>
           <Button color="#366d4b" onClick={scrollToTop} as={NavLink} to="/guide" _hover={{ color: '#366d4b' }} _focus={{ boxShadow: ' 0 0 0 3px #366d4b7c' }} bg="none" _active={{ backgroundColor: '#366d4b', color: 'white'}}>Guide</Button>
           <Button color="#366d4b" onClick={scrollToTop} as={NavLink} to="/contact" _hover={{ color: '#366d4b' }} _focus={{ boxShadow: ' 0 0 0 3px #366d4b7c' }} bg="none" _active={{ backgroundColor: '#366d4b', color: 'white'}}>Contact</Button>
         </Stack>
