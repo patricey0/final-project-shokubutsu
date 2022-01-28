@@ -6,7 +6,7 @@ import {
 import './styles.scss';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAnounces } from 'src/actions/anounces';
+import { fetchAnnounces } from 'src/actions/announces';
 import { fetchUser } from 'src/actions/user';
 import Header from 'src/components/Header';
 import Home from 'src/components/Home';
@@ -19,23 +19,31 @@ import Loading from './Loading';
 import Guide from '../Guide';
 import Profile from '../Profile';
 import MyFavorites from '../MyFavorites';
-import AnnounceCard from '../Announces/AnnounceCard';
+import Announce from '../Announces/Announce';
+import { Box } from '@chakra-ui/react';
 
 // == Composant
 const App = () => {
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.anounces.loading);
+  const loading = useSelector((state) => state.announces.loading);
   useEffect(() => {
+<<<<<<< HEAD
     console.log(process.env.REACT_APP_VERSION)
     dispatch(fetchAnounces());
+=======
+    dispatch(fetchAnnounces());
+>>>>>>> dcd0b79aa9c17e5e7962def1c730877041f2bf3c
     dispatch(fetchUser());
   }, []);
   if (loading) {
     return <Loading />;
   }
+
+
   return (
     <div className="app">
       <Header />
+<<<<<<< HEAD
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/announces" element={<Announces />} >
@@ -48,6 +56,22 @@ const App = () => {
         <Route path="/my-favorites" element={<MyFavorites />} />
         <Route path="*" element={<Error />} />
       </Routes>
+=======
+      <Box className="height-min">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/announces" element={<Announces />} />
+          <Route path="/announces/:id" element={<Announce />} />
+          <Route path="/guide" element={<Guide />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/my-announces" element={<MyAnnounces />} />
+          <Route path="/my-favorites" element={<MyFavorites />} />
+
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </Box>
+>>>>>>> dcd0b79aa9c17e5e7962def1c730877041f2bf3c
       <Footer />
     </div>
   );

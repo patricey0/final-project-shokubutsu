@@ -3,29 +3,18 @@ import { createStore, compose, applyMiddleware } from 'redux';
 
 // == Import : local
 // ! bien importer les middlewares
-import rootReducer from 'src/reducers';
-import logMiddleware from '../middleware/logMiddleware';
-import authMiddleware from '../middleware/auth';
-import anouncesMiddleware from '../middleware/anounces';
+import reducer from 'src/reducers';
+import middlewares from 'src/middleware';
 
 // == Enhancers
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // ! ajouter les middlewares ici
 const enhancers = composeEnhancers(
-  applyMiddleware(
-    logMiddleware,
-    authMiddleware,
-    anouncesMiddleware,
-    // secondMiddleware,
-  ),
+  applyMiddleware(...middlewares),
 );
 
-// == Store
-const store = createStore(
-  rootReducer,
-  // preloadedState,
-  enhancers,
-);
+
+const store = createStore(reducer, enhancers);
 
 // == Export
 export default store;
