@@ -66,7 +66,7 @@ function Announce() {
       <Box
         marginTop={{ base: '1', sm: '5' }}
         display="flex"
-        flexDirection={{ base: 'column', sm: 'row' }}
+        flexDirection={{ base: 'column', md: 'row' }}
         justifyContent="space-between">
         <Box
           display="flex"
