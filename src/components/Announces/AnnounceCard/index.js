@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
-function AnnounceCard({title, image, category}) {
+function AnnounceCard({title, image, category, author, city}) {
   
   return (
     <Center py={12}>
@@ -64,10 +64,10 @@ function AnnounceCard({title, image, category}) {
           </Heading>
           <Stack direction="row" align="center">
             <Text fontWeight={800} fontSize="xl" color="green">
-              $57
+              {author}
             </Text>
-            <Text textDecoration="line-through" color="gray.600">
-              $199
+            <Text color="gray.600">
+              {city}
             </Text>
           </Stack>
         </Stack>
