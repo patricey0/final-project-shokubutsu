@@ -56,12 +56,16 @@ const auth = (store) => (next) => (action) => {
       })
         .then((res) => {
           // stockage du token dans le localStorage
-          localStorage.setItem('token', res.data.jwt);
           // stockage des infos de l'api dans le state
+          // todo controler le retour de bdd
+          // si erreur : delete la photo de cloudinary
+
+          // sinon dispatch la réponse
           console.log('result // signup :', res.data);
+          localStorage.setItem('token', res.data.jwt);
           store.dispatch(saveUser(res.data));
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err.message));
       break;
     }
     case LOGOUT: {
