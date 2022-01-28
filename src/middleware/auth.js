@@ -5,6 +5,7 @@ import {
   FETCH_USER,
   LOGOUT,
   SIGNUP,
+  DELETE_USER
 } from 'src/actions/user';
 
 const auth = (store) => (next) => (action) => {
@@ -80,6 +81,18 @@ const auth = (store) => (next) => (action) => {
       localStorage.removeItem('token');
       // on traite cette action dans le user reducer
       // il faut donc la passer
+      next(action);
+      break;
+    }
+    case DELETE_USER: {
+      // ré
+      // Récuperer l'id de l'user
+      const state = store.getState();
+      console.log(state.user.id);
+      axios.delete(`https://shokubutsu.herokuapp.com/v1/users/${state.user.id}`)
+      localStorage.removeItem('token');
+      // rédiriger l'user vers la page d'accueil
+      // rendre l
       next(action);
       break;
     }

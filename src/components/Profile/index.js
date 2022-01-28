@@ -17,15 +17,30 @@ import {
   List,
   ListItem,
   Avatar,
+  AlertDialog,
+  AlertDialogOverlay,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogCloseButton,
+  AlertDialogBody,
+  AlertDialogFooter,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
+import { deleteUser } from '../../actions/user';
 import './styles.scss';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import {useRef} from 'react';
 
 // == Composant
 const Profile = () => {
-  const triggerModal = (e) => {
-    console.log('hello');
+  const dispatch = useDispatch();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = useRef();
+  const handleDelete = () => {
+    console.log('Je veux supprimer mon profil');
+    dispatch(deleteUser());
+    onClose();
   }
   const {
     mail,
@@ -105,7 +120,7 @@ const Profile = () => {
           </Box>
           { /* Ici il y aura la modal pour l'update */ }
           <Button
-            onClick={triggerModal}
+            // onClick={triggerModal}
             rounded="none"
             w="full"
             mt={8}
@@ -121,6 +136,32 @@ const Profile = () => {
           >
             Modifier mon profil
           </Button>
+          <Button onClick={onOpen}>Supprimer mon profil</Button>
+      <AlertDialog
+        motionPreset='slideInBottom'
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+        isOpen={isOpen}
+        isCentered
+      >
+        <AlertDialogOverlay />
+
+        <AlertDialogContent>
+          <AlertDialogHeader>Suppression de profil</AlertDialogHeader>
+          <AlertDialogCloseButton />
+          <AlertDialogBody>
+          Etes-vous sur de vouloir supprimer votre profil ? Votre profil et vos annonces seront immédiatement supprimer
+          </AlertDialogBody>
+          <AlertDialogFooter>
+            <Button ref={cancelRef} onClick={onClose}>
+              Non
+            </Button>
+            <Button colorScheme='red' ml={3} onClick={handleDelete}>
+              Oui
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
         </Stack>
       </SimpleGrid>
     </Container>

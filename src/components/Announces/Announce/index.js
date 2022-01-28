@@ -15,58 +15,29 @@ import { Navigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { findAnnounce } from '../../../selectors/announces';
 
-const BlogTags = (props) => {
-  return (
-    <HStack spacing={2} marginTop={props.marginTop}>
-      {props.tags.map((tag) => {
-        return (
-          <Tag size={'md'} variant="solid" colorScheme="orange" key={tag}>
-            {tag}
-          </Tag>
-        );
-      })}
-    </HStack>
-  );
-};
-
-export const BlogAuthor = (props) => {
-  const myDate = new Date(props.date)
-  const formatedDate = new Intl.DateTimeFormat('fr-FR').format(myDate);
-  console.log(formatedDate);
-  return (
-    <HStack marginTop="2" spacing="2" display="flex" alignItems="center" color="black">
-      <Image
-        borderRadius="full"
-        boxSize="40px"
-        src="https://100k-faces.glitch.me/random-image"
-        alt={`Avatar of ${props.name}`}
-      />
-      <Text fontWeight="medium">{props.name}</Text>
-      <Text>—</Text>
-      <Text>{props.city}</Text>
-      <Text>—</Text>
-      <Text>{formatedDate}</Text>
-    </HStack>
-  );
-};
 
 function Announce() {
 
   const { id } = useParams();
   
   const announce = useSelector((state) => findAnnounce(state.announces.list, Number(id)));
-  
+
+
   if (!announce) {
     return <Navigate to="/error" replace />;
   }
 
   const {title, image, category, description, author, city, creation_date } = announce;
+
+  const myDate = new Date(creation_date)
+  const formatedDate = new Intl.DateTimeFormat('fr-FR').format(myDate);
+
   return (
     <Container maxW={'7xl'} p="12">
       <Box
         marginTop={{ base: '1', sm: '5' }}
         display="flex"
-        flexDirection={{ base: 'column', sm: 'row' }}
+        flexDirection={{ base: 'column', md: 'row' }}
         justifyContent="space-between">
         <Box
           display="flex"
@@ -103,7 +74,11 @@ function Announce() {
           flexDirection="column"
           justifyContent="center"
           marginTop={{ base: '3', sm: '0' }}>
-          <BlogTags tags={[category]} />
+          <HStack spacing={2} m={4} justifyContent="center" >
+            <Tag size={'md'} variant="solid" colorScheme="orange">
+              {category}
+            </Tag>
+          </HStack>
           <Heading marginTop="1">
             <Link textDecoration="none" _hover={{ textDecoration: 'none' }} color="black">
               {title}
@@ -116,7 +91,19 @@ function Announce() {
             fontSize="lg">
             {description}
           </Text>
-          <BlogAuthor name={author} date={creation_date} city={city} />
+          <HStack marginTop="2" spacing="2" display="flex" alignItems="center" color="black">
+            <Image
+              borderRadius="full"
+              boxSize="40px"
+              src="https://100k-faces.glitch.me/random-image"
+              alt={`Avatar of ${author}`}
+            />
+            <Text fontWeight="medium">{author}</Text>
+            <Text>—</Text>
+            <Text>{city}</Text>
+            <Text>—</Text>
+            <Text>{formatedDate}</Text>
+          </HStack>
         </Box>
       </Box>
       

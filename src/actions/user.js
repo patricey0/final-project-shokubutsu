@@ -7,6 +7,7 @@ export const FETCH_USER = 'FETCH_USER';
 export const FETCH_FAV = 'FETCH_FAV';
 export const SAVE_FAV = 'SAVE_FAV';
 export const SIGNUP = 'SIGNUP';
+export const DELETE_USER = 'DELETE_USER';
 
 export const changeField = (value, name) => ({
   type: CHANGE_FIELD,
@@ -54,3 +55,7 @@ export const setUrl = (url) => ({
   type: SET_URL,
   payload: url
 });
+
+export const deleteUser = () => ({
+  type: DELETE_USER,
+})
