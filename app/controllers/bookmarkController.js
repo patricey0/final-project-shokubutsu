@@ -25,7 +25,7 @@ const bookmarkController = {
 
     deleteBookmark : async (req,res) => {
         try {
-            await new Bookmark(+req.params.userId, +req.params.announceId).deleteBookmark();
+            await new Bookmark(req.params).deleteBookmark();
             res.json(`Bookmark : Announce_id : ${req.params.announceId} for User_id : ${req.params.userId}`)
         } catch (error) {
             console.log(error);
