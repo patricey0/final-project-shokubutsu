@@ -9,7 +9,7 @@ const { jwt } = require(`./middlewares`);
 const router = Router();
 
 const checkError = (res, err) => {
-    res.json(err);
+    res.status(400).json(err);
 };
 
 

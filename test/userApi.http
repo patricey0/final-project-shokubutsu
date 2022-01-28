@@ -5,7 +5,7 @@
 @baseUrl={{protocol}}{{host}}{{port}}{{prefix}}
 
 ### Test get users
-GET {{baseUrl}}/users/3 HTTP/1.1
+GET https://shokubutsu.herokuapp.com/v1/users/ HTTP/1.1
 
 
 ### Test create user
@@ -15,7 +15,7 @@ content-type: application/json
 {
     "nickname": "Patrice",
     "mail": "Patrice@oclock.io",
-    "password": "qwerty",
+    "password": "12345",
     "city": "Paris",
     "picture": "pictures.com"
 }
