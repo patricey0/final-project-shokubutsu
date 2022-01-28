@@ -27,12 +27,8 @@ const App = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.announces.loading);
   useEffect(() => {
-<<<<<<< HEAD
     console.log(process.env.REACT_APP_VERSION)
-    dispatch(fetchAnounces());
-=======
     dispatch(fetchAnnounces());
->>>>>>> dcd0b79aa9c17e5e7962def1c730877041f2bf3c
     dispatch(fetchUser());
   }, []);
   if (loading) {
@@ -43,20 +39,6 @@ const App = () => {
   return (
     <div className="app">
       <Header />
-<<<<<<< HEAD
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/announces" element={<Announces />} >
-          <Route path="/announces/:id" element={<AnnounceCard />} />
-        </Route>
-        <Route path="/guide" element={<Guide />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/my-announces" element={<MyAnnounces />} />
-        <Route path="/my-favorites" element={<MyFavorites />} />
-        <Route path="*" element={<Error />} />
-      </Routes>
-=======
       <Box className="height-min">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -71,7 +53,6 @@ const App = () => {
           <Route path="*" element={<Error />} />
         </Routes>
       </Box>
->>>>>>> dcd0b79aa9c17e5e7962def1c730877041f2bf3c
       <Footer />
     </div>
   );
