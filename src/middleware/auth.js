@@ -22,13 +22,15 @@ const auth = (store) => (next) => (action) => {
           // stockage des infos de l'api dans le state
           store.dispatch(saveUser(res.data));
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err.message);
+        });
       break;
     }
     case FETCH_USER: {
+      // au rendu de l'app
       // on va vérifier si on a un token dans le localStorage
       const token = localStorage.getItem('token');
-
       if (token) {
         // si oui on enverra une requête à l'api pour récupérer le username
         axios.get('https://shokubutsu.herokuapp.com/v1/login/reconnect', {
@@ -65,7 +67,12 @@ const auth = (store) => (next) => (action) => {
           localStorage.setItem('token', res.data.jwt);
           store.dispatch(saveUser(res.data));
         })
-        .catch((err) => console.log(err.message));
+        .catch((err) => {
+          axios.delete('https://shokubutsu.herokuapp.com/v1/delete-image', {
+            image_url: state.user.picture,
+          });
+          console.log(err.message);
+        });
       break;
     }
     case LOGOUT: {

@@ -21,13 +21,14 @@ const SignupForm = ({
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
   const [image, setImage] = useState('');
+
   const uploadImage = async (evt) => {
     evt.preventDefault();
     const data = new FormData();
     data.append('file', image);
     data.append('upload_preset', 'shokubutsu_cloud');
     data.append('api_key', '977658599574278'); // todo .env key / upload_preset / folder / url
-    data.append('folder', 'upload');
+    // data.append('folder', 'upload');
     fetch(' https://api.cloudinary.com/v1_1/Skokubutsu/image/upload', {
       method: 'post',
       body: data,
@@ -35,7 +36,7 @@ const SignupForm = ({
       .then((resp) => resp.json())
       .then((data) => {
         dispatch(setUrl(data.url));
-        handleSignup();
+        handleSignup(); 
         onClose();
       })
       .catch((err) => console.log(err));

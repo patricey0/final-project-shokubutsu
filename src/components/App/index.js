@@ -26,6 +26,7 @@ const App = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.anounces.loading);
   useEffect(() => {
+    console.log(process.env.REACT_APP_VERSION)
     dispatch(fetchAnounces());
     dispatch(fetchUser());
   }, []);
@@ -45,7 +46,6 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/my-announces" element={<MyAnnounces />} />
         <Route path="/my-favorites" element={<MyFavorites />} />
-
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
