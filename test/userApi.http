@@ -59,3 +59,12 @@ content-type: application/json
 DELETE {{baseUrl}}/users/10 HTTP/1.1
 content-type: application/json
 
+
+### Delete image
+
+DELETE {{baseUrl}}/delete-image/ HTTP/1.1
+content-type: application/json
+
+{
+    "url": "https://res.cloudinary.com/shokubutsu/image/upload/v1643367357/ucejbvo7wq2clgb91cst.png"
+}

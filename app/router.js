@@ -1,30 +1,17 @@
 const {Router} = require(`express`);
 require('dotenv').config();
-const {userController, announceController, adminController} = require(`./controllers`);
+const {userController, announceController, adminController, imageController} = require(`./controllers`);
 const userCheck = require(`./schemas/user`);
 const announceCheck = require(`./schemas/announce`);
 const {validateBody} = require('./services/validator');
-const cloudinary = require("cloudinary").v2;
 
 const { jwt } = require(`./middlewares`);
 
 const router = Router();
 
-cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.API_KEY,
-    api_secret: process.env.API_SECRET,
-});
-
 const checkError = async (res, err) => {
-    console.log(err._original.picture);
-    let image_id = err._original.picture.split('/')[err._original.picture.split('/').length-1].split('.')[0];
-    console.log(image_id);
-    const result = await cloudinary.uploader.destroy(image_id);
-    console.log(result);
     res.status(400).json(err);
 };
-
 
 /**
  * Respond with a json that contains all users
@@ -63,7 +50,7 @@ router.get(`/users/:id`, userController.getOneUser)
  * @returns {string} 404 - Page not found
  * @returns {string} 500 - Server or database error
  */
-router.get(`/users/:id/announces`, announceController.getAllAnnouncesByUser)
+router.get(`/users/:id/announces`, validateBody(announceCheck, checkError), announceController.getAllAnnouncesByUser)
 /**
  * Respond with a json that contains the user's  informations after update
  * @route PATCH /users/:id
@@ -166,6 +153,8 @@ router.route(`/announces/:id`)
      * @returns {Boolean} 200 - True if ok.
      */
     .delete(announceController.deleteAnnounce);
+
+router.delete('/delete-image/', imageController.deleteImage);
 
 
 module.exports = router;
