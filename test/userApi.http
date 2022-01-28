@@ -17,7 +17,7 @@ content-type: application/json
     "mail": "Patrice@oclock.io",
     "password": "12345",
     "city": "Paris",
-    "picture": "pictures.com"
+    "picture": "https://res.cloudinary.com/shokubutsu/image/upload/v1643358748/upload/ufnuyg5gedj1azqhauc7.jpg"
 }
 
 

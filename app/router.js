@@ -3,16 +3,26 @@ const {userController, announceController, adminController} = require(`./control
 const userCheck = require(`./schemas/user`);
 const announceCheck = require(`./schemas/announce`);
 const {validateBody} = require('./services/validator');
+const cloudinary = require("cloudinary").v2;
 
 const { jwt } = require(`./middlewares`);
 
 const router = Router();
 
-const checkError = (res, err) => {
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET,
+});
+
+const checkError = async (res, err) => {
+    //console.log(err._original.picture);
+    let image = err._original.picture.split('/')[err._original.picture.split('/').length-1].split('.')[0];
+    //console.log(image);
+    const result = await cloudinary.uploader.destroy(image);
+    //console.log(result);
     res.status(400).json(err);
 };
-
-
 
 
 /**
