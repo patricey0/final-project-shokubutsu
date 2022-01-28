@@ -1,4 +1,5 @@
 const {Router} = require(`express`);
+require('dotenv').config();
 const {userController, announceController, adminController} = require(`./controllers`);
 const userCheck = require(`./schemas/user`);
 const announceCheck = require(`./schemas/announce`);
@@ -16,11 +17,11 @@ cloudinary.config({
 });
 
 const checkError = async (res, err) => {
-    //console.log(err._original.picture);
-    let image = err._original.picture.split('/')[err._original.picture.split('/').length-1].split('.')[0];
-    //console.log(image);
-    const result = await cloudinary.uploader.destroy(image);
-    //console.log(result);
+    console.log(err._original.picture);
+    let image_id = err._original.picture.split('/')[err._original.picture.split('/').length-1].split('.')[0];
+    console.log(image_id);
+    const result = await cloudinary.uploader.destroy(image_id);
+    console.log(result);
     res.status(400).json(err);
 };
 
