@@ -15,9 +15,9 @@ content-type: application/json
 {
     "nickname": "Patrice",
     "mail": "Patrice@oclock.io",
-    "password": "12345",
+    "password": "asdqwe123",
     "city": "Paris",
-    "picture": "https://res.cloudinary.com/shokubutsu/image/upload/v1643361653/upload/pmxxrskovl8c2s6fbt7s.jpg"
+    "picture": "https://mypicture"
 }
 
 
