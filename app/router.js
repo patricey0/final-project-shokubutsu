@@ -1,6 +1,6 @@
 const {Router} = require(`express`);
 require('dotenv').config();
-const {userController, announceController, adminController, imageController} = require(`./controllers`);
+const {userController, announceController, adminController, imageController, bookmarkController} = require(`./controllers`);
 const userCheck = require(`./schemas/user`);
 const announceCheck = require(`./schemas/announce`);
 const {validateBody} = require('./services/validator');
@@ -156,5 +156,11 @@ router.route(`/announces/:id`)
 
 router.delete('/delete-image/', imageController.deleteImage);
 
+
+router.get('/bookmarks/:userId', bookmarkController.getBookmarks);
+
+router.post('/bookmarks/:userId/:announceId', bookmarkController.addBookmark);
+
+router.delete('/bookmarks/:userId/:announceId', bookmarkController.deleteBookmark);
 
 module.exports = router;

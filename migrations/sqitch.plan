@@ -9,3 +9,5 @@ update_announce 2022-01-24T10:04:49Z patricey0 <patrice.yolle@gmail.com> # sql f
 announces_with_author 2022-01-26T14:11:35Z patricey0 <patrice.yolle@gmail.com> # get all announces with authors and cities
 OneAnnounce_with_author 2022-01-27T09:30:18Z patricey0 <patrice.yolle@gmail.com> # sql function to return 1 announce with his author and city
 modify_visitor 2022-01-27T14:55:39Z patricey0 <patrice.yolle@gmail.com> # modifying isadmin attribute to null
+add_bookmark 2022-01-28T13:33:30Z patricey0 <patrice.yolle@gmail.com> # added sql function to bookmarked announce
+update_bookmarked 2022-01-28T14:31:29Z patricey0 <patrice.yolle@gmail.com> # update fields on bookmarked table
