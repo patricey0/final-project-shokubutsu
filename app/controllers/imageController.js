@@ -3,9 +3,9 @@ require("dotenv").config();
 
 // cloudinary configuration
 cloudinary.config({
-    cloud_name: "shokubutsu",
-    api_key: "977658599574278",
-    api_secret: "awi99aXkH6FTtOyP6RrXWeQaM6A",
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET,
 });
 
 const imageController = {
