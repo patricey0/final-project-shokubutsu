@@ -20,6 +20,7 @@ import Guide from '../Guide';
 import Profile from '../Profile';
 import MyFavorites from '../MyFavorites';
 import Announce from '../Announces/Announce';
+import { Box } from '@chakra-ui/react';
 
 // == Composant
 const App = () => {
@@ -37,18 +38,20 @@ const App = () => {
   return (
     <div className="app">
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/announces" element={<Announces />} />
-        <Route path="/announces/:id" element={<Announce />} />
-        <Route path="/guide" element={<Guide />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/my-announces" element={<MyAnnounces />} />
-        <Route path="/my-favorites" element={<MyFavorites />} />
+      <Box className="height-min">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/announces" element={<Announces />} />
+          <Route path="/announces/:id" element={<Announce />} />
+          <Route path="/guide" element={<Guide />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/my-announces" element={<MyAnnounces />} />
+          <Route path="/my-favorites" element={<MyFavorites />} />
 
-        <Route path="*" element={<Error />} />
-      </Routes>
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </Box>
       <Footer />
     </div>
   );

@@ -10,12 +10,11 @@ import {
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { findAnnounce } from '../../selectors/announces';
+import { findAnnounce } from '../../../selectors/announces';
 
 function Announce() {
 
   const { id } = useParams();
-
   
   const announce = useSelector((state) => findAnnounce(state.announces.list, Number(id)));
   
