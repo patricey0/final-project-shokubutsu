@@ -43,6 +43,8 @@ export const BlogAuthor = (props) => {
       />
       <Text fontWeight="medium">{props.name}</Text>
       <Text>—</Text>
+      <Text>{props.city}</Text>
+      <Text>—</Text>
       <Text>{formatedDate}</Text>
     </HStack>
   );
@@ -58,7 +60,7 @@ function Announce() {
     return <Navigate to="/error" replace />;
   }
 
-  const {title, image, category, description, author, creation_date } = announce;
+  const {title, image, category, description, author, city, creation_date } = announce;
   return (
     <Container maxW={'7xl'} p="12">
       <Box
@@ -74,7 +76,6 @@ function Announce() {
           alignItems="center">
           <Box
             width={{ base: '100%', sm: '85%' }}
-            zIndex="2"
             marginLeft={{ base: '0', sm: '5%' }}
             marginTop="5%">
             <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
@@ -119,7 +120,7 @@ function Announce() {
             fontSize="lg">
             {description}
           </Text>
-          <BlogAuthor name={author} date={creation_date} />
+          <BlogAuthor name={author} date={creation_date} city={city} />
         </Box>
       </Box>
       

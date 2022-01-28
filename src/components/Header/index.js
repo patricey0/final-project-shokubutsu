@@ -153,7 +153,7 @@ export default function AppHeader() {
             <div className="second">
               <li>
                 <button type="button" onClick={onLoginOpen} className="header__button">
-                  Se Connecter
+                  Connexion
                 </button>
                 <Modal
                   isOpen={isLoginOpen}
