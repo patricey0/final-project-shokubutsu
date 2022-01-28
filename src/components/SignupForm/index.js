@@ -26,10 +26,10 @@ const SignupForm = ({
     evt.preventDefault();
     const data = new FormData();
     data.append('file', image);
-    data.append('upload_preset', 'shokubutsu_cloud');
-    data.append('api_key', '977658599574278'); // todo .env key / upload_preset / folder / url
+    data.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
+    data.append('api_key', process.env.REACT_APP_API_KEY);
     // data.append('folder', 'upload');
-    fetch(' https://api.cloudinary.com/v1_1/Skokubutsu/image/upload', {
+    fetch(process.env.REACT_APP_API_URL, {
       method: 'post',
       body: data,
     })

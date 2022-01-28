@@ -27,7 +27,7 @@ const App = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.announces.loading);
   useEffect(() => {
-    console.log(process.env.REACT_APP_VERSION)
+    // console.log(process.env.REACT_APP_VERSION)
     dispatch(fetchAnnounces());
     dispatch(fetchUser());
   }, []);
