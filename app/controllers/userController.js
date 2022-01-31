@@ -95,8 +95,8 @@ const userController = {
         try {
             //console.log(req.params.id);
             await new Announce(+req.params.id).deleteByUserId();
-            const user = await new User({id:+req.params.id}).delete();
-            res.json(user);
+            await new User({id:+req.params.id}).delete();
+            res.json(`The user id : ${+req.params.id} has been deleted.`);
         } catch (error) {
             console.log(error);
             res.status(500).json(error.message);
