@@ -6,7 +6,7 @@ import { fetchUser } from 'src/actions/user';
 import { useSelector, useDispatch } from 'react-redux';
 import {useState} from 'react';
 import './style.scss';
-import {Text, useToast} from '@chakra-ui/react';
+import {Text, useToast, Input} from '@chakra-ui/react';
 
 const UpdateUser = ({
   mail,
@@ -60,7 +60,7 @@ const UpdateUser = ({
     // 
         axios.patch(`https://shokubutsu.herokuapp.com/v1/users/${id}`, {
         mail: mail,
-        password: password,
+        password: checkPassword,
         city: city,
         nickname: nickname,
         picture: picture,
@@ -68,7 +68,9 @@ const UpdateUser = ({
       .then((res) => {
         setIsAuth(!isAuth);
         // stockage du token dans le localStorage
-        dispatch(fetchUser());
+        // si le pseudo est le même je dois changer le pseudo
+        console.log(res.data);
+        dispatch(fetchUser(res.data));
         console.log('ça marche user a bien changé');
         toast({
           title: 'Profil à jour',
@@ -80,7 +82,12 @@ const UpdateUser = ({
       })
       .catch((err) => {
         console.log(err.message);
-        setError('ça marche pas t nul');
+        toast({
+          title: 'Une erreur est servenue',
+          status: 'error',
+          isClosable: true,
+          position: 'top',
+        })
       });
     // onClose();
     // check password
@@ -120,13 +127,31 @@ const UpdateUser = ({
           onChange={changeField}
           value={nickname}
         />
-        <Field
+        {/* <Field
           name="password"
           type="password"
           placeholder="Nouveau mot de passe"
-          onChange={changeField}
-          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          // value={checkPassword}
+        /> */}
+        <div className="field field--has-content">
+                  <Input
+          name="password"
+          type="password"
+          id='field-password'
+          placeholder="Mot de passe"
+          className="field-input"
+          onChange={(e) => setPassword(e.target.value)}
+          value={checkPassword}
         />
+        <label
+        htmlFor='field-password'
+        className="field-label"
+      >
+        Mot de passe
+      </label>
+        </div>
+
         <Field
           name="city"
           placeholder="Ville"
