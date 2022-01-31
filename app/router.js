@@ -73,7 +73,7 @@ router.patch(`/users/:id`, userController.updateUser)
  */
 router.delete(`/users/:id`, userController.deleteUser);
 
-router.post(`/users/:id`, userController.checkPwd);
+router.post(`/users/check`, userController.checkPwd);
 
 router.route(`/login`)
     /**
