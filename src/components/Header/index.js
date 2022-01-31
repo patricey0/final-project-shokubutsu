@@ -34,6 +34,8 @@ import {
   MenuItem,
 } from '@chakra-ui/react';
 
+import { AddIcon } from '@chakra-ui/icons'
+
 export default function AppHeader() {
   const {
     mail,
@@ -112,6 +114,7 @@ export default function AppHeader() {
             && (
               <Wrap>
                 <Menu>
+                <AddIcon w={8} h={8} color="#366d4b" alignItems="center" />
                   <MenuButton
                     as={Button}
                     rounded="full"
