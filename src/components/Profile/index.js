@@ -5,15 +5,11 @@ import {
   Container,
   Stack,
   Text,
-  Image,
   Flex,
-  VStack,
   Button,
   Heading,
   SimpleGrid,
-  StackDivider,
   useColorModeValue,
-  // VisuallyHidden,
   List,
   ListItem,
   Avatar,
@@ -25,7 +21,18 @@ import {
   AlertDialogBody,
   AlertDialogFooter,
   useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+  FormControl,
 } from '@chakra-ui/react';
+import {
+  changeField,
+} from 'src/actions/user';
+import UpdateUser from 'src/components/LoginForm/UpdateUser';
 import { NavLink } from 'react-router-dom';
 import { deleteUser } from '../../actions/user';
 import './styles.scss';
@@ -36,6 +43,7 @@ import {useRef} from 'react';
 const Profile = () => {
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: isUpdateOpen, onOpen: onUpdateOpen, onClose: isUpdateClose } = useDisclosure();
   const cancelRef = useRef();
   const handleDelete = () => {
     console.log('Je veux supprimer mon profil');
@@ -49,6 +57,7 @@ const Profile = () => {
     nickname,
     picture,
     isadmin,
+    id,
   } = useSelector((state) => state.user);
   return (
     <Container maxW="7xl" color="black" mb={10}>
@@ -120,7 +129,7 @@ const Profile = () => {
           </Box>
           { /* Ici il y aura la modal pour l'update */ }
           <Button
-            // onClick={triggerModal}
+            onClick={onUpdateOpen}
             rounded="none"
             w="full"
             mt={8}
@@ -136,6 +145,34 @@ const Profile = () => {
           >
             Modifier mon profil
           </Button>
+          <Modal
+                  isOpen={isUpdateOpen}
+                  onClose={isUpdateClose}
+                >
+                  <ModalOverlay />
+                  <ModalContent>
+                    <ModalHeader>Modification du profil</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody pb={6}>
+                      <FormControl>
+                        <UpdateUser
+                          mail={mail}
+                          password={password}
+                          nickname={nickname}
+                          city={city}
+                          id={id}
+                          changeField={(value, name) => dispatch(changeField(value, name))}
+                          // action update
+                          // handleSignup={() => dispatch(signUp())}
+                          // isLogged={logged}
+                          // loggedMessage={`Bonjour ${nickname}`}
+                          // handleLogout={() => dispatch(logout())}
+                          onClose={isUpdateClose}
+                        />
+                      </FormControl>
+                    </ModalBody>
+                  </ModalContent>
+                </Modal>
           <Button onClick={onOpen}>Supprimer mon profil</Button>
       <AlertDialog
         motionPreset='slideInBottom'

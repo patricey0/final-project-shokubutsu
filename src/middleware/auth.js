@@ -87,10 +87,10 @@ const auth = (store) => (next) => (action) => {
       break;
     }
     case DELETE_USER: {
-      // ré
       // Récuperer l'id de l'user
       const state = store.getState();
       console.log(state.user.id);
+      // delete la photo de l'user
       axios.delete(`https://shokubutsu.herokuapp.com/v1/users/${state.user.id}`)
       localStorage.removeItem('token');
       window.location.assign("/");

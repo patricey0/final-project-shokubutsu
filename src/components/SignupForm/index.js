@@ -21,7 +21,6 @@ const SignupForm = ({
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
   const [image, setImage] = useState('');
-
   const uploadImage = async (evt) => {
     evt.preventDefault();
     const data = new FormData();
