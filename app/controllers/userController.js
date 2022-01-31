@@ -57,7 +57,7 @@ const userController = {
     checkPwd: async (req, res) => {
         try {
             const user = await new User(req.body).checkPwd();
-            if (!user) { throw new Error ('Identification failed, username or password invalid.')};
+            if (!user) { throw new Error ('Identification failed, password incorrect.')};
             res.json(`Identification OK.`)
         } catch (error) {
             console.log(error);
