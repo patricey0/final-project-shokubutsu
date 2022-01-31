@@ -32,6 +32,7 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+
 } from '@chakra-ui/react';
 
 import { AddIcon } from '@chakra-ui/icons'
@@ -49,6 +50,11 @@ export default function AppHeader() {
   const dispatch = useDispatch();
   const { isOpen: isLoginOpen, onOpen: onLoginOpen, onClose: isLoginClose } = useDisclosure();
   const { isOpen: isSignUpOpen, onOpen: onSignUpOpen, onClose: isSignUpClose } = useDisclosure();
+
+  const addAnnounce = () => {
+    console.log('Je clique');
+  };
+  
   // Permet de changer l'icone du menu au click
   const [isClosed, setIsClosed] = useState(true);
   const iconType = isClosed ? 'M4 6h16M4 12h16M4 18h16' : 'M6 18L18 6M6 6l12 12';
@@ -114,7 +120,10 @@ export default function AppHeader() {
             && (
               <Wrap>
                 <Menu>
-                <AddIcon w={8} h={8} color="#366d4b" alignItems="center" />
+                <button type="button" onClick={addAnnounce} className="header__button">
+                  Ajouter une annonce
+                </button>
+                {/* <AddIcon w={8} h={8} color="#366d4b" alignItems="center" /> */}
                   <MenuButton
                     as={Button}
                     rounded="full"
