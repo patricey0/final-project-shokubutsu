@@ -60,6 +60,7 @@ class User extends CoreModel {
     async update() {
         try {
             console.log('data:', this)
+            this.password = await bcrypt.hash(this.password, 10);
             const user = new User(await CoreModel.getRow(`SELECT * FROM update_visitor($1)`, [this]));
             return user;
         } catch (error) {
