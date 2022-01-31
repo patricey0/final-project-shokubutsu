@@ -38,13 +38,13 @@ content-type: application/json
 
 
 ### Update announce
-PATCH https://shokubutsu.herokuapp.com/v1/announces/15 HTTP/1.1
+PATCH {{baseUrl}}/announces/3 HTTP/1.1
 content-type: application/json
 
-{"title":"Urochloa P. Beauv.","image":"https://cdn.radiofrance.fr/s3/cruiser-production/2021/10/e624f156-f81a-4a70-87a7-75ac0499eb08/838_gettyimages-1279726754.jpg","creation_date":"2021-11-28 12:18:04","description":"Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.","category":"Doors, Frames & Hardware", "visitor_id":"8"}
+{"title":"Testing update","image":"https://cdn.radiofrance.fr/s3/cruiser-production/2021/10/e624f156-f81a-4a70-87a7-75ac0499eb08/838_gettyimages-1279726754.jpg","creation_date":"2021-11-28 12:18:04","description":"Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.","category":"Doors, Frames & Hardware", "visitor_id":"1"}
 
 
 ### Delete announce
-DELETE https://shokubutsu.herokuapp.com/v1/announces/1 HTTP/1.1
+DELETE {{baseUrl}}/announces/4 HTTP/1.1
 content-type: application/json
 

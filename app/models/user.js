@@ -104,6 +104,22 @@ class User extends CoreModel {
         
     }
 
+    async checkPwd() {
+        try {
+            const user = await CoreModel.getRow('SELECT * FROM "visitor" WHERE id=$1', [this.id]);
+            if (!user) { throw new Error ('Identification failed, username or password invalid.')};
+            const isPwdValid = await bcrypt.compare(this.password, user.password);
+            if (!isPwdValid) { throw new Error ('Identification failed, username or password invalid.')} 
+            return isPwdValid;
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail);
+            }
+            throw error;
+        }
+    }
+
     async reconnect() {
         try {
             console.log(this);

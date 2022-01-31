@@ -1,6 +1,5 @@
 const announces = require('./data_fake.json');
 const fetch = require('node-fetch');
-const { func } = require('joi');
 
 
 async function feed(element) {

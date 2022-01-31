@@ -8,7 +8,7 @@
 GET {{baseUrl}}/bookmarks/6 HTTP/1.1
 
 ### Test post bookmarks
-POST {{baseUrl}}/bookmarks/1/2 HTTP/1.1
+POST {{baseUrl}}/bookmarks/1/4 HTTP/1.1
 content-type: application/json
 
 ### Test delete bookmarks

@@ -57,7 +57,7 @@ const announceController = {
             console.log(req.params.id);
             const announce = await new Announce({id:+req.params.id}).delete();
             console.log("announce controller delete: ", announce);
-            res.json(announce);
+            res.json(`Announce id : ${+req.params.id}, has been deleted.`);
         } catch (error) {
             console.log(error);
             res.status(500).json(error.message);

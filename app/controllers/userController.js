@@ -1,6 +1,7 @@
 const { User } = require(`../models`);
 const jwt = require('../services/jwt');
 const { Announce } = require(`../models`);
+const { user } = require('pg/lib/defaults');
 
 const userController = {
     
@@ -47,6 +48,17 @@ const userController = {
             user["jwt"] = token;
             user["logged"] = true;
             res.json(user);
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error.message);
+        }
+    },
+
+    checkPwd: async (req, res) => {
+        try {
+            const user = await new User(req.body).checkPwd();
+            if (!user) { throw new Error ('Identification failed, username or password invalid.')};
+            res.json(`Identification OK.`)
         } catch (error) {
             console.log(error);
             res.status(500).json(error.message);
