@@ -5,7 +5,7 @@
 @baseUrl={{protocol}}{{host}}{{port}}{{prefix}}
 
 ### Test get users
-GET https://shokubutsu.herokuapp.com/v1/users/ HTTP/1.1
+GET https://shokubutsu.herokuapp.com/v1/users HTTP/1.1
 
 
 ### Test create user
@@ -23,17 +23,14 @@ content-type: application/json
 
 
 ### Test login
-POST {{baseUrl}}/login HTTP/1.1
+POST https://shokubutsu.herokuapp.com/v1/login HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "vincent",
-    "mail": "vincent2@oclock.io",
-    "password": "qwerty",
-    "city": "Paris",
-    "picture": "https://media-exp1.licdn.com/dms/image/D4E35AQES9YjdYcnlYQ/profile-framedphoto-shrink_400_400/0/1642097948572?e=1643112000&v=beta&t=qSnlLfHnqkiWvlY1Dc8XgHHPFJTdbtrGT6iFhjTli5A",
-    "isAdmin": "true"
+    "mail": "myriam@myriam.com",
+    "password" : "Myriam"
 }
+
 
 ### Test CheckPWD
 POST {{baseUrl}}/users/2 HTTP/1.1
@@ -51,21 +48,20 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjozLCJpYXQiOjE2NDMw
 
 
 ### Update user
-POST {{baseUrl}}/users/5 HTTP/1.1
+PATCH https://shokubutsu.herokuapp.com/v1/users/3 HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "vincent",
-    "mail": "blablablablabla",
-    "password": "qwerty",
+    "nickname": "Myriam",
+    "mail": "myriam@myriam.com",\
+    "password" : "Myriam",
     "city": "Paris",
-    "picture": "https://media-exp1.licdn.com/dms/image/D4E35AQES9YjdYcnlYQ/profile-framedphoto-shrink_400_400/0/1642097948572?e=1643112000&v=beta&t=qSnlLfHnqkiWvlY1Dc8XgHHPFJTdbtrGT6iFhjTli5A",
-    "isAdmin": "true"
+    "picture": "https://res.cloudinary.com/shokubutsu/image/upload/v1643640258/plant-2_cdsmcr.jpg"
 }
 
 
 ### Delete user
-DELETE {{baseUrl}}/users/10 HTTP/1.1
+DELETE https://shokubutsu.herokuapp.com/v1/users/2 HTTP/1.1
 content-type: application/json
 
 
