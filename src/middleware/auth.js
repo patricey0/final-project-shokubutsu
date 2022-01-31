@@ -82,6 +82,7 @@ const auth = (store) => (next) => (action) => {
       localStorage.removeItem('token');
       // on traite cette action dans le user reducer
       // il faut donc la passer
+      window.location.assign("/");
       next(action);
       break;
     }
@@ -92,6 +93,7 @@ const auth = (store) => (next) => (action) => {
       console.log(state.user.id);
       axios.delete(`https://shokubutsu.herokuapp.com/v1/users/${state.user.id}`)
       localStorage.removeItem('token');
+      window.location.assign("/");
       // rédiriger l'user vers la page d'accueil
       // rendre l
       next(action);
