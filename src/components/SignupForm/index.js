@@ -21,21 +21,23 @@ const SignupForm = ({
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
   const [image, setImage] = useState('');
+
   const uploadImage = async (evt) => {
     evt.preventDefault();
     const data = new FormData();
     data.append('file', image);
     data.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
     data.append('api_key', process.env.REACT_APP_API_KEY);
-    // data.append('folder', 'upload');
     fetch(process.env.REACT_APP_API_URL, {
       method: 'post',
       body: data,
     })
       .then((resp) => resp.json())
       .then((data) => {
+        // l'user a pour photo de profil http
         dispatch(setUrl(data.url));
-        handleSignup(); 
+        // upload
+        handleSignup(); // => si mon form passe || si le form passe pas
         onClose();
       })
       .catch((err) => console.log(err));
