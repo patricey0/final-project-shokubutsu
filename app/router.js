@@ -73,6 +73,13 @@ router.patch(`/users/:id`, userController.updateUser)
  */
 router.delete(`/users/:id`, userController.deleteUser);
 
+/**
+ * Respond with a json if the password is correct.
+ * @route POST /users/check
+ * @param {string} password.path.required the user's password
+ * @param {string} userId.path.required the user's id
+ * @returns {Boolean} 200
+ */
 router.post(`/users/check`, userController.checkPwd);
 
 router.route(`/login`)
@@ -155,6 +162,12 @@ router.route(`/announces/:id`)
      */
     .delete(announceController.deleteAnnounce);
 
+/**
+ * Respond with a json is the deletion is ok.
+ * @route DELETE /delete-image
+ * @param {string} imageUrl.path.required the image's URL from cloudinary
+ * @returns {Boolean} 200 - json.
+ */
 router.delete('/delete-image/', imageController.deleteImage);
 
 
