@@ -170,11 +170,30 @@ router.route(`/announces/:id`)
  */
 router.delete('/delete-image/', imageController.deleteImage);
 
-
+/**
+ * Respond with a json who contains all bookmark for one user
+ * @route GET /bookmarks/:userId
+ * @param {number} userId.path.required the user's id.
+ * @return {json} 200- json.
+ */
 router.get('/bookmarks/:userId', bookmarkController.getBookmarks);
 
+/**
+ * Respond with a json who contains the announce id, user id and bookmarked date.
+ * @route POST /bookmarks/:userId/:announceId
+ * @param {number} userId.path.required the user's id.
+ * @param {number} announceId.path.required the announce's id.
+ * @return {json} 200- json.
+ */
 router.post('/bookmarks/:userId/:announceId', bookmarkController.addBookmark);
 
+/**
+ * Respond with a json who contains a the deleted announce id.
+ * @route DELETE /bookmarks/:userId/:announceId
+ * @param {number} userId.path.required the user's id.
+ * @param {number} announceId.path.required the announce's id.
+ * @return {json} 200- json.
+ */
 router.delete('/bookmarks/:userId/:announceId', bookmarkController.deleteBookmark);
 
 module.exports = router;

@@ -26,7 +26,7 @@ const userController = {
 
     createUser: async (req, res) => {
         try {
-            console.log(req.body);
+            //console.log(req.body);
             const user = await User.create(req.body);
             const token = jwt.makeToken(user.id);
             user["jwt"] = token;
@@ -40,7 +40,7 @@ const userController = {
 
     login: async (req, res) => {
         try {
-            console.log(req.body);
+            //console.log(req.body);
             const user = await new User(req.body).login();
             //console.log(user);
             const token = jwt.makeToken(user.id);
@@ -67,7 +67,7 @@ const userController = {
 
     reconnect: async (req, res) => {
         try {
-            console.log('controller user reconnect :', req.userId);
+            //console.log('controller user reconnect :', req.userId);
             const user = await User.findById(req.userId);
             user["logged"] = true;
             res.status(200).json(user);
@@ -81,9 +81,9 @@ const userController = {
         try {
             //console.log(req.body);
             const userBeforeUpdate = await User.findById(+req.params.id);
-            console.log(`user before update : `, userBeforeUpdate);
+            //console.log(`user before update : `, userBeforeUpdate);
             const user = await new User({id:+req.params.id, ...req.body}).update();
-            console.log("user after update: ", user);
+            //console.log("user after update: ", user);
             res.json(user);
         } catch (error) {
             console.log(error);
@@ -93,10 +93,9 @@ const userController = {
 
     deleteUser: async (req, res) => {
         try {
-            console.log(req.params.id);
+            //console.log(req.params.id);
             await new Announce(+req.params.id).deleteByUserId();
             const user = await new User({id:+req.params.id}).delete();
-            console.log("user controller delete: ", user);
             res.json(user);
         } catch (error) {
             console.log(error);
