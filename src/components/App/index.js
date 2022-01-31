@@ -2,6 +2,7 @@
 import {
   Routes,
   Route,
+  Navigate,
 } from 'react-router-dom';
 import './styles.scss';
 import { useEffect } from 'react';
@@ -26,6 +27,9 @@ import { Box } from '@chakra-ui/react';
 const App = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.announces.loading);
+  const logged = useSelector((state) => state.user.logged);
+  console.log(logged);
+
   useEffect(() => {
     // console.log(process.env.REACT_APP_VERSION)
     dispatch(fetchAnnounces());
@@ -46,9 +50,13 @@ const App = () => {
           <Route path="/announces/:id" element={<Announce />} />
           <Route path="/guide" element={<Guide />} />
           <Route path="/contact" element={<Contact />} />
+          {logged && 
+          <>
           <Route path="/profile" element={<Profile />} />
           <Route path="/my-announces" element={<MyAnnounces />} />
           <Route path="/my-favorites" element={<MyFavorites />} />
+          </> 
+          }
 
           <Route path="*" element={<Error />} />
         </Routes>

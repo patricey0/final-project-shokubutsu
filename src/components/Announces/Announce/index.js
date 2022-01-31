@@ -91,18 +91,24 @@ function Announce() {
             fontSize="lg">
             {description}
           </Text>
-          <HStack marginTop="2" spacing="2" display="flex" alignItems="center" color="black">
+          <HStack
+           mt={4}
+           spacing="2"
+           display="flex"
+           alignItems="center"
+           color="black"
+           justifyContent="center"
+           flexDirection={{ base: 'column', sm: 'row' }}
+          >
             <Image
               borderRadius="full"
               boxSize="40px"
               src="https://100k-faces.glitch.me/random-image"
               alt={`Avatar of ${author}`}
             />
-            <Text fontWeight="medium">{author}</Text>
-            <Text>—</Text>
-            <Text>{city}</Text>
-            <Text>—</Text>
-            <Text>{formatedDate}</Text>
+            <Box display="flex">
+            <Text fontWeight="medium">{author} — {city} — {formatedDate}</Text>
+            </Box>
           </HStack>
         </Box>
       </Box>

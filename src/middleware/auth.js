@@ -19,6 +19,7 @@ const auth = (store) => (next) => (action) => {
       })
         .then((res) => {
           // stockage du token dans le localStorage
+          console.log(res.data);
           localStorage.setItem('token', res.data.jwt);
           // stockage des infos de l'api dans le state
           store.dispatch(saveUser(res.data));
@@ -81,16 +82,18 @@ const auth = (store) => (next) => (action) => {
       localStorage.removeItem('token');
       // on traite cette action dans le user reducer
       // il faut donc la passer
+      window.location.assign("/");
       next(action);
       break;
     }
     case DELETE_USER: {
-      // ré
       // Récuperer l'id de l'user
       const state = store.getState();
       console.log(state.user.id);
+      // delete la photo de l'user
       axios.delete(`https://shokubutsu.herokuapp.com/v1/users/${state.user.id}`)
       localStorage.removeItem('token');
+      window.location.assign("/");
       // rédiriger l'user vers la page d'accueil
       // rendre l
       next(action);
