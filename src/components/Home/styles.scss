@@ -54,6 +54,14 @@
 
 };
 
+@media (min-width: 500px) {
+  .home__section{
+    display: flex;
+    justify-content: center;
+  }
+};
+
+
 @media (min-width: 920px) {
   .home__section{
     justify-content: center;

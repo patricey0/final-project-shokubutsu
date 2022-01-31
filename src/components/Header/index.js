@@ -103,6 +103,7 @@ export default function AppHeader() {
             </svg>
           </div>
           <img src={logo} alt="" className="header__logo" />
+          <span className="header__name">Shokubutsu</span>
           <ul className="header__items">
             <div className="first">
               {itemElementJSX}
