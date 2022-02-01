@@ -9,7 +9,7 @@ const userController = {
             res.json(await User.findAll());
         } catch (error) {
             console.log(error);
-            res.status(500).json({"message":error});
+            res.status(500).json(error);
         }
     },
 
@@ -19,7 +19,7 @@ const userController = {
             res.json(user)
         } catch (error) {
             console.log(error);
-            res.status(500).json({"message":error});
+            res.status(500).json(error);
         }
     },
 
@@ -27,9 +27,9 @@ const userController = {
         try {
             //console.log(req.body);
             const isNicknameExists = await User.findByName(req.body.nickname);
-            if (isNicknameExists.nickname) throw new Error().message = "Nickname already exists."
+            if (isNicknameExists.nickname) throw new Error().message = `Ce pseudo est déjà utilisé.`
             const isEmailExists = await User.findByEmail(req.body.mail);
-            if (isEmailExists.mail) throw new Error().message = "This email is already used."
+            if (isEmailExists.mail) throw new Error().message = `Cet email est déjà utilisé.`
             const user = await User.create(req.body);
             console.log('controller create user : ', user);
             const token = jwt.makeToken(user.id);
@@ -38,7 +38,7 @@ const userController = {
             res.json(user);
         } catch (error) {
             console.log(error);
-            res.status(500).json({"message":error});
+            res.status(500).json(error);
         }
     },
 
@@ -54,7 +54,7 @@ const userController = {
             res.json(user);
         } catch (error) {
             console.log(error);
-            res.status(500).json({"message":error});
+            res.status(500).json(error);
         }
     },
 
@@ -65,7 +65,7 @@ const userController = {
             res.json(`Identification OK.`)
         } catch (error) {
             console.log(error);
-            res.status(500).json({"message":error});
+            res.status(500).json(error);
         }
     },
 
@@ -77,7 +77,7 @@ const userController = {
             res.status(200).json(user);
         } catch (error) {
             console.log(error);
-            res.status(500).json({"message":error});
+            res.status(500).json(error);
         }
     },
 
@@ -85,9 +85,9 @@ const userController = {
         try {
             //console.log(req.body);
             const isNicknameExists = await User.findByName(req.body.nickname);
-            if (isNicknameExists.nickname) throw new Error().message = "Nickname already exists."
+            if (isNicknameExists.nickname) throw new Error().message = `Ce pseudo est déjà utilisé.`
             const isEmailExists = await User.findByEmail(req.body.mail);
-            if (isEmailExists.mail) throw new Error().message = "This email is already used."
+            if (isEmailExists.mail) throw new Error().message = `Cet email est déjà utilisé.`
             //const userBeforeUpdate = await User.findById(+req.params.id);
             //console.log(`user before update : `, userBeforeUpdate);
             const user = await new User({id:+req.params.id, ...req.body}).update();
@@ -107,7 +107,7 @@ const userController = {
             res.json(`The user id : ${+req.params.id} has been deleted.`);
         } catch (error) {
             console.log(error);
-            res.status(500).json({"message":error});
+            res.status(500).json(error);
         }
     }
 }
