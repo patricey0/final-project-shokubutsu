@@ -13,8 +13,8 @@ POST {{baseUrl}}/users HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "Toto",
-    "mail": "toto@oclock.io",
+    "nickname": "Toto23",
+    "mail": "tot23o@oclock.io",
     "password": "asdqwe123",
     "city": "Paris",
     "picture": "https://mypicture"
@@ -52,11 +52,11 @@ PATCH https://shokubutsu.herokuapp.com/v1/users/3 HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "Myriam",
-    "mail": "myriam@myriam.com",\
-    "password" : "Myriam",
+    "nickname": "toto",
+    "mail": "toto@oclock.io",
+    "password": "asdqwe123",
     "city": "Paris",
-    "picture": "https://res.cloudinary.com/shokubutsu/image/upload/v1643640258/plant-2_cdsmcr.jpg"
+    "picture": "https://mypicture"
 }
 
 

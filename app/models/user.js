@@ -41,16 +41,44 @@ class User extends CoreModel {
         
     }
 
+    static async findByName(nickname) {
+        try {
+            return new User(await CoreModel.getRow('SELECT * FROM "visitor" WHERE nickname=$1', [nickname]));
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail);
+            }
+            throw error;
+        }
+        
+    }
+
+    static async findByEmail(mail) {
+        try {
+            return new User(await CoreModel.getRow('SELECT * FROM "visitor" WHERE mail=$1', [mail]));
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail);
+            }
+            throw error;
+        }
+        
+    }
+
     static async create(data) {
         try {
             const password = await bcrypt.hash(data.password, 10);
             data.password = password
             console.log(data);
-            return new User(await CoreModel.getRow('SELECT * FROM new_visitor($1)', [data]));
+            const user = new User(await CoreModel.getRow('SELECT * FROM new_visitor($1)', [data]));
+            console.log(user);
+            return user;
         } catch (error) {
             console.log(error);
-            if (error.detail) {
-                throw new Error(error.detail);
+            if (error) {
+                throw new Error(error);
             }
             throw error;
         }

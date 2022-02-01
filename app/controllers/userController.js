@@ -1,7 +1,6 @@
 const { User } = require(`../models`);
 const jwt = require('../services/jwt');
 const { Announce } = require(`../models`);
-const { user } = require('pg/lib/defaults');
 
 const userController = {
     
@@ -27,14 +26,19 @@ const userController = {
     createUser: async (req, res) => {
         try {
             //console.log(req.body);
+            const isNicknameExists = await User.findByName(req.body.nickname);
+            if (isNicknameExists.nickname) throw new Error().message = "Nickname already exists."
+            const isEmailExists = await User.findByEmail(req.body.mail);
+            if (isEmailExists.mail) throw new Error().message = "This email is already used."
             const user = await User.create(req.body);
+            console.log('controller create user : ', user);
             const token = jwt.makeToken(user.id);
             user["jwt"] = token;
             user["logged"] = true;
             res.json(user);
         } catch (error) {
             console.log(error);
-            res.status(500).json(error.message);
+            res.status(500).json(error);
         }
     },
 
@@ -80,7 +84,11 @@ const userController = {
     updateUser: async (req, res) => {
         try {
             //console.log(req.body);
-            const userBeforeUpdate = await User.findById(+req.params.id);
+            const isNicknameExists = await User.findByName(req.body.nickname);
+            if (isNicknameExists.nickname) throw new Error().message = "Nickname already exists."
+            const isEmailExists = await User.findByEmail(req.body.mail);
+            if (isEmailExists.mail) throw new Error().message = "This email is already used."
+            //const userBeforeUpdate = await User.findById(+req.params.id);
             //console.log(`user before update : `, userBeforeUpdate);
             const user = await new User({id:+req.params.id, ...req.body}).update();
             //console.log("user after update: ", user);
