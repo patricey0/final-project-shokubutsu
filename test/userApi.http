@@ -67,9 +67,9 @@ content-type: application/json
 
 ### Delete image
 
-DELETE {{baseUrl}}/delete-image/ HTTP/1.1
+DELETE https://shokubutsu.herokuapp.com/v1/delete-image/ HTTP/1.1
 content-type: application/json
 
 {
-    "url": "https://res.cloudinary.com/shokubutsu/image/upload/v1643367357/ucejbvo7wq2clgb91cst.png"
+    "image_url": "https://res.cloudinary.com/shokubutsu/image/upload/v1643367444/kwkgbk417iftmmt9t90h.jpg"
 }

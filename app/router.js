@@ -168,7 +168,9 @@ router.route(`/announces/:id`)
  * @param {string} imageUrl.path.required the image's URL from cloudinary
  * @returns {Boolean} 200 - json.
  */
-router.delete('/delete-image/', imageController.deleteImage);
+router.delete('/delete-image', imageController.deleteImage);
+
+router.post('/delete-image', imageController.deleteImage);
 
 /**
  * Respond with a json who contains all bookmark for one user
