@@ -52,7 +52,7 @@ export default function AppHeader() {
   const { isOpen: isSignUpOpen, onOpen: onSignUpOpen, onClose: isSignUpClose } = useDisclosure();
 
   const addAnnounce = () => {
-    console.log('Je clique');
+    console.log('Clique');
   };
   
   // Permet de changer l'icone du menu au click
