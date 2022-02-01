@@ -13,8 +13,8 @@ POST {{baseUrl}}/users HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "Toto23",
-    "mail": "tot23o@oclock.io",
+    "nickname": "Toto",
+    "mail": "non@non.fr",
     "password": "asdqwe123",
     "city": "Paris",
     "picture": "https://mypicture"

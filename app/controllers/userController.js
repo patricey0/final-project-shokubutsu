@@ -9,7 +9,7 @@ const userController = {
             res.json(await User.findAll());
         } catch (error) {
             console.log(error);
-            res.status(500).json(error.message);
+            res.status(500).json({"message":error});
         }
     },
 
@@ -19,7 +19,7 @@ const userController = {
             res.json(user)
         } catch (error) {
             console.log(error);
-            res.status(500).json(error.message);
+            res.status(500).json({"message":error});
         }
     },
 
@@ -38,7 +38,7 @@ const userController = {
             res.json(user);
         } catch (error) {
             console.log(error);
-            res.status(500).json(error);
+            res.status(500).json({"message":error});
         }
     },
 
@@ -54,7 +54,7 @@ const userController = {
             res.json(user);
         } catch (error) {
             console.log(error);
-            res.status(500).json(error.message);
+            res.status(500).json({"message":error});
         }
     },
 
@@ -65,7 +65,7 @@ const userController = {
             res.json(`Identification OK.`)
         } catch (error) {
             console.log(error);
-            res.status(500).json(error.message);
+            res.status(500).json({"message":error});
         }
     },
 
@@ -77,7 +77,7 @@ const userController = {
             res.status(200).json(user);
         } catch (error) {
             console.log(error);
-            res.status(500).json(error.message);
+            res.status(500).json({"message":error});
         }
     },
 
@@ -95,7 +95,7 @@ const userController = {
             res.json(user);
         } catch (error) {
             console.log(error);
-            res.status(500).json(error.message);
+            res.status(500).json({"message":error});
         }
     },
 
@@ -107,7 +107,7 @@ const userController = {
             res.json(`The user id : ${+req.params.id} has been deleted.`);
         } catch (error) {
             console.log(error);
-            res.status(500).json(error.message);
+            res.status(500).json({"message":error});
         }
     }
 }
