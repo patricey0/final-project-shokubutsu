@@ -27,8 +27,8 @@ POST https://shokubutsu.herokuapp.com/v1/login HTTP/1.1
 content-type: application/json
 
 {
-    "mail": "myriam@myriam.com",
-    "password" : "Myriam"
+    "mail": "myriam123@myriam.com",
+    "password" : "Myriam123"
 }
 
 
