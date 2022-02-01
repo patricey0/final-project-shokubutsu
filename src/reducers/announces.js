@@ -1,8 +1,14 @@
-import { SAVE_ANNOUNCES, FETCH_ANNOUNCES } from 'src/actions/announces';
+import { SAVE_ANNOUNCES, FETCH_ANNOUNCES, SAVE_ANNOUNCE } from 'src/actions/announces';
 
 export const initialState = {
   list: [],
   loading: true,
+  newAnnounce: {
+    title: "",
+    description: "",
+    picture: "",
+    donation: null,
+  }
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -18,6 +24,14 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         list: action.payload,
         loading: false,
+      };
+    }
+    case SAVE_ANNOUNCE: {
+      return {
+        ...state,
+        newAnnounce: {
+          ...action.payload
+        },
       };
     }
     default:
