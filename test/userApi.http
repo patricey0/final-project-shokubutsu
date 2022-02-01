@@ -73,3 +73,12 @@ content-type: application/json
 {
     "image_url": "https://res.cloudinary.com/shokubutsu/image/upload/v1643367444/kwkgbk417iftmmt9t90h.jpg"
 }
+
+### update image user
+PATCH {{baseUrl}}/update-image HTTP/1.1
+Content-Type: application/json
+
+{   
+    "userId": 2,
+    "image_url": "NULL"
+}

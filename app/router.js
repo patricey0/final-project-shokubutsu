@@ -172,6 +172,8 @@ router.delete('/delete-image', imageController.deleteImage);
 
 router.post('/delete-image', imageController.deleteImage);
 
+router.patch('/update-image', imageController.updateImage);
+
 /**
  * Respond with a json who contains all bookmark for one user
  * @route GET /bookmarks/:userId

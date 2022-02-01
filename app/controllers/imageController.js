@@ -1,5 +1,6 @@
 const cloudinary = require("cloudinary").v2;
 require("dotenv").config();
+const { Image } = require('../models');
 
 // cloudinary configuration
 cloudinary.config({
@@ -22,7 +23,17 @@ const imageController = {
             res.json(result);
         } catch (error) {
             console.log(error);
-            res.status(500).json(error.message);
+            res.status(500).json(error);
+        }
+    },
+
+    updateImage: async (req, res) => {
+        try {
+            const result = await new Image({...req.body}).updateImage();
+            res.json(result);
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error);
         }
     }
 }
