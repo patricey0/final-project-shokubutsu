@@ -2,6 +2,6 @@
 
 BEGIN;
 
--- XXX Add DDLs here.
+drop FUNCTION update_image_visitor;
 
 COMMIT;

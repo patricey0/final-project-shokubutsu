@@ -29,7 +29,9 @@ const imageController = {
 
     updateImage: async (req, res) => {
         try {
-            const result = await new Image({...req.body}).updateImage();
+            let result;
+            if(req.body.userId) result = await new Image({...req.body}).updateImageVisitor();
+            if(req.body.announceId) result = await new Image({...req.body}).updateImageAnnounce();
             res.json(result);
         } catch (error) {
             console.log(error);

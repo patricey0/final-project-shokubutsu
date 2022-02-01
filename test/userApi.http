@@ -79,6 +79,6 @@ PATCH {{baseUrl}}/update-image HTTP/1.1
 Content-Type: application/json
 
 {   
-    "userId": 2,
+    "announceId": 5,
     "image_url": "NULL"
 }
