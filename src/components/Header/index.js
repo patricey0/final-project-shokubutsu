@@ -51,9 +51,6 @@ export default function AppHeader() {
   const { isOpen: isLoginOpen, onOpen: onLoginOpen, onClose: isLoginClose } = useDisclosure();
   const { isOpen: isSignUpOpen, onOpen: onSignUpOpen, onClose: isSignUpClose } = useDisclosure();
 
-  const addAnnounce = () => {
-    console.log('Clique');
-  };
   
   // Permet de changer l'icone du menu au click
   const [isClosed, setIsClosed] = useState(true);
@@ -120,9 +117,7 @@ export default function AppHeader() {
             && (
               <Wrap>
                 <Menu>
-                <button type="button" onClick={addAnnounce} className="header__button">
-                  Ajouter une annonce
-                </button>
+                <NavLink to="/create-announce" className="header__button">Ajouter une annonce</NavLink>
                 {/* <AddIcon w={8} h={8} color="#366d4b" alignItems="center" /> */}
                   <MenuButton
                     as={Button}
