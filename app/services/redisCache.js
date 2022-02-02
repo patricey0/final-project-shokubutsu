@@ -1,10 +1,6 @@
 const {createClient} = require('redis');
 const db = createClient({
     url: process.env.REDIS_URL,
-    socket: {
-        tls: true,
-        rejectUnauthorized: false
-    }
 });
 db.connect();
 
