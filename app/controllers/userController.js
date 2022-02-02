@@ -83,13 +83,12 @@ const userController = {
 
     updateUser: async (req, res) => {
         try {
+            const userBeforeUpdate = await User.findById(+req.params.id);
             //console.log(req.body);
-            const isNicknameExists = await User.findByName(req.body.nickname);
-            if (isNicknameExists.nickname) throw new Error().message = `Ce pseudo est déjà utilisé.`
-            const isEmailExists = await User.findByEmail(req.body.mail);
-            if (isEmailExists.mail) throw new Error().message = `Cet email est déjà utilisé.`
-            //const userBeforeUpdate = await User.findById(+req.params.id);
-            //console.log(`user before update : `, userBeforeUpdate);
+            const isNicknameExist = await User.findByName(req.body.nickname);
+            if (isNicknameExist.nickname && userBeforeUpdate.nickname !== req.body.nickname) throw new Error().message = `Ce pseudo est déjà utilisé.`
+            const isEmailExist = await User.findByEmail(req.body.mail);
+            if (isEmailExist.mail && userBeforeUpdate.mail !== req.body.mail) throw new Error().message = `Cet email est déjà utilisé.`
             const user = await new User({id:+req.params.id, ...req.body}).update();
             //console.log("user after update: ", user);
             res.json(user);

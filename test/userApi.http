@@ -13,11 +13,11 @@ POST {{baseUrl}}/users HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "Toto",
-    "mail": "non@non.fr",
-    "password": "asdqwe123",
+    "nickname": "Patrice",
+    "mail": "patrice@oclock.io",
+    "password": "123qwe",
     "city": "Paris",
-    "picture": "https://mypicture"
+    "picture": "http://qweqwe"
 }
 
 
@@ -48,20 +48,18 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjozLCJpYXQiOjE2NDMw
 
 
 ### Update user
-PATCH https://shokubutsu.herokuapp.com/v1/users/3 HTTP/1.1
+PATCH {{baseUrl}}/users/3 HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "toto",
-    "mail": "toto@oclock.io",
-    "password": "asdqwe123",
-    "city": "Paris",
-    "picture": "https://mypicture"
+    "nickname": "Patrice2",
+    "mail": "non@non.fr",
+    "password": "123qwe",
+    "city": "Paris"
 }
 
-
 ### Delete user
-DELETE https://shokubutsu.herokuapp.com/v1/users/2 HTTP/1.1
+DELETE {{baseUrl}}/users/2 HTTP/1.1
 content-type: application/json
 
 
@@ -75,10 +73,10 @@ content-type: application/json
 }
 
 ### update image user
-PATCH {{baseUrl}}/update-image HTTP/1.1
+PATCH https://shokubutsu.herokuapp.com/v1/update-image HTTP/1.1
 Content-Type: application/json
 
 {   
-    "announceId": 5,
-    "image_url": "NULL"
+    "userId": 3,
+    "image_url": null
 }
