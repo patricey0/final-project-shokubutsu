@@ -15,7 +15,7 @@ const Announces = () => {
   return (
     
     <SimpleGrid columns={{ sm: 1, md: 2, xl: 3 }} spacing={10} mt={4}>
-      {announces.length && announces.map((el) => {
+      {announces.length > 0 && announces.map((el) => {
         return (
         <Box
           key={el.id}
