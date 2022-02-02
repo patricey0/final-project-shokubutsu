@@ -8,6 +8,9 @@ export const FETCH_FAV = 'FETCH_FAV';
 export const SAVE_FAV = 'SAVE_FAV';
 export const SIGNUP = 'SIGNUP';
 export const DELETE_USER = 'DELETE_USER';
+export const DELETE_AVATAR = 'DELETE_AVATAR';
+export const UPDATE_AVATAR = 'UPDATE_AVATAR';
+
 
 export const changeField = (value, name) => ({
   type: CHANGE_FIELD,
@@ -58,4 +61,10 @@ export const setUrl = (url) => ({
 
 export const deleteUser = () => ({
   type: DELETE_USER,
+})
+export const deleteAvatar = () => ({
+  type: DELETE_AVATAR,
+})
+export const updateAvatar = () => ({
+  type: UPDATE_AVATAR,
 })

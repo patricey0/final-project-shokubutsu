@@ -3,15 +3,19 @@ import {
   LOGIN,
   saveUser,
   FETCH_USER,
+  fetchUser,
   LOGOUT,
   SIGNUP,
-  DELETE_USER
+  DELETE_USER,
+  DELETE_AVATAR,
+  UPDATE_AVATAR,
 } from 'src/actions/user';
 
-const auth = (store) => (next) => (action) => {
+const auth = (store) => (next) => async (action) => {
   switch (action.type) {
     case LOGIN: {
       const state = store.getState();
+      // const dispatch = useDispatch();
 
       axios.post('https://shokubutsu.herokuapp.com/v1/login', {
         mail: state.user.mail,
@@ -70,7 +74,7 @@ const auth = (store) => (next) => (action) => {
           store.dispatch(saveUser(res.data));
         })
         .catch((err) => {
-          axios.delete('https://shokubutsu.herokuapp.com/v1/delete-image', {
+          axios.post('https://shokubutsu.herokuapp.com/v1/delete-image', {
             image_url: state.user.picture,
           });
           console.log(err.message);
@@ -93,9 +97,75 @@ const auth = (store) => (next) => (action) => {
       // delete la photo de l'user
       axios.delete(`https://shokubutsu.herokuapp.com/v1/users/${state.user.id}`)
       localStorage.removeItem('token');
+      axios.post('https://shokubutsu.herokuapp.com/v1/delete-image', {
+            image_url: state.user.picture,
+          });
       window.location.assign("/");
       // rédiriger l'user vers la page d'accueil
-      // rendre l
+      // rendre lS
+      next(action);
+      break;
+    }
+    case DELETE_AVATAR: {
+      const state = store.getState();
+      console.log("je veux delete l'avatar");
+      // todo Update l'image => si j'envoie rien, le champ picture passe a null
+      console.log(state.user.id);
+      // 24
+      axios.patch('https://shokubutsu.herokuapp.com/v1/update-image', {
+            userId: state.user.id,
+            image_url: null,
+      })
+      .then((res) => {
+        console.log(res.data)
+        // picture = null || httpp.cloud
+        if(state.user.picture){ 
+          axios.post('https://shokubutsu.herokuapp.com/v1/delete-image', {
+              image_url: state.user.picture,
+            });
+        }
+        store.dispatch(saveUser(res.data))
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+// 
+// 
+// 
+// 
+// 
+   
+// try {
+//   const response = await axios.patch('https://shokubutsu.herokuapp.com/v/update-image', {
+//         userId: state.user.id,
+//         image_url: null,
+//   })
+
+//   console.log("response.data =>",response.data)
+//   if(state.user.picture){
+//   await axios.post('https://shokubutsu.herokuapp.com/v1/delete-image', {
+//     image_url: state.user.picture,
+//   });}
+//   store.dispatch(saveUser(response.data))
+// } catch (error) {
+//   console.log(error);
+//   return error
+// }
+   
+
+// 
+// 
+// 
+// 
+// 
+// 
+//       
+      next(action);
+      break;
+    }
+    case UPDATE_AVATAR: {
+      const state = store.getState();
+      console.log("je veux update l'avatar");
       next(action);
       break;
     }

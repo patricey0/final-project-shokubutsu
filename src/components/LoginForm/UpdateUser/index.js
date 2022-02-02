@@ -41,7 +41,7 @@ const UpdateUser = ({
     .catch((err) => {
       console.log(err.message);
       toast({
-        title: 'Mauvais mot de passe',
+        title: 'Mot de passe incorrect.',
         status: 'error',
         isClosable: true,
         position: 'top',
@@ -67,8 +67,6 @@ const UpdateUser = ({
       })
       .then((res) => {
         setIsAuth(!isAuth);
-        // stockage du token dans le localStorage
-        // si le pseudo est le même je dois changer le pseudo
         console.log(res.data);
         dispatch(fetchUser(res.data));
         console.log('ça marche user a bien changé');
@@ -80,10 +78,9 @@ const UpdateUser = ({
         })
         onClose();
       })
-      .catch((err) => {
-        console.log(err.message);
+      .catch((error) => {
         toast({
-          title: 'Une erreur est servenue',
+          title: error.response.data,
           status: 'error',
           isClosable: true,
           position: 'top',
@@ -97,7 +94,7 @@ const UpdateUser = ({
     <div className="login-form">
       {!isAuth &&
       <form autoComplete="off" className="login-form-element" onSubmit={handleVerifPassword}>
-      <Text>Vérifier votre mot de passe avant modification</Text>
+      <Text>Vérifier votre mot de passe pour modifier votre profil</Text>
         <input
           name="password"
           type="password"
@@ -108,6 +105,7 @@ const UpdateUser = ({
         <button
           type="submit"
           className="login-form-button"
+          style={{marginTop: "10px"}}
         >
           Vérifier le mot de passe
         </button>
@@ -127,29 +125,22 @@ const UpdateUser = ({
           onChange={changeField}
           value={nickname}
         />
-        {/* <Field
-          name="password"
-          type="password"
-          placeholder="Nouveau mot de passe"
-          onChange={(e) => setPassword(e.target.value)}
-          // value={checkPassword}
-        /> */}
         <div className="field field--has-content">
-                  <Input
-          name="password"
-          type="password"
-          id='field-password'
-          placeholder="Mot de passe"
-          className="field-input"
-          onChange={(e) => setPassword(e.target.value)}
-          value={checkPassword}
-        />
-        <label
-        htmlFor='field-password'
-        className="field-label"
-      >
-        Mot de passe
-      </label>
+          <Input
+            name="password"
+            type="password"
+            id='field-password'
+            placeholder="Mot de passe"
+            className="field-input"
+            onChange={(e) => setPassword(e.target.value)}
+            value={checkPassword}
+          />
+          <label
+          htmlFor='field-password'
+          className="field-label"
+        >
+          Mot de passe
+        </label>
         </div>
 
         <Field

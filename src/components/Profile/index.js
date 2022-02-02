@@ -28,37 +28,119 @@ import {
   ModalBody,
   ModalCloseButton,
   FormControl,
-} from '@chakra-ui/react';
-import {
-  changeField,
-} from 'src/actions/user';
-import UpdateUser from 'src/components/LoginForm/UpdateUser';
-import { NavLink } from 'react-router-dom';
-import { deleteUser } from '../../actions/user';
-import './styles.scss';
-import { useSelector, useDispatch } from 'react-redux';
-import {useRef} from 'react';
+  FormLabel,
+  Center,
+  AvatarBadge,
+  IconButton,
+  // SmallCloseIcon,
+  useToast,
+} from "@chakra-ui/react";
+import { EditIcon, CloseIcon } from "@chakra-ui/icons";
+import { changeField } from "src/actions/user";
+import UpdateUser from "src/components/LoginForm/UpdateUser";
+import { NavLink } from "react-router-dom";
+import { deleteUser, deleteAvatar, saveUser } from "src/actions/user";
+
+import axios from "axios";
+import "./styles.scss";
+import { useSelector, useDispatch } from "react-redux";
+import { useRef, useState } from "react";
 
 // == Composant
 const Profile = () => {
+  const toast = useToast();
+  const [image, setImage] = useState("");
+  const [previewSource, setPreviewSource] = useState("");
+
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isOpen: isUpdateOpen, onOpen: onUpdateOpen, onClose: isUpdateClose } = useDisclosure();
+  const {
+    isOpen: isUpdateOpen,
+    onOpen: onUpdateOpen,
+    onClose: isUpdateClose,
+  } = useDisclosure();
+  const {
+    isOpen: isAvatarOpen,
+    onOpen: onAvatarOpen,
+    onClose: onAvatarClose,
+  } = useDisclosure();
+
+  const { mail, password, city, nickname, picture, isadmin, id } = useSelector(
+    (state) => state.user
+  );
   const cancelRef = useRef();
   const handleDelete = () => {
-    console.log('Je veux supprimer mon profil');
+    console.log(image);
+    // console.log("Je veux supprimer mon profil");
     dispatch(deleteUser());
     onClose();
-  }
-  const {
-    mail,
-    password,
-    city,
-    nickname,
-    picture,
-    isadmin,
-    id,
-  } = useSelector((state) => state.user);
+  };
+  const uploadImage = async (evt) => {
+    // evt.preventDefault();
+    if (!image) {
+      toast({
+        title: "Il faut une image pour pouvoir la changer ;)",
+        status: "error",
+        isClosable: true,
+        position: "top",
+      });
+      return;
+    }
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", process.env.REACT_APP_UPLOAD_PRESET);
+    data.append("api_key", process.env.REACT_APP_API_KEY);
+    fetch(process.env.REACT_APP_API_URL, {
+      method: "post",
+      body: data,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        //lien de la photo
+        // Je supprime l'ancienne photo du user
+        if (picture) {
+          axios.post("https://shokubutsu.herokuapp.com/v1/delete-image", {
+            image_url: picture, // state
+          });
+        }
+        // dispatch(setUrl(data.url));
+        axios
+          .patch("https://shokubutsu.herokuapp.com/v1/update-image", {
+            userId: id,
+            image_url: data.url,
+          })
+          .then((res) => {
+            console.log(res.data);
+            dispatch(saveUser(res.data));
+            toast({
+              title: "Avatar mis a jour.",
+              description: "Nous avons changé votre Avatar",
+              status: "success",
+              position: "top",
+              duration: 9000,
+              isClosable: true,
+            });
+          })
+          .catch((err) => {
+            console.log(err.message);
+            axios.post("https://shokubutsu.herokuapp.com/v1/delete-image", {
+              image_url: data.url,
+            });
+          });
+        // upload
+        setImage("");
+        onAvatarClose();
+      })
+      .catch((err) => console.log(err));
+  };
+  const previewFile = (file) => {
+    setImage(file);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreviewSource(reader.result);
+    };
+  };
   return (
     <Container maxW="7xl" color="black" mb={10}>
       <SimpleGrid
@@ -76,23 +158,138 @@ const Profile = () => {
             fit="cover"
             align="center"
             w="100%"
-            h={{ base: '100%', sm: '200px', lg: '300px' }}
+            h={{ base: "100%", sm: "200px", lg: "300px" }}
           />
+          <EditIcon
+            color="#366d4b"
+            onClick={onAvatarOpen}
+            fontSize="xl"
+            _hover={{ cursor: "pointer" }}
+          />
+          <Modal
+            isOpen={isAvatarOpen}
+            onClose={() => {
+              setImage("");
+              onAvatarClose();
+              setPreviewSource("");
+            }}
+          >
+            <ModalOverlay />
+            <ModalContent p={7}>
+              <ModalHeader
+                lineHeight={1.1}
+                fontSize='xl'
+                color="#366d4b"
+                textTransform="uppercase"
+              >
+                Modification de l'avatar
+              </ModalHeader>
+              <ModalCloseButton />
+              <ModalBody pb={6}>
+                <FormControl id="userName">
+                  <Stack direction={["column", "row"]} spacing={6}>
+                    <Center>
+                      <Avatar
+                        size="xl"
+                        src={previewSource ? previewSource : picture}
+                      >
+                        {!image && (
+                          <AvatarBadge
+                            as={IconButton}
+                            size="sm"
+                            rounded="full"
+                            top="-10px"
+                            colorScheme="red"
+                            aria-label="remove Image"
+                            icon={<CloseIcon />}
+                            onClick={() => {
+                              // try {
+                              dispatch(deleteAvatar());
+                              //   toast({
+                              //     title: "Avatar updated.",
+                              //     description: "We've updated your avatar for you.",
+                              //     status: "success",
+                              //     duration: 9000,
+                              //     isClosable: true,
+                              //   });
+                              // } catch (err) {
+                              //   toast({
+                              //     title: "Avatar can't be updated.",
+                              //     description: "We can't update your account for you.",
+                              //     status: "error",
+                              //     duration: 9000,
+                              //     isClosable: true,
+                              //   });
+                              // }
+                            }}
+                          />
+                        )}
+                      </Avatar>
+                    </Center>
+                    <Center w="full" display="flex" flexDirection="column">
+                      <Button
+                        as={FormLabel}
+                        htmlFor="email"
+                        w="full"
+                        type="submit"
+                        mt={5}
+                        ml={3}
+                        bg="#366d4b"
+                        color="white"
+                        _active={{ bg: "#BEE0CA", color: "#366d4b" }}
+                        textTransform="uppercase"
+                        _hover={{
+                          transform: "translateY(2px)",
+                          boxShadow: "lg",
+                        }}
+                      >
+                        {image ? image.name : "Choisir une image"}
+                      </Button>
+                      <input
+                        id="email"
+                        type="file"
+                        style={{ display: "none" }}
+                        onChange={(e) => previewFile(e.target.files[0])}
+                      />
+                      {image && (
+                        <Button
+                          w="full"
+                          type="submit"
+                          mt={5}
+                          bg="#366d4b"
+                          color="white"
+                          _active={{ bg: "#BEE0CA", color: "#366d4b" }}
+                          textTransform="uppercase"
+                          _hover={{
+                            transform: "translateY(2px)",
+                            boxShadow: "lg",
+                          }}
+                          onClick={() => uploadImage()}
+                        >
+                          Valider ma photo
+                        </Button>
+                      )}
+                    </Center>
+                  </Stack>
+                </FormControl>
+              </ModalBody>
+            </ModalContent>
+          </Modal>
         </Flex>
         <Stack spacing={{ base: 6, md: 10 }}>
           <Box as="header">
             <Heading
               lineHeight={1.1}
               fontWeight={600}
-              fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}
+              fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
             >
               Profil de {nickname}
             </Heading>
           </Box>
           <Box>
             <Text
-              fontSize={{ base: '16px', lg: '18px' }}
-              color={useColorModeValue('green.500', 'green.300')}
+              fontSize={{ base: "16px", lg: "18px" }}
+              color={useColorModeValue("green.500", "green.300")}
               fontWeight="500"
               textTransform="uppercase"
               mb="4"
@@ -104,101 +301,121 @@ const Profile = () => {
               <ListItem>
                 <Text as="span" fontWeight="bold">
                   Mon pseudo:
-                </Text>{' '}
+                </Text>{" "}
                 {nickname}
               </ListItem>
               <ListItem>
                 <Text as="span" fontWeight="bold">
                   Ma ville:
-                </Text>{' '}
+                </Text>{" "}
                 {city}
               </ListItem>
               <ListItem>
                 <Text as="span" fontWeight="bold">
                   Mon mail:
-                </Text>{' '}
+                </Text>{" "}
                 {mail}
               </ListItem>
               <ListItem>
                 <Text as="span" fontWeight="bold">
                   Mon role:
-                </Text>{' '}
-                {isadmin ? 'Admin' : 'Utilisateur'}
+                </Text>{" "}
+                {isadmin ? "Admin" : "Utilisateur"}
               </ListItem>
             </List>
           </Box>
-          { /* Ici il y aura la modal pour l'update */ }
+          {/* Ici il y aura la modal pour l'update */}
           <Button
             onClick={onUpdateOpen}
             rounded="none"
             w="full"
             mt={8}
-            size="lg"
-            py="7"
-            bg={useColorModeValue('gray.900', 'gray.50')}
-            color={useColorModeValue('white', 'gray.900')}
+            size="md"
+            py="4"
+            bg="#366d4b"
+            color="white"
+            _active={{ bg: "#BEE0CA", color: "#366d4b" }}
             textTransform="uppercase"
             _hover={{
-              transform: 'translateY(2px)',
-              boxShadow: 'lg',
+              transform: "translateY(2px)",
+              boxShadow: "lg",
             }}
           >
             Modifier mon profil
           </Button>
-          <Modal
-                  isOpen={isUpdateOpen}
-                  onClose={isUpdateClose}
-                >
-                  <ModalOverlay />
-                  <ModalContent>
-                    <ModalHeader>Modification du profil</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody pb={6}>
-                      <FormControl>
-                        <UpdateUser
-                          mail={mail}
-                          password={password}
-                          nickname={nickname}
-                          city={city}
-                          id={id}
-                          changeField={(value, name) => dispatch(changeField(value, name))}
-                          // action update
-                          // handleSignup={() => dispatch(signUp())}
-                          // isLogged={logged}
-                          // loggedMessage={`Bonjour ${nickname}`}
-                          // handleLogout={() => dispatch(logout())}
-                          onClose={isUpdateClose}
-                        />
-                      </FormControl>
-                    </ModalBody>
-                  </ModalContent>
-                </Modal>
-          <Button onClick={onOpen}>Supprimer mon profil</Button>
-      <AlertDialog
-        motionPreset='slideInBottom'
-        leastDestructiveRef={cancelRef}
-        onClose={onClose}
-        isOpen={isOpen}
-        isCentered
-      >
-        <AlertDialogOverlay />
+          <Modal isOpen={isUpdateOpen} onClose={isUpdateClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader                 lineHeight={1.1}
+                fontSize='xl'
+            textTransform="uppercase"
 
-        <AlertDialogContent>
-          <AlertDialogHeader>Suppression de profil</AlertDialogHeader>
-          <AlertDialogCloseButton />
-          <AlertDialogBody>
-          Etes-vous sur de vouloir supprimer votre profil ? Votre profil et vos annonces seront immédiatement supprimer
-          </AlertDialogBody>
-          <AlertDialogFooter>
-            <Button ref={cancelRef} onClick={onClose}>
-              Non
-            </Button>
-            <Button colorScheme='red' ml={3} onClick={handleDelete}>
-              Oui
-            </Button>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+                color="#366d4b">Modification du profil</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody pb={6}>
+                <FormControl>
+                  <UpdateUser
+                    mail={mail}
+                    password={password}
+                    nickname={nickname}
+                    city={city}
+                    id={id}
+                    changeField={(value, name) =>
+                      dispatch(changeField(value, name))
+                    }
+                    // action update
+                    // handleSignup={() => dispatch(signUp())}
+                    // isLogged={logged}
+                    // loggedMessage={`Bonjour ${nickname}`}
+                    // handleLogout={() => dispatch(logout())}
+                    onClose={isUpdateClose}
+                  />
+                </FormControl>
+              </ModalBody>
+            </ModalContent>
+          </Modal>
+          <Button onClick={onOpen} rounded="none"
+            w="full"
+            mt={8}
+            size="md"
+            py="4"
+            bg="#366d4b"
+            color="white"
+            _active={{ bg: "#BEE0CA", color: "#366d4b" }}
+            textTransform="uppercase"
+            _hover={{
+              transform: "translateY(2px)",
+              boxShadow: "lg",
+            }} >Supprimer mon profil</Button>
+          <AlertDialog
+            motionPreset="slideInBottom"
+            leastDestructiveRef={cancelRef}
+            onClose={onClose}
+            isOpen={isOpen}
+            isCentered
+          >
+            <AlertDialogOverlay />
+
+            <AlertDialogContent>
+              <AlertDialogHeader
+            textTransform="uppercase"
+            color='#366d4b'
+              >Suppression de profil</AlertDialogHeader>
+              <AlertDialogCloseButton />
+              <AlertDialogBody>
+                Etes-vous sur de vouloir supprimer votre profil ? Votre profil
+                et vos annonces seront immédiatement supprimés
+              </AlertDialogBody>
+              <AlertDialogFooter>
+                <Button ref={cancelRef} onClick={onClose}>
+                  Non
+                </Button>
+                <Button colorScheme="red" ml={3} onClick={handleDelete}>
+                  Oui
+                </Button>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </Stack>
       </SimpleGrid>
     </Container>
