@@ -5,7 +5,7 @@
 @baseUrl={{protocol}}{{host}}{{port}}{{prefix}}
 
 ### Test get announces
-GET https://shokubutsu.herokuapp.com/v1/announces HTTP/1.1
+GET {{baseUrl}}/announces HTTP/1.1
 
 ### Test get announces
 GET {{baseUrl}}/announces/4 HTTP/1.1

@@ -4,9 +4,10 @@ const fetch = require('node-fetch');
 
 async function feed(element, id) {
     try {
-        element["image"] = `https://res.cloudinary.com/shokubutsu/image/upload/v1643640258/plant-2_cdsmcr.jpg`
-        const response = await fetch(`https://shokubutsu.herokuapp.com/v1/announces/${id}`,{
-            method: 'patch',
+        element["image"] = `https://uneimage`
+        element["visitor_id"] = 1
+        const response = await fetch(`http://localhost:5000/v1/announces`,{
+            method: 'post',
             body: JSON.stringify(element),
             headers: {'Content-Type': 'application/json'}
         });

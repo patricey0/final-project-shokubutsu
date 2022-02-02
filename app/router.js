@@ -4,6 +4,7 @@ const {userController, announceController, adminController, imageController, boo
 const userCheck = require(`./schemas/user`);
 const announceCheck = require(`./schemas/announce`);
 const {validateBody} = require('./services/validator');
+const {storeCache, flushCache} = require('./services/redisCache.js')
 
 const { jwt } = require(`./middlewares`);
 
@@ -115,7 +116,7 @@ router.route(`/announces`)
      * @returns {string} 404 - Page not found
      * @returns {string} 500 - Server or database error
      */
-    .get(announceController.getAllAnnounces)
+    .get(storeCache, announceController.getAllAnnounces)
     /**
      * Respond with a json that contains one announce after his creation in database
      * @route POST /announces
@@ -129,7 +130,7 @@ router.route(`/announces`)
      * @returns {string} 404 - Page not found
      * @returns {string} 500 - Server or database error
      */
-    .post(announceController.createAnnounce);
+    .post(flushCache, announceController.createAnnounce);
 
 router.route(`/announces/:id`)
     /**
@@ -153,7 +154,7 @@ router.route(`/announces/:id`)
      * @returns {string} 404 - Page not found
      * @returns {string} 500 - Server or database error
      */
-    .patch(announceController.updateAnnounce)
+    .patch(flushCache, announceController.updateAnnounce)
     /**
      * Respond with a true is the deletion is ok.
      * @route DELETE /announces/:id
