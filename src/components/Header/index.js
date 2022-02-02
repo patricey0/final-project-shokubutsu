@@ -24,18 +24,15 @@ import {
   Button,
   FormControl,
   Wrap,
-  // WrapItem,
-  // MenuDivider,
   Center,
   Avatar,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-
 } from '@chakra-ui/react';
 
-import { AddIcon } from '@chakra-ui/icons'
+import { ArrowForwardIcon } from '@chakra-ui/icons'
 
 export default function AppHeader() {
   const {
@@ -108,7 +105,7 @@ export default function AppHeader() {
             </svg>
           </div>
           <img src={logo} alt="" className="header__logo" />
-          <span className="header__name">Shokubutsu</span>
+          <NavLink to="/" className="header__name">Shokobutsu</NavLink>
           <ul className="header__items">
             <div className="first">
               {itemElementJSX}
@@ -117,8 +114,17 @@ export default function AppHeader() {
             && (
               <Wrap>
                 <Menu>
-                <NavLink to="/create-announce" className="header__button">Ajouter une annonce</NavLink>
-                {/* <AddIcon w={8} h={8} color="#366d4b" alignItems="center" /> */}
+                {/* <NavLink to="/create-announce" className="header__button">Ajouter une annonce</NavLink> */}
+                  <Button
+                   as={NavLink} 
+                   to="/create-announce" 
+                   rightIcon={<ArrowForwardIcon />} 
+                   className="header__button" 
+                   bgColor="#DFF0E5"
+                   h="none"
+                   >
+                  Ajouter une annonce
+                  </Button>
                   <MenuButton
                     as={Button}
                     rounded="full"
@@ -129,6 +135,7 @@ export default function AppHeader() {
                     <Avatar
                       size="md"
                       bg="#badec7"
+                      ml={3}
                       // name={nickname}
                       src={picture} // ''
                     />
