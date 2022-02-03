@@ -17,18 +17,19 @@ import {
 import './styles.scss';
 import { useState } from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchAnnounces } from 'src/actions/announces';
+
 const CreateAnnounce = () => {
   const toast = useToast();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [image, setImage] = useState('');
+  const dispatch = useDispatch();
+  
   const { id } = useSelector((state) => state.user);
   const handleSubmit = (evt) => {
-    // console.log(image);
-    // console.log(description);
-    // console.log(category);
     evt.preventDefault();
     console.log('SUBMIT');
 
@@ -36,84 +37,74 @@ const CreateAnnounce = () => {
     // on envoie le toast
     if(!title || !description || !category || !image){
       console.log("il manque un champ");
-      
-      // let message = "Il manque le champ";
-      // switch (message) {
-      //   case !title:
-      //     message += " Titre";
-      //     break;
-      //   case !description:
-      //     message += " Description";
-      //     break;
-      //   case !category:
-      //     message += " category";
-      //     break;
-      //   case !image:
-      //     message += " image";
-      //     break;
-      }
-      toast({
+            toast({
                 title: "Erreur.",
-                description: message,
+                description: "Il y a une erreur",
                 status: "error",
                 position: "top",
                 duration: 9000,
                 isClosable: true,
               });
-      // return 
-    }
+      return 
+      }
     // si tout est ok
     console.log("tous les champs sont OK")
-    // const data = new FormData();
-    // data.append('file', image);
-    // data.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
-    // data.append('api_key', process.env.REACT_APP_API_KEY);
-    // fetch(process.env.REACT_APP_API_URL, {
-    //   method: 'post',
-    //   body: data,
-    // })
-    //   .then((resp) => resp.json())
-    //   .then((data) => {
-    //     axios.post('https://shokubutsu.herokuapp.com/v1/announces', {
-    //       title: title, // cactus
-    //       image: data.url, // lien cloudinary
-    //       description: description, // qui veut mon super cactus ???
-    //       category: category, // don
-    //       visitor_id: id, // 32
-    //     })
-    //     .then((res) => {
-    //       // console.log(res.data);
-    //       // dispatch(saveUser(res.data));
-    //       toast({
-    //         title: "Annonce envoyée.",
-    //         description: "L'annonce est en ligne !",
-    //         status: "success",
-    //         position: "top",
-    //         duration: 9000,
-    //         isClosable: true,
-    //       });
-    //       // redirection vers la page des annonces ou Mes annonces
-    //     })
-    //     .catch((err) => {
-    //       console.log(err.message);
-    //       toast({
-    //         title: "Erreur.",
-    //         description: "Apriori, il y a eu un couac",
-    //         status: "error",
-    //         position: "top",
-    //         duration: 9000,
-    //         isClosable: true,
-    //       });
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.log(error.message);
-    //     axios.post("https://shokubutsu.herokuapp.com/v1/delete-image", {
-    //       image_url: data.url,
-    //     });
-      // });
-  // };
+    const data = new FormData();
+    data.append('file', image);
+    data.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
+    data.append('api_key', process.env.REACT_APP_API_KEY);
+    fetch(process.env.REACT_APP_API_URL, {
+      method: 'post',
+      body: data,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        axios.post('https://shokubutsu.herokuapp.com/v1/announces', {
+          title: title, // cactus
+          image: data.url, // lien cloudinary
+          description: description, // qui veut mon super cactus ???
+          category: category, // don
+          visitor_id: id, // 32
+        })
+        .then((res) => {
+          // console.log(res.data);
+          // dispatch(saveUser(res.data));
+          toast({
+            title: "Annonce envoyée.",
+            description: "L'annonce est en ligne !",
+            status: "success",
+            position: "top",
+            duration: 9000,
+            isClosable: true,
+          });
+          // fetch les annonces
+          dispatch(fetchAnnounces());
 
+          // redirection vers la page des annonces ou Mes annonces
+          // setTimeOut()
+          // window.location.assign("/announces");
+          setTimeout(window.location.assign("/announces"), 3000);
+        })
+        .catch((err) => {
+          console.log(err.message);
+          toast({
+            title: "Erreur.",
+            description: "Apriori, il y a eu un couac",
+            status: "error",
+            position: "top",
+            duration: 9000,
+            isClosable: true,
+          });
+        });
+      })
+      .catch((err) => {
+        console.log(error.message);
+        axios.post("https://shokubutsu.herokuapp.com/v1/delete-image", {
+          image_url: data.url,
+        });
+      });
+  };
+// ça marche la ?
   return (
     <div className='div'>
       <Heading color='#366D4B' pt={10}>
@@ -131,6 +122,7 @@ const CreateAnnounce = () => {
                 name='category'
                 onChange={(e) => setCategory(e.target.value)}
               >
+                <option >Choissisez une catégory</option>
                 <option value='don'>Don</option>
                 <option value='echange'>Echange</option>
               </Select>
