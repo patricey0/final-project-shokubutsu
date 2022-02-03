@@ -22,6 +22,8 @@ import Profile from '../Profile';
 import MyFavorites from '../MyFavorites';
 import Announce from '../Announces/Announce';
 import { Box } from '@chakra-ui/react';
+import CreateAnnounce from '../CreateAnnounce';
+import { useState } from 'react';
 
 // == Composant
 const App = () => {
@@ -29,6 +31,7 @@ const App = () => {
   const loading = useSelector((state) => state.announces.loading);
   const logged = useSelector((state) => state.user.logged);
   console.log(logged);
+
 
   useEffect(() => {
     // console.log(process.env.REACT_APP_VERSION)
@@ -55,6 +58,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/my-announces" element={<MyAnnounces />} />
           <Route path="/my-favorites" element={<MyFavorites />} />
+          <Route path="/create-announce" element={<CreateAnnounce />} />
           </> 
           }
 

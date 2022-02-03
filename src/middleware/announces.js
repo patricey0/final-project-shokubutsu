@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_ANNOUNCES, saveAnnounces } from 'src/actions/announces';
+import { FETCH_ANNOUNCES, saveAnnounces, SAVE_ANNOUNCE, saveAnnounce } from 'src/actions/announces';
 
 const announces = (store) => (next) => (action) => {
   switch (action.type) {
@@ -30,6 +30,7 @@ const announces = (store) => (next) => (action) => {
       next(action);
       break;
     }
+
     default:
       next(action);
   }
