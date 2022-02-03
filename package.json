@@ -29,6 +29,7 @@
     "express-joi-validation": "^5.0.1",
     "express-jsdoc-swagger": "^1.6.7",
     "express-swagger-generator": "^1.1.17",
+    "ioredis": "^4.28.4",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "node-fetch": "^2.6.7",
