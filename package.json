@@ -59,6 +59,7 @@
     "axios": "^0.25.0",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^5",
+    "global": "^4.4.0",
     "prop-types": "^15.8.1",
     "react": "*",
     "react-dom": "*",

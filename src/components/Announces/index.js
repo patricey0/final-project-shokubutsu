@@ -11,10 +11,7 @@ import { Link } from 'react-router-dom';
 
 // == Composant
 const Announces = () => {
-  let announces = useSelector((state) => state.announces.list.sort(function (a, b) {
-    return b.id - a.id;
-  }));
-  
+  let announces = useSelector((state) => state.announces.list);
   return (
     
     <SimpleGrid columns={{ sm: 1, md: 2, xl: 3 }} spacing={10} mt={4}>
