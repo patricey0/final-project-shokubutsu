@@ -1,5 +1,4 @@
 const jwt = require('../services/jwt');
-const {User} = require(`../models`);
 
 jwt_mw = async (request, response, next) => {
     try {

@@ -2,6 +2,6 @@
 
 BEGIN;
 
-drop table bookmarked cascade;
+-- drop table bookmarked cascade;
 
 COMMIT;

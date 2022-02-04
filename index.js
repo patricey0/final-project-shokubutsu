@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const { port } = require('./app/config');
 
 const router = require('./app/router');
 
@@ -9,9 +10,6 @@ const {cleaner} = require('./app/middlewares');
 const app = express();
 
 const expressJSDocSwagger  = require('express-swagger-generator');
-
-
-const port = process.env.PORT || 5000;
 
 // middleware to mitigate XSS Attacks
 app.use(cleaner);

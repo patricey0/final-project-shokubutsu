@@ -1,4 +1,5 @@
 const JWT = require('jsonwebtoken');
+const { jwt_secret } = require(`../config`)
 
 module.exports = {
     makeToken: userId => {
@@ -7,7 +8,7 @@ module.exports = {
                 {
                     data: userId
                 },
-                process.env.JWT_SECRET,
+                jwt_secret,
                 {
                     algorithm: 'HS256',
                     expiresIn: '24h'
@@ -23,7 +24,7 @@ module.exports = {
         try {
             return JWT.verify(
                 token,
-                process.env.JWT_SECRET,
+                jwt_secret,
                 {
                     algorithms: ['HS256']
                 }
