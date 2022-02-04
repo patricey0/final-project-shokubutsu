@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_ANNOUNCES, saveAnnounces, SAVE_ANNOUNCE, saveAnnounce } from 'src/actions/announces';
+import { FETCH_ANNOUNCES, saveAnnounces, GET_MY_ANNOUNCES, saveMyAnnounces } from 'src/actions/announces';
 
 const announces = (store) => (next) => (action) => {
   switch (action.type) {
@@ -30,7 +30,35 @@ const announces = (store) => (next) => (action) => {
       next(action);
       break;
     }
+    case GET_MY_ANNOUNCES: {
+      // on veut récup l'id
+      const state = store.getState();
+      const loadData = async (url) => {
+        try {
+          const res = await axios.get(url);
+          // une fois les data reçues, on dispatch
+          // l'action pour modifier le state
+          // on utilise le store mis à disposition dans les params
+          // Transforme la data reçu en array. Pour faciliter sa manipulation
+          const announces = Object.values(res.data);
+          store.dispatch(saveMyAnnounces(announces));
+        }
+        catch (error) {
+          console.log(error);
+        }
+      };
 
+      loadData(`https://shokubutsu.herokuapp.com/v1/users/${state.user.id}/announces`);
+
+      // axios.get('http://localhost:3001/recipes')
+      //   .then((res) => console.log(res))
+      //   .catch((err) => console.log(err));
+
+      // si on souhaite gérer cette action dans le reducer
+      // on la laisse passer
+      next(action);
+      break;
+    }
     default:
       next(action);
   }
