@@ -6,9 +6,9 @@ import {
   VStack,
   useBreakpointValue,
   // useColorModeValue,
-} from "@chakra-ui/react";
-import bcgImg from "src/assets/img/plant-8.jpg";
-import "./styles.scss";
+} from '@chakra-ui/react';
+import bcgImg from 'src/assets/img/plant-8.jpg';
+import './styles.scss';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMyAnnounces } from 'src/actions/announces';
@@ -16,7 +16,6 @@ import { getMyAnnounces } from 'src/actions/announces';
 // == Composant
 const MyAnnounces = () => {
   const dispatch = useDispatch();
-  
   useEffect(() => {
     // au premier rendu, j'appelle l'api pour récuperer les annonces
     dispatch(getMyAnnounces());
@@ -51,7 +50,7 @@ const MyAnnounces = () => {
               fontWeight={700}
               lineHeight={1.2}
               p={4}
-              fontSize={useBreakpointValue({ base: "2xl", md: "3xl" })}
+              fontSize={useBreakpointValue({ base: '2xl', md: '3xl' })}
             >
               La page des annonces de l'utilisateur est encore en cours de
               construction...
@@ -61,7 +60,7 @@ const MyAnnounces = () => {
               fontWeight={700}
               lineHeight={1.2}
               p={4}
-              fontSize={useBreakpointValue({ base: "2xl", md: "3xl" })}
+              fontSize={useBreakpointValue({ base: '2xl', md: '3xl' })}
             >
               On repasse au prochain sprint ?
               Il y a {myList.length} annonces dans ma liste

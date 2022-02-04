@@ -2,9 +2,9 @@
 import {
   Routes,
   Route,
-  Navigate,
 } from 'react-router-dom';
 import './styles.scss';
+import { Box } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAnnounces } from 'src/actions/announces';
@@ -21,9 +21,7 @@ import Guide from '../Guide';
 import Profile from '../Profile';
 import MyFavorites from '../MyFavorites';
 import Announce from '../Announces/Announce';
-import { Box } from '@chakra-ui/react';
 import CreateAnnounce from '../CreateAnnounce';
-import { useState } from 'react';
 
 // == Composant
 const App = () => {
@@ -32,16 +30,13 @@ const App = () => {
   const logged = useSelector((state) => state.user.logged);
   console.log(logged);
 
-
   useEffect(() => {
-    // console.log(process.env.REACT_APP_VERSION)
     dispatch(fetchAnnounces());
     dispatch(fetchUser());
   }, []);
-  // if (loading) {
-  //   return <Loading />;
-  // }
-
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="app">
@@ -53,15 +48,15 @@ const App = () => {
           <Route path="/announces/:id" element={<Announce />} />
           <Route path="/guide" element={<Guide />} />
           <Route path="/contact" element={<Contact />} />
-          {logged && 
-          <>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/my-announces" element={<MyAnnounces />} />
-          <Route path="/my-favorites" element={<MyFavorites />} />
-          <Route path="/create-announce" element={<CreateAnnounce />} />
-          </> 
-          }
-
+          {logged
+            && (
+            <>
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/my-announces" element={<MyAnnounces />} />
+              <Route path="/my-favorites" element={<MyFavorites />} />
+              <Route path="/create-announce" element={<CreateAnnounce />} />
+            </>
+            )}
           <Route path="*" element={<Error />} />
         </Routes>
       </Box>

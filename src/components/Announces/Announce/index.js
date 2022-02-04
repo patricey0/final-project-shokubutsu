@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import {
   Box,
   Heading,
@@ -8,47 +9,52 @@ import {
   Tag,
   useColorModeValue,
   Container,
-  Stack,
 } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { findAnnounce } from '../../../selectors/announces';
 
-
 function Announce() {
-
   const { id } = useParams();
-  
   const announce = useSelector((state) => findAnnounce(state.announces.list, Number(id)));
-
 
   if (!announce) {
     return <Navigate to="/error" replace />;
   }
 
-  const {title, image, category, description, author, city, creation_date } = announce;
+  const {
+    title,
+    image,
+    category,
+    description,
+    author,
+    city,
+    creation_date,
+  } = announce;
 
-  const myDate = new Date(creation_date)
+  const myDate = new Date(creation_date);
   const formatedDate = new Intl.DateTimeFormat('fr-FR').format(myDate);
 
   return (
-    <Container maxW={'7xl'} p="12">
+    <Container maxW="7xl" p="12">
       <Box
         marginTop={{ base: '1', sm: '5' }}
         display="flex"
         flexDirection={{ base: 'column', md: 'row' }}
-        justifyContent="space-between">
+        justifyContent="space-between"
+      >
         <Box
           display="flex"
           flex="1"
           marginRight="3"
           position="relative"
-          alignItems="center">
+          alignItems="center"
+        >
           <Box
             width={{ base: '100%', sm: '85%' }}
             marginLeft={{ base: '0', sm: '5%' }}
-            marginTop="5%">
+            marginTop="5%"
+          >
             <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
               <Image
                 borderRadius="lg"
@@ -73,9 +79,10 @@ function Announce() {
           flex="1"
           flexDirection="column"
           justifyContent="center"
-          marginTop={{ base: '3', sm: '0' }}>
-          <HStack spacing={2} m={4} justifyContent="center" >
-            <Tag size={'md'} variant="solid" colorScheme="orange">
+          marginTop={{ base: '3', sm: '0' }}
+        >
+          <HStack spacing={2} m={4} justifyContent="center">
+            <Tag size="md" variant="solid" colorScheme="orange">
               {category}
             </Tag>
           </HStack>
@@ -88,17 +95,18 @@ function Announce() {
             as="p"
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
-            fontSize="lg">
+            fontSize="lg"
+          >
             {description}
           </Text>
           <HStack
-           mt={4}
-           spacing="2"
-           display="flex"
-           alignItems="center"
-           color="black"
-           justifyContent="center"
-           flexDirection={{ base: 'column', sm: 'row' }}
+            mt={4}
+            spacing="2"
+            display="flex"
+            alignItems="center"
+            color="black"
+            justifyContent="center"
+            flexDirection={{ base: 'column', sm: 'row' }}
           >
             <Image
               borderRadius="full"
@@ -107,12 +115,11 @@ function Announce() {
               alt={`Avatar of ${author}`}
             />
             <Box display="flex">
-            <Text fontWeight="medium">{author} — {city} — {formatedDate}</Text>
+              <Text fontWeight="medium">{author} — {city} — {formatedDate}</Text>
             </Box>
           </HStack>
         </Box>
       </Box>
-      
     </Container>
   );
 }

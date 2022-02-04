@@ -6,5 +6,5 @@ import logMiddleware from './logMiddleware';
 export default [
   announcesMW,
   authMW,
-  logMiddleware
+  logMiddleware,
 ];

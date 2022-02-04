@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import Field from 'src/components/LoginForm/Field';
-import {useState} from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { setUrl } from 'src/actions/user';
@@ -16,7 +16,7 @@ const SignupForm = ({
   nickname,
   city,
   handleSignup,
-  onClose
+  onClose,
 }) => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
@@ -32,9 +32,9 @@ const SignupForm = ({
       body: data,
     })
       .then((resp) => resp.json())
-      .then((data) => {
+      .then((datas) => {
         // l'user a pour photo de profil http
-        dispatch(setUrl(data.url));
+        dispatch(setUrl(datas.url));
         // upload
         handleSignup(); // => si mon form passe || si le form passe pas
         onClose();

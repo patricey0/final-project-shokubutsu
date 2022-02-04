@@ -130,7 +130,7 @@ const Contact = () => {
                 mt={2}
                 _hover={{
                   bg: '#badec7',
-                  color: "green"
+                  color: 'green',
                 }}
               >
                 Envoyer

@@ -13,7 +13,6 @@ const enhancers = composeEnhancers(
   applyMiddleware(...middlewares),
 );
 
-
 const store = createStore(reducer, enhancers);
 
 // == Export

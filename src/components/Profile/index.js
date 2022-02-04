@@ -34,23 +34,26 @@ import {
   IconButton,
   // SmallCloseIcon,
   useToast,
-} from "@chakra-ui/react";
-import { EditIcon, CloseIcon } from "@chakra-ui/icons";
-import { changeField } from "src/actions/user";
-import UpdateUser from "src/components/LoginForm/UpdateUser";
-import { NavLink } from "react-router-dom";
-import { deleteUser, deleteAvatar, saveUser } from "src/actions/user";
+} from '@chakra-ui/react';
+import { EditIcon, CloseIcon } from '@chakra-ui/icons';
+import UpdateUser from 'src/components/LoginForm/UpdateUser';
+import {
+  changeField,
+  deleteUser,
+  deleteAvatar,
+  saveUser,
+} from 'src/actions/user';
 
-import axios from "axios";
-import "./styles.scss";
-import { useSelector, useDispatch } from "react-redux";
-import { useRef, useState } from "react";
+import axios from 'axios';
+import './styles.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import { useRef, useState } from 'react';
 
 // == Composant
 const Profile = () => {
   const toast = useToast();
-  const [image, setImage] = useState("");
-  const [previewSource, setPreviewSource] = useState("");
+  const [image, setImage] = useState('');
+  const [previewSource, setPreviewSource] = useState('');
 
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -65,8 +68,16 @@ const Profile = () => {
     onClose: onAvatarClose,
   } = useDisclosure();
 
-  const { mail, password, city, nickname, picture, isadmin, id } = useSelector(
-    (state) => state.user
+  const {
+    mail,
+    password,
+    city,
+    nickname,
+    picture,
+    isadmin,
+    id,
+  } = useSelector(
+    (state) => state.user,
   );
   const cancelRef = useRef();
   const handleDelete = () => {
@@ -75,60 +86,60 @@ const Profile = () => {
     dispatch(deleteUser());
     onClose();
   };
-  const uploadImage = async (evt) => {
+  const uploadImage = async () => {
     // evt.preventDefault();
     if (!image) {
       toast({
-        title: "Il faut une image pour pouvoir la changer ;)",
-        status: "error",
+        title: 'Il faut une image pour pouvoir la changer ;)',
+        status: 'error',
         isClosable: true,
-        position: "top",
+        position: 'top',
       });
       return;
     }
     const data = new FormData();
-    data.append("file", image);
-    data.append("upload_preset", process.env.REACT_APP_UPLOAD_PRESET);
-    data.append("api_key", process.env.REACT_APP_API_KEY);
+    data.append('file', image);
+    data.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
+    data.append('api_key', process.env.REACT_APP_API_KEY);
     fetch(process.env.REACT_APP_API_URL, {
-      method: "post",
+      method: 'post',
       body: data,
     })
       .then((resp) => resp.json())
-      .then((data) => {
-        //lien de la photo
+      .then((res) => {
+        // lien de la photo
         // Je supprime l'ancienne photo du user
         if (picture) {
-          axios.post("https://shokubutsu.herokuapp.com/v1/delete-image", {
+          axios.post('https://shokubutsu.herokuapp.com/v1/delete-image', {
             image_url: picture, // state
           });
         }
         // dispatch(setUrl(data.url));
         axios
-          .patch("https://shokubutsu.herokuapp.com/v1/update-image", {
+          .patch('https://shokubutsu.herokuapp.com/v1/update-image', {
             userId: id,
-            image_url: data.url,
+            image_url: res.url,
           })
-          .then((res) => {
+          .then((resu) => {
             console.log(res.data);
-            dispatch(saveUser(res.data));
+            dispatch(saveUser(resu.data));
             toast({
-              title: "Avatar mis a jour.",
-              description: "Nous avons changé votre Avatar",
-              status: "success",
-              position: "top",
+              title: 'Avatar mis a jour.',
+              description: 'Nous avons changé votre Avatar',
+              status: 'success',
+              position: 'top',
               duration: 9000,
               isClosable: true,
             });
           })
           .catch((err) => {
             console.log(err.message);
-            axios.post("https://shokubutsu.herokuapp.com/v1/delete-image", {
+            axios.post('https://shokubutsu.herokuapp.com/v1/delete-image', {
               image_url: data.url,
             });
           });
         // upload
-        setImage("");
+        setImage('');
         onAvatarClose();
       })
       .catch((err) => console.log(err));
@@ -158,27 +169,27 @@ const Profile = () => {
             fit="cover"
             align="center"
             w="100%"
-            h={{ base: "100%", sm: "200px", lg: "300px" }}
+            h={{ base: '100%', sm: '200px', lg: '300px' }}
           />
           <EditIcon
             color="#366d4b"
             onClick={onAvatarOpen}
             fontSize="xl"
-            _hover={{ cursor: "pointer" }}
+            _hover={{ cursor: 'pointer' }}
           />
           <Modal
             isOpen={isAvatarOpen}
             onClose={() => {
-              setImage("");
+              setImage('');
               onAvatarClose();
-              setPreviewSource("");
+              setPreviewSource('');
             }}
           >
             <ModalOverlay />
             <ModalContent p={7}>
               <ModalHeader
                 lineHeight={1.1}
-                fontSize='xl'
+                fontSize="xl"
                 color="#366d4b"
                 textTransform="uppercase"
               >
@@ -187,11 +198,11 @@ const Profile = () => {
               <ModalCloseButton />
               <ModalBody pb={6}>
                 <FormControl id="userName">
-                  <Stack direction={["column", "row"]} spacing={6}>
+                  <Stack direction={['column', 'row']} spacing={6}>
                     <Center>
                       <Avatar
                         size="xl"
-                        src={previewSource ? previewSource : picture}
+                        src={previewSource || picture}
                       >
                         {!image && (
                           <AvatarBadge
@@ -236,19 +247,19 @@ const Profile = () => {
                         ml={3}
                         bg="#366d4b"
                         color="white"
-                        _active={{ bg: "#BEE0CA", color: "#366d4b" }}
+                        _active={{ bg: '#BEE0CA', color: '#366d4b' }}
                         textTransform="uppercase"
                         _hover={{
-                          transform: "translateY(2px)",
-                          boxShadow: "lg",
+                          transform: 'translateY(2px)',
+                          boxShadow: 'lg',
                         }}
                       >
-                        {image ? image.name : "Choisir une image"}
+                        {image ? image.name : 'Choisir une image'}
                       </Button>
                       <input
                         id="email"
                         type="file"
-                        style={{ display: "none" }}
+                        style={{ display: 'none' }}
                         onChange={(e) => previewFile(e.target.files[0])}
                       />
                       {image && (
@@ -258,11 +269,11 @@ const Profile = () => {
                           mt={5}
                           bg="#366d4b"
                           color="white"
-                          _active={{ bg: "#BEE0CA", color: "#366d4b" }}
+                          _active={{ bg: '#BEE0CA', color: '#366d4b' }}
                           textTransform="uppercase"
                           _hover={{
-                            transform: "translateY(2px)",
-                            boxShadow: "lg",
+                            transform: 'translateY(2px)',
+                            boxShadow: 'lg',
                           }}
                           onClick={() => uploadImage()}
                         >
@@ -281,15 +292,15 @@ const Profile = () => {
             <Heading
               lineHeight={1.1}
               fontWeight={600}
-              fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
+              fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}
             >
               Profil de {nickname}
             </Heading>
           </Box>
           <Box>
             <Text
-              fontSize={{ base: "16px", lg: "18px" }}
-              color={useColorModeValue("green.500", "green.300")}
+              fontSize={{ base: '16px', lg: '18px' }}
+              color={useColorModeValue('green.500', 'green.300')}
               fontWeight="500"
               textTransform="uppercase"
               mb="4"
@@ -301,26 +312,26 @@ const Profile = () => {
               <ListItem>
                 <Text as="span" fontWeight="bold">
                   Mon pseudo:
-                </Text>{" "}
+                </Text>{' '}
                 {nickname}
               </ListItem>
               <ListItem>
                 <Text as="span" fontWeight="bold">
                   Ma ville:
-                </Text>{" "}
+                </Text>{' '}
                 {city}
               </ListItem>
               <ListItem>
                 <Text as="span" fontWeight="bold">
                   Mon mail:
-                </Text>{" "}
+                </Text>{' '}
                 {mail}
               </ListItem>
               <ListItem>
                 <Text as="span" fontWeight="bold">
                   Mon role:
-                </Text>{" "}
-                {isadmin ? "Admin" : "Utilisateur"}
+                </Text>{' '}
+                {isadmin ? 'Admin' : 'Utilisateur'}
               </ListItem>
             </List>
           </Box>
@@ -334,11 +345,11 @@ const Profile = () => {
             py="4"
             bg="#366d4b"
             color="white"
-            _active={{ bg: "#BEE0CA", color: "#366d4b" }}
+            _active={{ bg: '#BEE0CA', color: '#366d4b' }}
             textTransform="uppercase"
             _hover={{
-              transform: "translateY(2px)",
-              boxShadow: "lg",
+              transform: 'translateY(2px)',
+              boxShadow: 'lg',
             }}
           >
             Modifier mon profil
@@ -346,11 +357,14 @@ const Profile = () => {
           <Modal isOpen={isUpdateOpen} onClose={isUpdateClose}>
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader                 lineHeight={1.1}
-                fontSize='xl'
-            textTransform="uppercase"
-
-                color="#366d4b">Modification du profil</ModalHeader>
+              <ModalHeader
+                lineHeight={1.1}
+                fontSize="xl"
+                textTransform="uppercase"
+                color="#366d4b"
+              >
+                Modification du profil
+              </ModalHeader>
               <ModalCloseButton />
               <ModalBody pb={6}>
                 <FormControl>
@@ -360,33 +374,30 @@ const Profile = () => {
                     nickname={nickname}
                     city={city}
                     id={id}
-                    changeField={(value, name) =>
-                      dispatch(changeField(value, name))
-                    }
-                    // action update
-                    // handleSignup={() => dispatch(signUp())}
-                    // isLogged={logged}
-                    // loggedMessage={`Bonjour ${nickname}`}
-                    // handleLogout={() => dispatch(logout())}
+                    changeField={(value, name) => dispatch(changeField(value, name))}
                     onClose={isUpdateClose}
                   />
                 </FormControl>
               </ModalBody>
             </ModalContent>
           </Modal>
-          <Button onClick={onOpen} rounded="none"
+          <Button
+            onClick={onOpen}
+            rounded="none"
             w="full"
             mt={8}
             size="md"
             py="4"
             bg="#366d4b"
             color="white"
-            _active={{ bg: "#BEE0CA", color: "#366d4b" }}
+            _active={{ bg: '#BEE0CA', color: '#366d4b' }}
             textTransform="uppercase"
             _hover={{
-              transform: "translateY(2px)",
-              boxShadow: "lg",
-            }} >Supprimer mon profil</Button>
+              transform: 'translateY(2px)',
+              boxShadow: 'lg',
+            }}
+          >Supprimer mon profil
+          </Button>
           <AlertDialog
             motionPreset="slideInBottom"
             leastDestructiveRef={cancelRef}
@@ -398,9 +409,10 @@ const Profile = () => {
 
             <AlertDialogContent>
               <AlertDialogHeader
-            textTransform="uppercase"
-            color='#366d4b'
-              >Suppression de profil</AlertDialogHeader>
+                textTransform="uppercase"
+                color="#366d4b"
+              >Suppression de profil
+              </AlertDialogHeader>
               <AlertDialogCloseButton />
               <AlertDialogBody>
                 Etes-vous sur de vouloir supprimer votre profil ? Votre profil

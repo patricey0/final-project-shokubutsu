@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { FETCH_ANNOUNCES, saveAnnounces, GET_MY_ANNOUNCES, saveMyAnnounces } from 'src/actions/announces';
+import {
+  FETCH_ANNOUNCES,
+  saveAnnounces,
+  GET_MY_ANNOUNCES,
+  saveMyAnnounces,
+} from 'src/actions/announces';
 
 const announces = (store) => (next) => (action) => {
   switch (action.type) {
@@ -11,8 +16,8 @@ const announces = (store) => (next) => (action) => {
           // l'action pour modifier le state
           // on utilise le store mis à disposition dans les params
           // Transforme la data reçu en array. Pour faciliter sa manipulation
-          const announces = Object.values(res.data);
-          store.dispatch(saveAnnounces(announces));
+          // const announces = Object.values(res.data);
+          store.dispatch(saveAnnounces(Object.values(res.data)));
         }
         catch (error) {
           console.log(error);
@@ -40,8 +45,8 @@ const announces = (store) => (next) => (action) => {
           // l'action pour modifier le state
           // on utilise le store mis à disposition dans les params
           // Transforme la data reçu en array. Pour faciliter sa manipulation
-          const announces = Object.values(res.data);
-          store.dispatch(saveMyAnnounces(announces));
+          // const announces = Object.values(res.data);
+          store.dispatch(saveMyAnnounces(Object.values(res.data)));
         }
         catch (error) {
           console.log(error);
