@@ -38,9 +38,9 @@ const App = () => {
     dispatch(fetchAnnounces());
     dispatch(fetchUser());
   }, []);
-  // if (loading) {
-  //   return <Loading />;
-  // }
+  if (loading) {
+    return <Loading />;
+  }
 
 
   return (
