@@ -199,6 +199,7 @@ export default function AppHeader() {
                 <button type="button" onClick={onSignUpOpen} className="header__button">
                   Créer un compte
                 </button>
+                {/* <ModalSignUp /> */}
                 <Modal
                   isOpen={isSignUpOpen}
                   onClose={isSignUpClose}

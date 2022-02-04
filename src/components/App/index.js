@@ -59,6 +59,11 @@ const App = () => {
           <Route path="/my-announces" element={<MyAnnounces />} />
           <Route path="/my-favorites" element={<MyFavorites />} />
           <Route path="/create-announce" element={<CreateAnnounce />} />
+          {/* {isAdmin && 
+          <>
+          <Route path="/dashboard" element={<Dashboard />} />
+          </> 
+          } */}
           </> 
           }
 

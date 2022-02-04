@@ -8,9 +8,10 @@ import {
   Image,
 } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
-
-function AnnounceCard({title, image, category, author, city}) {
-  
+import { useLocation } from "react-router-dom";
+function AnnounceCard({title, image, category, author, city, description}) {
+  const sampleLocation = useLocation();
+  console.log(sampleLocation.pathname)
   return (
     <Center py={12}>
       <Box
@@ -23,6 +24,11 @@ function AnnounceCard({title, image, category, author, city}) {
         rounded="lg"
         pos="relative"
         zIndex={0}
+        transition=".2s ease-in"
+        _hover={{
+          transform: "translateY(3px)",
+          boxShadow: 'rgba(54, 109, 75,0.4) 0 0 0 1px, rgba(54, 109, 75,0.6) 0 5px 10px, rgba(54, 109, 75,0.8) 0 15px 40px'
+        }}
       >
         <Box
           rounded="lg"
@@ -59,11 +65,14 @@ function AnnounceCard({title, image, category, author, city}) {
           <Text color="gray.500" fontSize="sm" textTransform="uppercase">
             {category}
           </Text>
-          <Heading fontSize="2xl" fontFamily="body" fontWeight={500} color="green">
+          <Heading fontSize="2xl" fontFamily="body" fontWeight={500} color="#366d4b">
             {title}
           </Heading>
+          <Text color="gray.500" fontSize="sm" textTransform="uppercase">
+            {description.split(' ', 20).join(" ")}
+          </Text>
           <Stack direction="row" align="center">
-            <Text fontWeight={800} fontSize="xl" color="green">
+            <Text fontWeight={800} fontSize="xl" color="#366d4b">
               {author}
             </Text>
             <Text color="gray.600">
@@ -78,6 +87,7 @@ function AnnounceCard({title, image, category, author, city}) {
 
 AnnounceCard.propTypes = {
   title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,

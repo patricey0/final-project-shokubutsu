@@ -1,10 +1,7 @@
 // == Import
 import {
-  Flex,
-  Stack,
-  Text,
-  VStack,
-  useBreakpointValue,
+  SimpleGrid,
+  Box,
   // useColorModeValue,
 } from "@chakra-ui/react";
 import bcgImg from "src/assets/img/plant-8.jpg";
@@ -12,6 +9,7 @@ import "./styles.scss";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMyAnnounces } from 'src/actions/announces';
+import AnnounceCard from 'src/components/Announces/AnnounceCard';
 
 // == Composant
 const MyAnnounces = () => {
@@ -24,52 +22,33 @@ const MyAnnounces = () => {
   // aller voir dans le state la liste de MES annonces
   const myList = useSelector((state) => state.announces.myList);
   console.log(myList);
+
+  const listElementJSX = myList.map(
+    ({id, title, image}) =>{
+      return (
+        <p key={id} >
+        {title} {image}
+        </p>
+      )
+    }
+  )
   return (
-    <div>
-      <Flex
-        w="full"
-        h="100vh"
-        backgroundImage={bcgImg}
-        backgroundSize="cover"
-        backgroundPosition="center center"
-      >
-        <VStack
-          w="full"
-          justify="center"
-          px={useBreakpointValue({ base: 4, md: 8 })}
-          bgGradient="linear(to-r, blackAlpha.600, transparent)"
-        >
-          <Stack
-            maxW="2xl"
-            align="center"
-            spacing={6}
-            borderRadius="2em"
-            bg="#badec7"
+    // <div>
+    //   {listElementJSX}
+    // </div>
+        <SimpleGrid columns={{ sm: 1, md: 2, xl: 3 }} spacing={10} mt={4}>
+        {myList.length > 0 && myList.map((el) => {
+          return (
+          <Box
+            key={el.id}
+            to={`/announces/${el.id}`}
           >
-            <Text
-              color="white"
-              fontWeight={700}
-              lineHeight={1.2}
-              p={4}
-              fontSize={useBreakpointValue({ base: "2xl", md: "3xl" })}
-            >
-              La page des annonces de l'utilisateur est encore en cours de
-              construction...
-            </Text>
-            <Text
-              color="white"
-              fontWeight={700}
-              lineHeight={1.2}
-              p={4}
-              fontSize={useBreakpointValue({ base: "2xl", md: "3xl" })}
-            >
-              On repasse au prochain sprint ?
-              Il y a {myList.length} annonces dans ma liste
-            </Text>
-          </Stack>
-        </VStack>
-      </Flex>
-    </div>
+            <AnnounceCard
+              {...el}
+            />
+          </Box>
+        )})}
+      </SimpleGrid>
   );
 };
 
