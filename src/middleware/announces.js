@@ -11,6 +11,7 @@ const announces = (store) => (next) => (action) => {
           // l'action pour modifier le state
           // on utilise le store mis à disposition dans les params
           // Transforme la data reçu en array. Pour faciliter sa manipulation
+          console.log(res.data)
           const announces = Object.values(res.data);
           store.dispatch(saveAnnounces(announces));
         }

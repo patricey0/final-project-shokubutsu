@@ -33,8 +33,8 @@ import {
 } from '@chakra-ui/react';
 
 import { ArrowForwardIcon } from '@chakra-ui/icons'
-
-export default function AppHeader() {
+import PropTypes from 'prop-types';
+export default function AppHeader({isSignUpOpen, onSignUpOpen, isSignUpClose}) {
   const {
     mail,
     password,
@@ -46,7 +46,7 @@ export default function AppHeader() {
 
   const dispatch = useDispatch();
   const { isOpen: isLoginOpen, onOpen: onLoginOpen, onClose: isLoginClose } = useDisclosure();
-  const { isOpen: isSignUpOpen, onOpen: onSignUpOpen, onClose: isSignUpClose } = useDisclosure();
+  // const { isOpen: isSignUpOpen, onOpen: onSignUpOpen, onClose: isSignUpClose } = useDisclosure();
 
   
   // Permet de changer l'icone du menu au click
@@ -238,3 +238,9 @@ export default function AppHeader() {
     </header>
   );
 }
+AppHeader.propTypes = {
+  isSignUpOpen: PropTypes.bool.isRequired,
+  onSignUpOpen: PropTypes.func.isRequired,
+  isSignUpClose: PropTypes.func.isRequired,
+
+};

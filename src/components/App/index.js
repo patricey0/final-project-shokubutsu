@@ -21,12 +21,14 @@ import Guide from '../Guide';
 import Profile from '../Profile';
 import MyFavorites from '../MyFavorites';
 import Announce from '../Announces/Announce';
-import { Box } from '@chakra-ui/react';
+import { Box, useDisclosure } from '@chakra-ui/react';
 import CreateAnnounce from '../CreateAnnounce';
 import { useState } from 'react';
 
 // == Composant
 const App = () => {
+  const { isOpen: isSignUpOpen, onOpen: onSignUpOpen, onClose: isSignUpClose } = useDisclosure();
+
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.announces.loading);
   const logged = useSelector((state) => state.user.logged);
@@ -45,13 +47,13 @@ const App = () => {
 
   return (
     <div className="app">
-      <Header />
+      <Header isSignUpOpen={isSignUpOpen} onSignUpOpen={onSignUpOpen} isSignUpClose={isSignUpClose}/>
       <Box className="height-min">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/announces" element={<Announces />} />
           <Route path="/announces/:id" element={<Announce />} />
-          <Route path="/guide" element={<Guide />} />
+          <Route path="/guide" element={<Guide isSignUpOpen={isSignUpOpen} onSignUpOpen={onSignUpOpen} isSignUpClose={isSignUpClose}/>} />
           <Route path="/contact" element={<Contact />} />
           {logged && 
           <>
