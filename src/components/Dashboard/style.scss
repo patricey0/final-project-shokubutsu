@@ -1,0 +1,91 @@
+.dashboard{
+  display: flex;
+  flex-direction: column;
+  background-image: url('src/assets/img/Monstera.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #123620;
+  align-items: flex-start;
+  
+  &__section{
+    height: 100vh;
+    width: 100vh;
+    display: flex;
+    align-items: flex-start;
+    
+    &__title{
+      // color: white;
+      text-transform: uppercase;
+      font-weight: bolder;
+      font-size: 3rem;
+      // background-color: rgba(0, 0, 0, 0.3);
+      background-color: #badec77c;
+      backdrop-filter: blur(10px);
+      margin: 0 1rem;
+      padding: 0.5rem;
+      border-radius: 5px;
+    };
+    &__about{
+      height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      &__block {
+        background-color: #badec77c;
+        backdrop-filter: blur(6px);
+        margin: 0 1rem;
+        padding: 0.5rem;
+        border-radius: 5px
+      };
+    };
+    &__team{
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      list-style: none;
+      &__block {
+        background-color: #badec77c;
+        backdrop-filter: blur(6px);
+        margin: 0 1rem;
+        padding: 0.5rem;
+        border-radius: 5px;
+        width: 100%;
+      };
+    };
+  };
+
+};
+
+@media (min-width: 500px) {
+.home__section{
+  display: flex;
+  justify-content: center;
+}
+};
+
+
+@media (min-width: 920px) {
+.home__section{
+  justify-content: center;
+
+  &__title{
+    font-size: 4rem;  
+    margin: 0 5rem;
+  };
+
+  &__about{
+    font-size: 2rem;
+    margin: 0 5rem;
+  }
+
+  &__team{
+    font-size: 2rem;
+    margin: 0 5rem;
+  }
+}
+.padding{
+  padding: 2rem;
+}
+}
+

@@ -45,7 +45,7 @@ const reducer = (state = initialState, action = {}) => {
     case SET_URL: {
       return {
         ...state,
-        picture : action.payload,
+        picture: action.payload,
       };
     }
     default:

@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAnnounces } from 'src/actions/announces';
 import { fetchUser } from 'src/actions/user';
+import { getUsers, saveUsers } from 'src/actions/users';
 import Header from 'src/components/Header';
 import Home from 'src/components/Home';
 import Announces from 'src/components/Announces';
@@ -22,17 +23,20 @@ import Profile from '../Profile';
 import MyFavorites from '../MyFavorites';
 import Announce from '../Announces/Announce';
 import CreateAnnounce from '../CreateAnnounce';
+import Dashboard from '../Dashboard';
 
 // == Composant
 const App = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.announces.loading);
   const logged = useSelector((state) => state.user.logged);
+  const isAdmin = useSelector((state) => state.user.isAdmin);
   console.log(logged);
 
   useEffect(() => {
     dispatch(fetchAnnounces());
     dispatch(fetchUser());
+    dispatch(getUsers());
   }, []);
   if (loading) {
     return <Loading />;
@@ -55,6 +59,11 @@ const App = () => {
               <Route path="/my-announces" element={<MyAnnounces />} />
               <Route path="/my-favorites" element={<MyFavorites />} />
               <Route path="/create-announce" element={<CreateAnnounce />} />
+              {!isAdmin && (
+                <>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                </>
+              )}
             </>
             )}
           <Route path="*" element={<Error />} />
