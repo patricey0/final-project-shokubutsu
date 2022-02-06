@@ -13,3 +13,4 @@ add_bookmark 2022-01-28T13:33:30Z patricey0 <patrice.yolle@gmail.com> # added sq
 update_bookmarked 2022-01-28T14:31:29Z patricey0 <patrice.yolle@gmail.com> # update fields on bookmarked table
 update_image_visitor 2022-02-01T13:30:02Z patricey0 <patrice.yolle@gmail.com> # ql function to update visitor avatar
 update_image_announce 2022-02-01T14:08:02Z patricey0 <patrice.yolle@gmail.com> # sql function to update announces image
+update_announceTable 2022-02-06T21:22:31Z patricey0,,, <patricey0@Blade-Stealth> # adding a new field for alert flag

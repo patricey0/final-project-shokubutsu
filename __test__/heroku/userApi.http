@@ -13,11 +13,11 @@ POST https://shokubutsu.herokuapp.com/v1/users HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "Patrice",
-    "mail": "patrice@oclock.io",
+    "nickname": "Patrice123",
+    "mail": "patrice123@oclock.io",
     "password": "123qwe",
     "city": "Paris",
-    "picture": "http://qweqwe",
+    "picture": "https://qweqwe",
     "isAdmin": true
 }
 

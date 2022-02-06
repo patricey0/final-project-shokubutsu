@@ -2,7 +2,7 @@
 
 BEGIN;
 
--- DROP TABLE "bookmarked";
+DROP TABLE "bookmarked";
 DROP TABLE "announce";
 DROP TABLE "visitor";
 

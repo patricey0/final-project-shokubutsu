@@ -7,6 +7,7 @@ const {validateBody} = require('./services/validator');
 const {storeCache, flushCache} = require('./services/redisCache.js')
 
 const { jwt } = require(`./middlewares`);
+const announce = require('./schemas/announce');
 
 const router = Router();
 
@@ -162,6 +163,17 @@ router.route(`/announces/:id`)
      * @returns {Boolean} 200 - True if ok.
      */
     .delete(flushCache, announceController.deleteAnnounce);
+
+    /**
+     * Respond with a json contains the reported announce
+     * @route POST /announces/:id/report
+     * @param {number} announceId.path.required the announce id
+     * @return {Announce} 200 - A JSON with the reported announce
+     * @returns {string} 400 - Missing id
+     * @returns {string} 404 - Announce not found
+     * @returns {string} 500 - Server or database error
+     */
+router.post(`/announces/report`, announceController.setFlag);
 
 /**
  * Respond with a json is the deletion is ok.

@@ -3,5 +3,6 @@
 BEGIN;
 
 -- XXX Add DDLs here.
+drop function add_bookmark;
 
 COMMIT;

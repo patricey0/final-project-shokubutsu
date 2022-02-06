@@ -61,6 +61,16 @@ const announceController = {
             console.log(error);
             res.status(500).json(error.message);
         }
+    },
+
+    setFlag: async (req, res) => {
+        try {
+            const announce = await new Announce({...req.body}).setFlag();
+            res.json(announce);
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error.message);
+        }
     }
 }
 
