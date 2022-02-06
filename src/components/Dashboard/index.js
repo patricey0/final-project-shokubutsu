@@ -11,12 +11,17 @@ import {
   Th,
   Td,
   TableCaption,
+  Button,
 } from '@chakra-ui/react';
-
+import { EditIcon, CloseIcon, DeleteIcon } from '@chakra-ui/icons';
 // == Composant
 const Dashboard = () => {
   const announces = useSelector((state) => state.announces.list.sort((a, b) => b.id - a.id));
   const users = useSelector((state) => state.users.list.sort((a, b) => b.id - a.id));
+
+  const deleteUser = (userId) => {
+    axios.delete(`https://shokubutsu.herokuapp.com/v1/users/${userId}`);
+  };
 
   return (
     <div className='dashboard'>
@@ -28,7 +33,8 @@ const Dashboard = () => {
               <Th>Title</Th>
               <Th>Description</Th>
               <Th>Author</Th>
-              <Th>Editer</Th>
+              <Th>Éditer</Th>
+              <Th icon={<CloseIcon />}></Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -37,13 +43,16 @@ const Dashboard = () => {
                 <Td>{announce.title}</Td>
                 <Td>{announce.description}</Td>
                 <Td>{announce.author}</Td>
-                <Td> editer </Td>
+                <Td>
+                  <EditIcon color="#366d4b" fontSize="xl" hover={{ cursor: 'pointer' }}/>
+                  <DeleteIcon w={5} h={5} color="red.500" fontSize="xl" hover={{ cursor: 'pointer' }}/>
+                </Td>
               </Tr>)}
           </Tbody>
         </Table>
 
         <Table variant='simple' size='sm' colorScheme='blackAlpha' className='dashboard__section__about__block'>
-          <TableCaption className='dashboard__section__title padding' placement='top'>Annonces Signalées</TableCaption>
+          <TableCaption className='dashboard__section__title padding' placement='top'>Gestion des utilisateurs</TableCaption>
           <Thead>
             <Tr>
               <Th>Pseudo</Th>
@@ -56,7 +65,11 @@ const Dashboard = () => {
               <Tr key={user.id}>
                 <Td>{user.nickname}</Td>
                 <Td>{user.mail}</Td>
-                <Td> supprimer </Td>
+                <Td>
+                  <Button onClick={deleteUser(user.id)}>
+                    Supprimer
+                  </Button>
+                </Td>
               </Tr>)}
           </Tbody>
         </Table>
