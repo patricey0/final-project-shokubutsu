@@ -9,7 +9,8 @@ import {
   DELETE_AVATAR,
   UPDATE_AVATAR,
 } from 'src/actions/user';
-
+import {fetchBookmarks} from 'src/actions/bookmarks';
+import {getMyAnnounces} from 'src/actions/announces';
 const auth = (store) => (next) => async (action) => {
   switch (action.type) {
     case LOGIN: {
@@ -26,6 +27,9 @@ const auth = (store) => (next) => async (action) => {
           localStorage.setItem('token', res.data.jwt);
           // stockage des infos de l'api dans le state
           store.dispatch(saveUser(res.data));
+          store.dispatch(fetchBookmarks());
+          store.dispatch(getMyAnnounces());
+
         })
         .catch((err) => {
           console.log(err.message);
@@ -44,7 +48,11 @@ const auth = (store) => (next) => async (action) => {
             authorization: token,
           },
         })
-          .then((res) => store.dispatch(saveUser(res.data)))
+          .then((res) => {
+            store.dispatch(saveUser(res.data))
+            store.dispatch(fetchBookmarks());
+            store.dispatch(getMyAnnounces());
+          })
           .catch((err) => console.log(err));
       }
 
