@@ -73,7 +73,7 @@ router.patch(`/users/:id`, userController.updateUser)
  * @param {number} userId.path.required the user id 
  * @returns {Boolean} 200 - True if ok
  */
-router.delete(`/users/:id`, userController.deleteUser);
+router.delete(`/users/:id`,flushCache, userController.deleteUser);
 
 /**
  * Respond with a json if the password is correct.

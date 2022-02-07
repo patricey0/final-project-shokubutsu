@@ -94,6 +94,18 @@ class Announce extends CoreModel {
         }
     }
 
+    static async getFlagged() {
+        try {
+            return new Announce(await CoreModel.getArray(`SELECT * FROM announce WHERE flag=true`));
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail);
+            }
+            throw error;
+        }
+    }
+
 
     async delete() {
         try {
