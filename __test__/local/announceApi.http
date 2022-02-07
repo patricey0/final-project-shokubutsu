@@ -7,7 +7,7 @@
 GET {{baseUrl}}/announces HTTP/1.1
 
 ### Test get announces
-GET {{baseUrl}}/announces/20 HTTP/1.1
+GET {{baseUrl}}/announces/35 HTTP/1.1
 
 ### Test create announce
 POST {{baseUrl}}/announces HTTP/1.1
@@ -52,7 +52,10 @@ POST {{baseUrl}}/announces/report HTTP/1.1
 content-type: application/json
 
 {
-    "id":35,
+    "id":36,
     "flag":true,
     "report_desc": "ce monsieur est un menteur !"
 }
+
+### Get reported announces
+GET {{baseUrl}}//reported_announces HTTP/1.1

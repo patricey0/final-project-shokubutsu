@@ -71,6 +71,15 @@ const announceController = {
             console.log(error);
             res.status(500).json(error.message);
         }
+    },
+
+    getFlagged: async (_, res) => {
+        try {
+            res.json(await Announce.getFlagged());
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error.message);
+        }
     }
 }
 
