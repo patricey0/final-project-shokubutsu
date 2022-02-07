@@ -12,6 +12,12 @@ cloudinary.config({
 const imageController = {
     
     deleteImage: async (req, res) => {
+        if (req.body.image_url) {
+            const image_id = req.body.image_url.split('/')[req.body.image_url.split('/').length-1].split('.')[0];
+            console.log(image_id);
+        } else {
+            throw new Error(`Il faut une URL pour supprimer l'image.`)
+        }
         const image_id = req.body.image_url.split('/')[req.body.image_url.split('/').length-1].split('.')[0];
         console.log(image_id);
         try {

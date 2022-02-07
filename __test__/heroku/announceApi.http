@@ -45,6 +45,6 @@ content-type: application/json
 
 
 ### Delete announce
-DELETE {{baseUrl}}/announces/4 HTTP/1.1
+DELETE  https://shokubutsu.herokuapp.com/v1/announces/8 HTTP/1.1
 content-type: application/json
 
