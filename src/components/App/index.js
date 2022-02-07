@@ -4,7 +4,6 @@ import {
   Route,
 } from 'react-router-dom';
 import './styles.scss';
-import { Box } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAnnounces, getMyAnnounces } from 'src/actions/announces';

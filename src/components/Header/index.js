@@ -32,15 +32,9 @@ import {
   MenuItem,
 } from '@chakra-ui/react';
 
-<<<<<<< HEAD
-import { ArrowForwardIcon } from '@chakra-ui/icons';
-
-export default function AppHeader() {
-=======
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import PropTypes from 'prop-types';
 export default function AppHeader({isSignUpOpen, onSignUpOpen, isSignUpClose}) {
->>>>>>> front-myriam
   const {
     mail,
     password,

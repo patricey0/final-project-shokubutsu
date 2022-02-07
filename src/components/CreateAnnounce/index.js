@@ -99,11 +99,6 @@ const CreateAnnounce = () => {
         });
       });
   };
-<<<<<<< HEAD
-  // ça marche la ?
-=======
-
->>>>>>> front-myriam
   return (
     <div className="div">
       <Heading color="#366D4B" pt={10}>
