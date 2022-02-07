@@ -173,7 +173,7 @@ router.route(`/announces/:id`)
      * @returns {string} 404 - Announce not found
      * @returns {string} 500 - Server or database error
      */
-router.post(`/announces/report`, announceController.setFlag);
+router.post(`/announces/report`, flushCache, announceController.setFlag);
 
 /**
  * Respond with a json is the deletion is ok.

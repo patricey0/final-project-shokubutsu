@@ -14,3 +14,5 @@ update_bookmarked 2022-01-28T14:31:29Z patricey0 <patrice.yolle@gmail.com> # upd
 update_image_visitor 2022-02-01T13:30:02Z patricey0 <patrice.yolle@gmail.com> # ql function to update visitor avatar
 update_image_announce 2022-02-01T14:08:02Z patricey0 <patrice.yolle@gmail.com> # sql function to update announces image
 update_announceTable 2022-02-06T21:22:31Z patricey0,,, <patricey0@Blade-Stealth> # adding a new field for alert flag
+report_function 2022-02-07T08:53:03Z patricey0 <patrice.yolle@gmail.com> # add sql function to report announces
+update_view_announce 2022-02-07T14:13:49Z patricey0 <patrice.yolle@gmail.com> # update view announce to get new field as flag and report_desc

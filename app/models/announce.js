@@ -83,7 +83,7 @@ class Announce extends CoreModel {
 
     async setFlag() {
         try {
-            const announce = new Announce(await CoreModel.getRow(`UPDATE announce SET flag=$1 WHERE id=$2`, [this.flag, this.id]));
+            const announce = new Announce(await CoreModel.getRow(`SELECT * FROM report_announce($1)`, [this]));
             return announce
         } catch (error) {
             console.log(error);

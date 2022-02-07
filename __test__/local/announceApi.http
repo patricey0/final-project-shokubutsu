@@ -4,11 +4,10 @@
 @prefix=/v1
 @baseUrl={{protocol}}{{host}}{{port}}{{prefix}}
 
-### Test get announces
 GET {{baseUrl}}/announces HTTP/1.1
 
 ### Test get announces
-GET {{baseUrl}}/announces/4 HTTP/1.1
+GET {{baseUrl}}/announces/20 HTTP/1.1
 
 ### Test create announce
 POST {{baseUrl}}/announces HTTP/1.1
@@ -38,7 +37,7 @@ content-type: application/json
 
 
 ### Update announce
-PATCH {{baseUrl}}/announces/4 HTTP/1.1
+PATCH {{baseUrl}}/announces/19 HTTP/1.1
 content-type: application/json
 
 # {"title":"Testing update","image":"https://cdn.radiofrance.fr/s3/cruiser-production/2021/10/e624f156-f81a-4a70-87a7-75ac0499eb08/838_gettyimages-1279726754.jpg","creation_date":"2021-11-28 12:18:04","description":"Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.","category":"Doors, Frames & Hardware", "visitor_id":"1"}
@@ -53,7 +52,7 @@ POST {{baseUrl}}/announces/report HTTP/1.1
 content-type: application/json
 
 {
-    "id":1,
+    "id":35,
     "flag":true,
-    "report_desc": null
+    "report_desc": "ce monsieur est un menteur !"
 }
