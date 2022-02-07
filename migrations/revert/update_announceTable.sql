@@ -2,6 +2,10 @@
 
 BEGIN;
 
--- XXX Add DDLs here.
+alter table announce
+drop column flag;
+
+alter table announce
+drop column report_desc;
 
 COMMIT;
