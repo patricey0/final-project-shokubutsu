@@ -92,7 +92,7 @@ AnnounceCard.propTypes = {
   description: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   auth: PropTypes.string,
-  city: PropTypes.string.isRequired,
+  city: PropTypes.string,
 };
 
 

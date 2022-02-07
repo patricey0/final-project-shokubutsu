@@ -7,8 +7,9 @@ import {
 import './styles.scss';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAnnounces } from 'src/actions/announces';
+import { fetchAnnounces, getMyAnnounces } from 'src/actions/announces';
 import { fetchUser } from 'src/actions/user';
+import { fetchBookmarks } from 'src/actions/bookmarks';
 import Header from 'src/components/Header';
 import Home from 'src/components/Home';
 import Announces from 'src/components/Announces';
@@ -27,9 +28,9 @@ import { useState } from 'react';
 
 // == Composant
 const App = () => {
+  const dispatch = useDispatch();
   const { isOpen: isSignUpOpen, onOpen: onSignUpOpen, onClose: isSignUpClose } = useDisclosure();
 
-  const dispatch = useDispatch();
   const loading = useSelector((state) => state.announces.loading);
   const logged = useSelector((state) => state.user.logged);
   console.log(logged);
@@ -37,12 +38,17 @@ const App = () => {
 
   useEffect(() => {
     // console.log(process.env.REACT_APP_VERSION)
+    console.log('premier rendu');
+    dispatch(fetchUser()); // ici je recup l'id
     dispatch(fetchAnnounces());
-    dispatch(fetchUser());
+    // dispatch(getMyAnnounces());
+
+    // dispatch(fetchBookmarks()); // j'ai besoin de l'id 
+    // dispatch(fetchBookmarks());
   }, []);
-  // if (loading) {
-  //   return <Loading />;
-  // }
+  if (loading) {
+    return <Loading />;
+  }
 
 
   return (
@@ -61,11 +67,6 @@ const App = () => {
           <Route path="/my-announces" element={<MyAnnounces />} />
           <Route path="/my-favorites" element={<MyFavorites />} />
           <Route path="/create-announce" element={<CreateAnnounce />} />
-          {/* {isAdmin && 
-          <>
-          <Route path="/dashboard" element={<Dashboard />} />
-          </> 
-          } */}
           </> 
           }
 

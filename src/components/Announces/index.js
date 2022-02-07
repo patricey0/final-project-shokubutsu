@@ -11,6 +11,8 @@ import { Link } from 'react-router-dom';
 
 // == Composant
 const Announces = () => {
+  const mystate = useSelector(state => state);
+  console.log("my state",mystate)
   let announces = useSelector((state) => state.announces.list.sort(function (a, b) {
     return b.id - a.id;
   }));

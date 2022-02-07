@@ -9,28 +9,39 @@ import {
   useColorModeValue,
   Container,
   Stack,
+  useToast,
 } from '@chakra-ui/react';
-import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { StarIcon } from '@chakra-ui/icons';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Navigate, useParams } from 'react-router-dom';
 import { findAnnounce } from '../../../selectors/announces';
+import { addBookmarks, deleteBookmarks } from 'src/actions/bookmarks';
+import { fetchAnnounces } from 'src/actions/announces';
+import { fetchUser } from 'src/actions/user';
 
 
 function Announce() {
-
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   console.log("first display");
+  //   dispatch(fetchUser());
+  //   dispatch(fetchAnnounces());
+  // }, []);
   const { id } = useParams();
-  
+
+  // console.log(mystate)
   const announce = useSelector((state) => findAnnounce(state.announces.list, Number(id)));
-
-
   if (!announce) {
     return <Navigate to="/error" replace />;
   }
 
-  const {title, image, category, description, author, city, creation_date } = announce;
+  const { title, image, category, description, author, city, creation_date } = announce;
 
   const myDate = new Date(creation_date)
   const formatedDate = new Intl.DateTimeFormat('fr-FR').format(myDate);
+
+  const toast = useToast()
 
   return (
     <Container maxW={'7xl'} p="12">
@@ -74,6 +85,16 @@ function Announce() {
           flexDirection="column"
           justifyContent="center"
           marginTop={{ base: '3', sm: '0' }}>
+          <HStack spacing={2} m={4} justifyContent="flex-end">
+            <Text color="#366d4b" fontWeight={700}>Ajouter aux favoris</Text>
+            <StarIcon  color="#366d4b" w={6} h={6}
+             _hover={{
+                    w:'8', h:'8',
+                    cursor: 'pointer',
+                    }} 
+                    onClick={() => dispatch(deleteBookmarks(id))}
+            />
+          </HStack> 
           <HStack spacing={2} m={4} justifyContent="center" >
             <Tag size={'md'} variant="solid" colorScheme="orange">
               {category}
@@ -92,13 +113,13 @@ function Announce() {
             {description}
           </Text>
           <HStack
-           mt={4}
-           spacing="2"
-           display="flex"
-           alignItems="center"
-           color="black"
-           justifyContent="center"
-           flexDirection={{ base: 'column', sm: 'row' }}
+            mt={4}
+            spacing="2"
+            display="flex"
+            alignItems="center"
+            color="black"
+            justifyContent="center"
+            flexDirection={{ base: 'column', sm: 'row' }}
           >
             <Image
               borderRadius="full"

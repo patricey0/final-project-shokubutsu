@@ -34,6 +34,7 @@ const announces = (store) => (next) => (action) => {
     case GET_MY_ANNOUNCES: {
       // on veut récup l'id
       const state = store.getState();
+      console.log(state.user.id)
       const loadData = async (url) => {
         try {
           const res = await axios.get(url);
@@ -42,6 +43,7 @@ const announces = (store) => (next) => (action) => {
           // on utilise le store mis à disposition dans les params
           // Transforme la data reçu en array. Pour faciliter sa manipulation
           const announces = Object.values(res.data);
+          console.log(announces)
           store.dispatch(saveMyAnnounces(announces));
         }
         catch (error) {
