@@ -32,7 +32,7 @@ import {
   MenuItem,
 } from '@chakra-ui/react';
 
-import { ArrowForwardIcon } from '@chakra-ui/icons'
+import { ArrowForwardIcon } from '@chakra-ui/icons';
 
 export default function AppHeader() {
   const {
@@ -48,7 +48,6 @@ export default function AppHeader() {
   const { isOpen: isLoginOpen, onOpen: onLoginOpen, onClose: isLoginClose } = useDisclosure();
   const { isOpen: isSignUpOpen, onOpen: onSignUpOpen, onClose: isSignUpClose } = useDisclosure();
 
-  
   // Permet de changer l'icone du menu au click
   const [isClosed, setIsClosed] = useState(true);
   const iconType = isClosed ? 'M4 6h16M4 12h16M4 18h16' : 'M6 18L18 6M6 6l12 12';
@@ -114,16 +113,15 @@ export default function AppHeader() {
             && (
               <Wrap>
                 <Menu>
-                {/* <NavLink to="/create-announce" className="header__button">Ajouter une annonce</NavLink> */}
                   <Button
-                   as={NavLink} 
-                   to="/create-announce" 
-                   rightIcon={<ArrowForwardIcon />} 
-                   className="header__button" 
-                   bgColor="#DFF0E5"
-                   h="none"
-                   >
-                  Ajouter une annonce
+                    as={NavLink}
+                    to="/create-announce"
+                    rightIcon={<ArrowForwardIcon />}
+                    className="header__button"
+                    bgColor="#DFF0E5"
+                    h="none"
+                  >
+                    Ajouter une annonce
                   </Button>
                   <MenuButton
                     as={Button}

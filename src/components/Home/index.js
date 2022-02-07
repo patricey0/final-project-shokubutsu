@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // == Import
 import './styles.scss';
 
@@ -5,31 +6,28 @@ import './styles.scss';
 const team = [
   {
     id: 1,
-    name: "Patrice",
-    job: "Lead Dev Back"
+    name: 'Patrice',
+    job: 'Lead Dev Back',
   },
   {
     id: 2,
-    name: "Vincent",
-    job: "Product Owner"
+    name: 'Vincent',
+    job: 'Product Owner',
   },
   {
     id: 3,
-    name: "Myriam",
-    job: "Lead Dev Front"
+    name: 'Myriam',
+    job: 'Lead Dev Front',
   },
-]
+];
 
 const teamElementJSX = team.map(
-  ({id, name, job}) =>{
-    return (
-      <p key={id} className="home__team__person padding">
+  ({ id, name, job }) => (
+    <p key={id} className="home__team__person padding">
       {name} {job}
-      </p>
-    )
-  }
-)
-
+    </p>
+  ),
+);
 
 // == Composant
 const Home = () => (
@@ -52,7 +50,7 @@ const Home = () => (
         <h2 className="home__team__title padding">L'équipe Shokubutsu</h2>
         {teamElementJSX}
       </div>
-    </section> 
+    </section>
   </div>
 );
 

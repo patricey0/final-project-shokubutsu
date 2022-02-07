@@ -1,12 +1,8 @@
 import {
   FormControl,
   FormLabel,
-  HStack,
-  Radio,
-  RadioGroup,
   Input,
   Button,
-  FormHelperText,
   Container,
   Box,
   Select,
@@ -27,7 +23,6 @@ const CreateAnnounce = () => {
   const [category, setCategory] = useState('');
   const [image, setImage] = useState('');
   const dispatch = useDispatch();
-  
   const { id } = useSelector((state) => state.user);
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -35,20 +30,20 @@ const CreateAnnounce = () => {
 
     // si l'un des champs est vide, on toast l'erreur
     // on envoie le toast
-    if(!title || !description || !category || !image){
-      console.log("il manque un champ");
-            toast({
-                title: "Erreur.",
-                description: "Il y a une erreur",
-                status: "error",
-                position: "top",
-                duration: 9000,
-                isClosable: true,
-              });
-      return 
-      }
+    if (!title || !description || !category || !image) {
+      console.log('il manque un champ');
+      toast({
+        title: 'Erreur.',
+        description: 'Il y a une erreur',
+        status: 'error',
+        position: 'top',
+        duration: 9000,
+        isClosable: true,
+      });
+      return;
+    }
     // si tout est ok
-    console.log("tous les champs sont OK")
+    console.log('tous les champs sont OK');
     const data = new FormData();
     data.append('file', image);
     data.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
@@ -58,86 +53,86 @@ const CreateAnnounce = () => {
       body: data,
     })
       .then((resp) => resp.json())
-      .then((data) => {
+      .then((res) => {
         axios.post('https://shokubutsu.herokuapp.com/v1/announces', {
           title: title, // cactus
-          image: data.url, // lien cloudinary
+          image: res.url, // lien cloudinary
           description: description, // qui veut mon super cactus ???
           category: category, // don
           visitor_id: id, // 32
         })
-        .then((res) => {
-          // console.log(res.data);
-          // dispatch(saveUser(res.data));
-          toast({
-            title: "Annonce envoyée.",
-            description: "L'annonce est en ligne !",
-            status: "success",
-            position: "top",
-            duration: 9000,
-            isClosable: true,
-          });
-          // fetch les annonces
-          dispatch(fetchAnnounces());
+          .then((resu) => {
+            console.log(resu);
+            // dispatch(saveUser(res.data));
+            toast({
+              title: 'Annonce envoyée.',
+              description: "L'annonce est en ligne !",
+              status: 'success',
+              position: 'top',
+              duration: 9000,
+              isClosable: true,
+            });
+            // fetch les annonces
+            dispatch(fetchAnnounces());
 
-          // redirection vers la page des annonces ou Mes annonces
-          // setTimeOut()
-          // window.location.assign("/announces");
-          setTimeout(window.location.assign("/announces"), 3000);
-        })
-        .catch((err) => {
-          console.log(err.message);
-          toast({
-            title: "Erreur.",
-            description: "Apriori, il y a eu un couac",
-            status: "error",
-            position: "top",
-            duration: 9000,
-            isClosable: true,
+            // redirection vers la page des annonces ou Mes annonces
+            // setTimeOut()
+            // window.location.assign("/announces");
+            setTimeout(window.location.assign('/announces'), 3000);
+          })
+          .catch((err) => {
+            console.log(err.message);
+            toast({
+              title: 'Erreur.',
+              description: 'Apriori, il y a eu un couac',
+              status: 'error',
+              position: 'top',
+              duration: 9000,
+              isClosable: true,
+            });
           });
-        });
       })
-      .catch((err) => {
+      .catch((error) => {
         console.log(error.message);
-        axios.post("https://shokubutsu.herokuapp.com/v1/delete-image", {
+        axios.post('https://shokubutsu.herokuapp.com/v1/delete-image', {
           image_url: data.url,
         });
       });
   };
-// ça marche la ?
+  // ça marche la ?
   return (
-    <div className='div'>
-      <Heading color='#366D4B' pt={10}>
+    <div className="div">
+      <Heading color="#366D4B" pt={10}>
         Ajouter une annonce
       </Heading>
       <Container>
-        <Box padding='4' bg=''>
-          <form action='' onSubmit={handleSubmit}>
-            <FormControl color='black' as='fieldset' border='black'>
-              <FormLabel htmlFor='category' pt={3}>
+        <Box padding="4" bg="">
+          <form action="" onSubmit={handleSubmit}>
+            <FormControl color="black" as="fieldset" border="black">
+              <FormLabel htmlFor="category" pt={3}>
                 Type d'échange
               </FormLabel>
               <Select
-                id='category'
-                name='category'
+                id="category"
+                name="category"
                 onChange={(e) => setCategory(e.target.value)}
               >
-                <option >Choissisez une catégory</option>
-                <option value='don'>Don</option>
-                <option value='echange'>Echange</option>
+                <option>Choissisez une catégory</option>
+                <option value="don">Don</option>
+                <option value="echange">Echange</option>
               </Select>
-              <FormLabel htmlFor='title' pt={3}>
+              <FormLabel htmlFor="title" pt={3}>
                 Titre
               </FormLabel>
               <Input
-                id='title'
-                name='title'
-                type='text'
-                placeholder='Cactus ..'
+                id="title"
+                name="title"
+                type="text"
+                placeholder="Cactus .."
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
-              <FormLabel htmlFor='description' pt={3}>
+              <FormLabel htmlFor="description" pt={3}>
                 Description
               </FormLabel>
               {/* <Input id='description' type='text'/> */}
@@ -146,22 +141,22 @@ const CreateAnnounce = () => {
                 value={description}
                 onChange={(evt) => setDescription(evt.target.value)}
               />
-              <FormLabel htmlFor='image' pt={3}>
+              <FormLabel htmlFor="image" pt={3}>
                 Ajouter une photo
               </FormLabel>
               <Input
-                id='image'
-                type='file'
-                name='image'
+                id="image"
+                type="file"
+                name="image"
                 p={3}
-                h='none'
+                h="none"
                 onChange={(e) => setImage(e.target.files[0])}
               />
               <Button
                 m={8}
-                color='white'
-                bgColor='#366D4B'
-                type='submit'
+                color="white"
+                bgColor="#366D4B"
+                type="submit"
                 _hover={{ bgColor: '#366D4B' }}
                 _active={{ bgColor: '#BEE0CA', color: '#366D4B' }}
               >
