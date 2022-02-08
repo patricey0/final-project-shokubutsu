@@ -26,7 +26,7 @@ const Announces = () => {
       >
         Les dernieres annonces !
       </Text>
-      <SimpleGrid columns={{ sm: 1, md: 2, xl: 3 }} spacing={10} mt={4}>
+      <SimpleGrid columns={{ sm: 1, md: 2, xl: 3, '2xl': 4 }} spacing={4} mt={4}>
         {announces.length > 0 && announces.map((el) => (
           <Box
             key={el.id}

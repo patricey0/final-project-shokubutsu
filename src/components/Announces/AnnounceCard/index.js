@@ -9,14 +9,16 @@ import {
   HStack,
 } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
-import { DeleteIcon } from '@chakra-ui/icons'
+import { DeleteIcon } from '@chakra-ui/icons';
 import PropTypes from 'prop-types';
-import { useLocation } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import { deleteAnnounceInDb } from '../../../actions/announces';
 
-function AnnounceCard({title, image, category, author, city, description, myAnnounce, id}) {
+function AnnounceCard({
+  title, image, category, author, city, description, myAnnounce, id,
+}) {
   const sampleLocation = useLocation();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   return (
     <Center py={12}>
@@ -32,8 +34,8 @@ function AnnounceCard({title, image, category, author, city, description, myAnno
         zIndex={0}
         transition=".2s ease-in"
         _hover={{
-          transform: "translateY(3px)",
-          boxShadow: 'rgba(54, 109, 75,0.4) 0 0 0 1px, rgba(54, 109, 75,0.6) 0 5px 10px, rgba(54, 109, 75,0.8) 0 15px 40px'
+          transform: 'translateY(3px)',
+          boxShadow: 'rgba(54, 109, 75,0.4) 0 0 0 1px, rgba(54, 109, 75,0.6) 0 5px 10px, rgba(54, 109, 75,0.8) 0 15px 40px',
         }}
       >
         <Box
@@ -75,19 +77,21 @@ function AnnounceCard({title, image, category, author, city, description, myAnno
             {title}
           </Heading>
           <Text color="gray.500" fontSize="sm" textTransform="uppercase">
-            {description.split(' ', 20).join(" ")}
+            {description.split(' ', 20).join(' ')}
           </Text>
           <HStack spacing={2} m={4} justifyContent="flex-end">
-          {myAnnounce && 
-            <DeleteIcon color="red.500"
+            {myAnnounce
+            && (
+            <DeleteIcon
+              color="red.500"
               _hover={{
-                w:'7', h:'7',
+                transform: 'scale(1.7)',
                 cursor: 'pointer',
-              }} 
+              }}
               onClick={() => dispatch(deleteAnnounceInDb(id))}
             />
-          }
-            
+            )}
+
           </HStack>
           <Stack direction="row" align="center">
             <Text fontWeight={800} fontSize="xl" color="#366d4b">
