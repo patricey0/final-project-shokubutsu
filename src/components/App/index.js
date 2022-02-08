@@ -23,12 +23,16 @@ import MyFavorites from '../MyFavorites';
 import Announce from '../Announces/Announce';
 import { Box, useDisclosure } from '@chakra-ui/react';
 import CreateAnnounce from '../CreateAnnounce';
+import Dashboard from '../Dashboard';
 
 // == Composant
 const App = () => {
   const dispatch = useDispatch();
   const { isOpen: isSignUpOpen, onOpen: onSignUpOpen, onClose: isSignUpClose } = useDisclosure();
-  const logged = useSelector((state) => state.user.logged)
+  const logged = useSelector((state) => state.user.logged);
+  const isAdmin = useSelector((state) => state.user.isadmin);
+  console.log(logged);
+
   useEffect(() => {
     // console.log(process.env.REACT_APP_VERSION)
     dispatch(fetchUser()); // ici je recup l'id
@@ -63,6 +67,11 @@ const App = () => {
               <Route path="/my-announces" element={<MyAnnounces />} />
               <Route path="/my-favorites" element={<MyFavorites />} />
               <Route path="/create-announce" element={<CreateAnnounce />} />
+              {isAdmin && (
+                <>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                </>
+              )}
             </>
             )}
           <Route path="*" element={<Error />} />
