@@ -14,7 +14,6 @@ import ReactPageScroller from 'react-page-scroller';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import bcgImg from 'src/assets/img/plant-8.jpg';
 import './styles.scss';
 
 // == Composant

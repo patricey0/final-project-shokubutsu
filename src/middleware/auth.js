@@ -9,8 +9,9 @@ import {
   DELETE_AVATAR,
   UPDATE_AVATAR,
 } from 'src/actions/user';
-import {fetchBookmarks} from 'src/actions/bookmarks';
-import {getMyAnnounces} from 'src/actions/announces';
+import { fetchBookmarks } from 'src/actions/bookmarks';
+import { getMyAnnounces } from 'src/actions/announces';
+
 const auth = (store) => (next) => async (action) => {
   switch (action.type) {
     case LOGIN: {
@@ -29,7 +30,6 @@ const auth = (store) => (next) => async (action) => {
           store.dispatch(saveUser(res.data));
           store.dispatch(fetchBookmarks());
           store.dispatch(getMyAnnounces());
-
         })
         .catch((err) => {
           console.log(err.message);
@@ -49,7 +49,7 @@ const auth = (store) => (next) => async (action) => {
           },
         })
           .then((res) => {
-            store.dispatch(saveUser(res.data))
+            store.dispatch(saveUser(res.data));
             store.dispatch(fetchBookmarks());
             store.dispatch(getMyAnnounces());
           })
