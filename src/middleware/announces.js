@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_ANNOUNCES, saveAnnounces, GET_MY_ANNOUNCES, saveMyAnnounces } from 'src/actions/announces';
+import { FETCH_ANNOUNCES, saveAnnounces, GET_MY_ANNOUNCES, saveMyAnnounces, DELETE_ANNOUNCE_IN_DB, deleteAnnounce } from 'src/actions/announces';
 
 const announces = (store) => (next) => (action) => {
   switch (action.type) {
@@ -59,6 +59,20 @@ const announces = (store) => (next) => (action) => {
 
       // si on souhaite gérer cette action dans le reducer
       // on la laisse passer
+      next(action);
+      break;
+    }
+    case DELETE_ANNOUNCE_IN_DB: {
+      axios.delete(`https://shokubutsu.herokuapp.com/v1/announces/${action.payload.announceId}`)
+            .then(
+              (response) => {
+                if(response.status === 200) {
+                  store.dispatch(deleteAnnounce(action.payload.announceId))
+                }
+              }
+            )
+            .catch((error) => {console.log(error)})
+
       next(action);
       break;
     }

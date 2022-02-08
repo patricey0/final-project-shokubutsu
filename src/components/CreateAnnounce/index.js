@@ -122,7 +122,7 @@ const CreateAnnounce = () => {
                 name='category'
                 onChange={(e) => setCategory(e.target.value)}
               >
-                <option >Choissisez une catégory</option>
+                <option >Choissisez une catégorie</option>
                 <option value='don'>Don</option>
                 <option value='echange'>Echange</option>
               </Select>

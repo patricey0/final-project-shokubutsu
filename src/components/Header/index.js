@@ -135,7 +135,6 @@ export default function AppHeader({isSignUpOpen, onSignUpOpen, isSignUpClose}) {
                     <Avatar
                       size="md"
                       bg="#badec7"
-                      ml={3}
                       // name={nickname}
                       src={picture} // ''
                     />

@@ -6,12 +6,18 @@ import {
   Text,
   Stack,
   Image,
+  HStack,
 } from '@chakra-ui/react';
+import { useDispatch } from 'react-redux';
+import { DeleteIcon } from '@chakra-ui/icons'
 import PropTypes from 'prop-types';
 import { useLocation } from "react-router-dom";
-function AnnounceCard({title, image, category, author, city, description}) {
+import { deleteAnnounceInDb } from '../../../actions/announces';
+
+function AnnounceCard({title, image, category, author, city, description, myAnnounce, id}) {
   const sampleLocation = useLocation();
-  console.log(sampleLocation.pathname)
+  const dispatch = useDispatch()
+
   return (
     <Center py={12}>
       <Box
@@ -71,6 +77,18 @@ function AnnounceCard({title, image, category, author, city, description}) {
           <Text color="gray.500" fontSize="sm" textTransform="uppercase">
             {description.split(' ', 20).join(" ")}
           </Text>
+          <HStack spacing={2} m={4} justifyContent="flex-end">
+          {myAnnounce && 
+            <DeleteIcon color="red.500"
+              _hover={{
+                w:'7', h:'7',
+                cursor: 'pointer',
+              }} 
+              onClick={() => dispatch(deleteAnnounceInDb(id))}
+            />
+          }
+            
+          </HStack>
           <Stack direction="row" align="center">
             <Text fontWeight={800} fontSize="xl" color="#366d4b">
               {author}
@@ -93,6 +111,7 @@ AnnounceCard.propTypes = {
   category: PropTypes.string.isRequired,
   auth: PropTypes.string,
   city: PropTypes.string,
+  myAnnounce: PropTypes.bool,
 };
 
 
