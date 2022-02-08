@@ -32,7 +32,7 @@ const App = () => {
 
   const loading = useSelector((state) => state.announces.loading);
   const logged = useSelector((state) => state.user.logged);
-  const isAdmin = useSelector((state) => state.user.isAdmin);
+  const isAdmin = useSelector((state) => state.user.isadmin);
   console.log(logged);
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const App = () => {
               <Route path="/my-announces" element={<MyAnnounces />} />
               <Route path="/my-favorites" element={<MyFavorites />} />
               <Route path="/create-announce" element={<CreateAnnounce />} />
-              {!isAdmin && (
+              {isAdmin && (
                 <>
                   <Route path="/dashboard" element={<Dashboard />} />
                 </>

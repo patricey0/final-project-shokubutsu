@@ -4,6 +4,7 @@ import './style.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getUsers } from 'src/actions/users';
+import { fetchAnnounces } from 'src/actions/announces';
 import axios from 'axios';
 import {
   Table,
@@ -14,10 +15,9 @@ import {
   Td,
   TableCaption,
   Button,
+  Image,
 } from '@chakra-ui/react';
-import { EditIcon, CloseIcon, DeleteIcon } from '@chakra-ui/icons';
 // == Composant
-
 const Dashboard = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,40 +26,58 @@ const Dashboard = () => {
   const announces = useSelector((state) => state.announces.list.sort((a, b) => b.id - a.id));
   const users = useSelector((state) => state.users.list.sort((a, b) => b.id - a.id));
 
-  const deleteUser = (userId) => {
-    axios.delete(`https://shokubutsu.herokuapp.com/v1/users/${userId}`);
+  const deleteUser = async (userId) => {
+    await axios.delete(`https://shokubutsu.herokuapp.com/v1/users/${userId}`);
+  };
+  const deleteAnnounce = async (announceId) => {
+    // console.log('je suis dans la fonction delete announce');
+    await axios.delete(`https://shokubutsu.herokuapp.com/v1/announces/${announceId}`);
+    dispatch(fetchAnnounces());
   };
 
   return (
-    <div className='dashboard'>
-      <section className='dashboard__section'>
-        <Table variant='simple' size='sm' colorScheme='blackAlpha' className='dashboard__section__about__block'>
-          <TableCaption className='dashboard__section__title padding' placement='top'>Annonces Signalées</TableCaption>
+    <div className="dashboard">
+      <section className="dashboard__section">
+        <Table variant="simple" size="sm" colorScheme="blackAlpha" className="dashboard__section__about__block">
+          <TableCaption className="dashboard__section__title padding" placement="top">Annonces Signalées</TableCaption>
           <Thead>
             <Tr>
               <Th>Title</Th>
               <Th>Description</Th>
+              <Th>Image</Th>
               <Th>Author</Th>
+              <Th>Signalement</Th>
               <Th>Éditer</Th>
-              <Th icon={<CloseIcon />}></Th>
+              <Th>Supprimer</Th>
             </Tr>
           </Thead>
           <Tbody>
-            {announces.map((announce) =>
+            {announces.map((announce) => (
               <Tr key={announce.id}>
                 <Td>{announce.title}</Td>
                 <Td>{announce.description}</Td>
-                <Td>{announce.author}</Td>
                 <Td>
-                  <EditIcon color="#366d4b" fontSize="xl" hover={{ cursor: 'pointer' }}/>
-                  <DeleteIcon w={5} h={5} color="red.500" fontSize="xl" hover={{ cursor: 'pointer' }}/>
+                  <Image src={announce.image} />
                 </Td>
-              </Tr>)}
+                <Td>{announce.author}</Td>
+                <Td>{announce.report_desc}</Td>
+                <Td>
+                  <Button textAlign="center">
+                    Éditer
+                  </Button>
+                </Td>
+                <Td>
+                  <Button textAlign="center" onClick={() => deleteAnnounce(announce.id)}>
+                    Supprimer
+                  </Button>
+                </Td>
+              </Tr>
+            ))}
           </Tbody>
         </Table>
 
-        <Table variant='simple' size='sm' colorScheme='blackAlpha' className='dashboard__section__about__block'>
-          <TableCaption className='dashboard__section__title padding' placement='top'>Gestion des utilisateurs</TableCaption>
+        <Table variant="simple" size="sm" colorScheme="blackAlpha" className="dashboard__section__about__block">
+          <TableCaption className="dashboard__section__title padding" placement="top">Gestion des utilisateurs</TableCaption>
           <Thead>
             <Tr>
               <Th>Pseudo</Th>
@@ -68,16 +86,17 @@ const Dashboard = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {users.map((user) =>
+            {users.map((user) => (
               <Tr key={user.id}>
                 <Td>{user.nickname}</Td>
                 <Td>{user.mail}</Td>
                 <Td>
-                  <Button onClick={() => deleteUser(user.id)}>
+                  <Button textAlign="center" onClick={() => deleteUser(user.id)}>
                     Supprimer
                   </Button>
                 </Td>
-              </Tr>)}
+              </Tr>
+            ))}
           </Tbody>
         </Table>
       </section>

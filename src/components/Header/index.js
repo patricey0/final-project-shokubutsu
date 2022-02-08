@@ -42,6 +42,7 @@ export default function AppHeader({isSignUpOpen, onSignUpOpen, isSignUpClose}) {
     city,
     nickname,
     picture,
+    isadmin,
   } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
@@ -157,6 +158,8 @@ export default function AppHeader({isSignUpOpen, onSignUpOpen, isSignUpClose}) {
                     <MenuItem color="#366d4b" as={NavLink} to="/my-announces" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Mes Annonces</MenuItem>
                     <MenuItem color="#366d4b" as={NavLink} to="/my-favorites" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Mes favoris</MenuItem>
                     <MenuItem color="#366d4b" as="button" onClick={() => dispatch(logout())}>Déconnexion</MenuItem>
+                    {isadmin &&
+                      <MenuItem color="#366d4b" as={NavLink} to="/dashboard">Dashboard</MenuItem>}
                   </MenuList>
                 </Menu>
               </Wrap>
