@@ -124,13 +124,13 @@ const Contact = () => {
             </FormControl>
             <Stack spacing={6}>
               <Button
-                bg="green"
-                color="white"
+                bg="#badec7"
+                color="#366d4b"
                 type="submit"
                 mt={2}
                 _hover={{
                   bg: '#badec7',
-                  color: 'green',
+                  // color: 'green',
                 }}
               >
                 Envoyer
