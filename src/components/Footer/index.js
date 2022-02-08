@@ -9,7 +9,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
-import logo from 'src/assets/img/spider-plant.png';
+import logo from 'src/assets/img/plant-clipart-17.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 

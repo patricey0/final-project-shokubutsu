@@ -8,7 +8,7 @@ import {
   signUp,
 } from 'src/actions/user';
 import './style.scss';
-import logo from 'src/assets/img/spider-plant.png';
+import logo from 'src/assets/img/plant-clipart-17.png';
 import { useState } from 'react';
 import LoginForm from 'src/components/LoginForm';
 import SignupForm from 'src/components/SignupForm';
@@ -105,7 +105,7 @@ export default function AppHeader({isSignUpOpen, onSignUpOpen, isSignUpClose}) {
             </svg>
           </div>
           <img src={logo} alt="" className="header__logo" />
-          <NavLink to="/" className="header__name">Shokobutsu</NavLink>
+          <NavLink to="/" className="header__name">植物 Shokubutsu</NavLink>
           <ul className="header__items">
             <div className="first">
               {itemElementJSX}

@@ -1,6 +1,6 @@
 .header {
   background: linear-gradient(90deg, rgba(186,222,199,1) 0%, rgba(228,242,233,1) 100%);
-  border-bottom: 1.5px solid #366D4B;
+  // border-bottom: 1.5px solid #366D4B;
   padding: 0.8rem 1rem;
   position: sticky;
   top:0;
@@ -115,7 +115,8 @@
     &__name{
       display: flex;
       color: #366D4B;
-      font-size: 1rem;
+      font-size: 1.5rem;
+      white-space: nowrap;
       font-weight: bold;
       margin-left: 1rem;
     }  

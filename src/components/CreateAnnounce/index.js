@@ -119,8 +119,8 @@ const CreateAnnounce = () => {
                 onChange={(e) => setCategory(e.target.value)}
               >
                 <option>Choissisez une catégory</option>
-                <option value="don">Don</option>
-                <option value="echange">Echange</option>
+                <option value="Don">Don</option>
+                <option value="Echange">Echange</option>
               </Select>
               <FormLabel htmlFor="title" pt={3}>
                 Titre

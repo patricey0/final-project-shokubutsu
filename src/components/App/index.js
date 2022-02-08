@@ -46,6 +46,9 @@ const App = () => {
   if (loadingAnnounces && loadingBookmarks) {
     return <Loading />;
   }
+  // if (loadingBookmarks) {
+  //   return <Loading />;
+  // }
   return (
     <div className="app">
       <Header

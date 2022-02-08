@@ -56,27 +56,39 @@ const MyFavorites = () => {
             </VStack>
           </Flex>
         )}
-      {myList.length > 0 &&
-      (
-        <SimpleGrid
-          columns={{ sm: 1, md: 2, xl: 3 }}
-          spacing={10}
-          mt={4}
-        >
-          {myList.map((el) => (
-            <Box
-              key={el.id}
-            >
-              <AnnounceCard
-                {...el}
-              />
-            </Box>
-          ))}
-        </SimpleGrid>
-)}
+      {myList.length > 0
+      && (
+        <div>
+          <Text
+            color="white"
+            fontWeight={700}
+            lineHeight={1.2}
+            p={6}
+            bg="#366d4b"
+            fontSize={useBreakpointValue({ base: 'xl', md: '2xl' })}
+          >
+            Vos Favoris !
+          </Text>
+          <SimpleGrid
+            columns={{ sm: 1, md: 2, xl: 3 }}
+            spacing={10}
+            mt={4}
+          >
+            {myList.map((el) => (
+              <Box
+                key={el.id}
+              >
+                <AnnounceCard
+                  {...el}
+                />
+              </Box>
+            ))}
+          </SimpleGrid>
+        </div>
+      )}
     </div>
   );
-}
+};
 
 // == Export
 export default MyFavorites;

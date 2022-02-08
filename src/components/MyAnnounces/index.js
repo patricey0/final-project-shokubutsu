@@ -63,7 +63,18 @@ const MyAnnounces = () => {
         )}
       {myList.length > 0 &&
       (
-        <SimpleGrid
+        <div>
+        <Text
+        color="white"
+        fontWeight={700}
+        lineHeight={1.2}
+        p={6}
+        bg="#366d4b"
+        fontSize={useBreakpointValue({ base: 'xl', md: '2xl' })}
+      >
+        Vos annonces !
+      </Text>
+                  <SimpleGrid
           columns={{ sm: 1, md: 2, xl: 3 }}
           spacing={10}
           mt={4}
@@ -78,6 +89,8 @@ const MyAnnounces = () => {
             </Box>
           ))}
         </SimpleGrid>
+        </div>
+
 )}
     </div>
   );
