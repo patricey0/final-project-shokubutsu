@@ -29,18 +29,18 @@ const Guide = ({ isSignUpOpen, onSignUpOpen, isSignUpClose }) => {
         pageOnChange={handlePageChange}
         customPageNumber={currentPage}
       >
-        <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
-          <Flex flex={1} align={'center'} justify={'center'}>
-            <Stack spacing={6} w={'full'} maxW={'lg'}>
+        <Stack minH="100vh" direction={{ base: 'column', md: 'row' }}>
+          <Flex flex={1} align="center" justify="center">
+            <Stack spacing={6} w="full" maxW="lg">
               <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
-                <Text color={'#366d4b'} as={'span'}>
+                <Text color="#366d4b" as="span">
                   Débutez avec
                 </Text>
                 <br />{' '}
                 <Text
-                  as={'span'}
-                  position={'relative'}
-                  color='#366d4b'
+                  as="span"
+                  position="relative"
+                  color="#366d4b"
                   _after={{
                     content: "''",
                     width: 'full',
@@ -55,17 +55,17 @@ const Guide = ({ isSignUpOpen, onSignUpOpen, isSignUpClose }) => {
                   Shokubutsu
                 </Text>{' '}
               </Heading>
-              <Text fontSize={{ base: 'md', lg: 'lg' }} color={'#366d4b'}>
+              <Text fontSize={{ base: 'md', lg: 'lg' }} color="#366d4b">
                 Si vous souhaitez faire partie de la communauté et échanger ou
                 faire don de vos plantes, il faut commencer par créer un compte.
               </Text>
               <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
                 <Button
                   onClick={onSignUpOpen}
-                  mx='auto'
-                  rounded={'full'}
-                  bg={'#366d4b'}
-                  color={'white'}
+                  mx="auto"
+                  rounded="full"
+                  bg="#366d4b"
+                  color="white"
                   _hover={{
                     bg: '#BEE0CA',
                     color: '#366d4b',
@@ -78,35 +78,31 @@ const Guide = ({ isSignUpOpen, onSignUpOpen, isSignUpClose }) => {
           </Flex>
           <Flex flex={1}>
             <Image
-              alt={'Login Image'}
-              objectFit={'cover'}
-              src={
-                'https://res.cloudinary.com/shokubutsu/image/upload/v1643969557/plant-16_ginbsv.jpg'
-              }
+              alt="Login Image"
+              objectFit="cover"
+              src="https://res.cloudinary.com/shokubutsu/image/upload/v1643969557/plant-16_ginbsv.jpg"
             />
           </Flex>
         </Stack>
-        <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
+        <Stack minH="100vh" direction={{ base: 'column', md: 'row' }}>
           <Flex flex={1}>
             <Image
-              alt={'Login Image'}
-              objectFit={'cover'}
-              src={
-                'https://res.cloudinary.com/shokubutsu/image/upload/v1643969562/plant-10_pkaihj.jpg'
-              }
+              alt="Login Image"
+              objectFit="cover"
+              src="https://res.cloudinary.com/shokubutsu/image/upload/v1643969562/plant-10_pkaihj.jpg"
             />
           </Flex>
-          <Flex flex={1} align={'center'} justify={'center'}>
-            <Stack spacing={6} w={'full'} maxW={'lg'}>
+          <Flex flex={1} align="center" justify="center">
+            <Stack spacing={6} w="full" maxW="lg">
               <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
-                <Text color={'#366d4b'} as={'span'}>
+                <Text color="#366d4b" as="span">
                   Poursuivez en
                 </Text>
                 <br />{' '}
                 <Text
-                  as={'span'}
-                  position={'relative'}
-                  color='#366d4b'
+                  as="span"
+                  position="relative"
+                  color="#366d4b"
                   _after={{
                     content: "''",
                     width: 'full',
@@ -121,7 +117,7 @@ const Guide = ({ isSignUpOpen, onSignUpOpen, isSignUpClose }) => {
                   ajoutant une annonce
                 </Text>{' '}
               </Heading>
-              <Text fontSize={{ base: 'md', lg: 'lg' }} color={'#366d4b'}>
+              <Text fontSize={{ base: 'md', lg: 'lg' }} color="#366d4b">
                 Ajouter une annonce directement depuis la bar de navigation en
                 cliquant sur Ajouter une annonce, et remplissez y les
                 informations demandées.
@@ -129,18 +125,18 @@ const Guide = ({ isSignUpOpen, onSignUpOpen, isSignUpClose }) => {
             </Stack>
           </Flex>
         </Stack>
-        <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
-          <Flex flex={1} align={'center'} justify={'center'}>
-            <Stack spacing={6} w={'full'} maxW={'lg'}>
+        <Stack minH="100vh" direction={{ base: 'column', md: 'row' }}>
+          <Flex flex={1} align="center" justify="center">
+            <Stack spacing={6} w="full" maxW="lg">
               <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
-                <Text color={'#366d4b'} as={'span'}>
+                <Text color="#366d4b" as="span">
                   Ici il y a un soucie
                 </Text>
                 <br />{' '}
                 <Text
-                  as={'span'}
-                  position={'relative'}
-                  color='#366d4b'
+                  as="span"
+                  position="relative"
+                  color="#366d4b"
                   _after={{
                     content: "''",
                     width: 'full',
@@ -155,17 +151,17 @@ const Guide = ({ isSignUpOpen, onSignUpOpen, isSignUpClose }) => {
                   Shokubutsu
                 </Text>{' '}
               </Heading>
-              <Text fontSize={{ base: 'md', lg: 'lg' }} color={'#366d4b'}>
+              <Text fontSize={{ base: 'md', lg: 'lg' }} color="#366d4b">
                 Si vous souhaitez faire partie de la communauté et échanger ou
                 faire don de vos plantes, il faut commencer par créer un compte.
               </Text>
               <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
                 <Button
                   onClick={onSignUpOpen}
-                  mx='auto'
-                  rounded={'full'}
-                  bg={'#366d4b'}
-                  color={'white'}
+                  mx="auto"
+                  rounded="full"
+                  bg="#366d4b"
+                  color="white"
                   _hover={{
                     bg: '#BEE0CA',
                     color: '#366d4b',
@@ -178,11 +174,9 @@ const Guide = ({ isSignUpOpen, onSignUpOpen, isSignUpClose }) => {
           </Flex>
           <Flex flex={1}>
             <Image
-              alt={'Login Image'}
-              objectFit={'cover'}
-              src={
-                'https://res.cloudinary.com/shokubutsu/image/upload/v1643969557/plant-16_ginbsv.jpg'
-              }
+              alt="Login Image"
+              objectFit="cover"
+              src="https://res.cloudinary.com/shokubutsu/image/upload/v1643969557/plant-16_ginbsv.jpg"
             />
           </Flex>
         </Stack>

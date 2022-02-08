@@ -28,29 +28,27 @@ import CreateAnnounce from '../CreateAnnounce';
 const App = () => {
   const dispatch = useDispatch();
   const { isOpen: isSignUpOpen, onOpen: onSignUpOpen, onClose: isSignUpClose } = useDisclosure();
-
-  const loading = useSelector((state) => state.announces.loading);
-  const logged = useSelector((state) => state.user.logged);
-  console.log(logged);
-
+  const logged = useSelector((state) => state.user.logged)
   useEffect(() => {
     // console.log(process.env.REACT_APP_VERSION)
-    console.log('premier rendu');
     dispatch(fetchUser()); // ici je recup l'id
     dispatch(fetchAnnounces());
     // dispatch(getMyAnnounces());
-
     // dispatch(fetchBookmarks()); // j'ai besoin de l'id 
-    // dispatch(fetchBookmarks());
+    dispatch(fetchBookmarks());
   }, []);
-  if (loading) {
+  const loadingAnnounces = useSelector((state) => state.announces.loading);
+  const loadingBookmarks = useSelector((state) => state.bookmarks.loading);
+  if (loadingAnnounces && loadingBookmarks) {
     return <Loading />;
   }
-
-
   return (
     <div className="app">
-      <Header isSignUpOpen={isSignUpOpen} onSignUpOpen={onSignUpOpen} isSignUpClose={isSignUpClose}/>
+      <Header
+        isSignUpOpen={isSignUpOpen}
+        onSignUpOpen={onSignUpOpen}
+        isSignUpClose={isSignUpClose}
+      />
       <Box className="height-min">
         <Routes>
           <Route path="/" element={<Home />} />

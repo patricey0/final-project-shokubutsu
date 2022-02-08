@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import './styles.scss';
 import { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAnnounces } from 'src/actions/announces';
@@ -78,7 +79,8 @@ const CreateAnnounce = () => {
             // redirection vers la page des annonces ou Mes annonces
             // setTimeOut()
             // window.location.assign("/announces");
-            setTimeout(window.location.assign('/announces'), 3000);
+            return <Navigate to="/announces" />;
+            // setTimeout(window.location.assign('/announces'), 3000);
           })
           .catch((err) => {
             console.log(err.message);

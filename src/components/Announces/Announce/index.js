@@ -9,33 +9,31 @@ import {
   Tag,
   useColorModeValue,
   Container,
-  Stack,
   useToast,
+  Avatar,
 } from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
-import { findAnnounce } from '../../../selectors/announces';
-import { addBookmarks, deleteBookmarks } from 'src/actions/bookmarks';
-import { fetchAnnounces } from 'src/actions/announces';
-import { fetchUser } from 'src/actions/user';
+import { addBookmarks, deleteBookmarks, fetchBookmarks } from 'src/actions/bookmarks';
+import { findAnnounce, findBookmarks } from '../../../selectors';
 
 function Announce() {
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   console.log("first display");
-  //   dispatch(fetchUser());
-  //   dispatch(fetchAnnounces());
-  // }, []);
   const { id } = useParams();
+  const {id: idUser } = useSelector((state) => state.user);
 
+  useEffect(() => {
+    dispatch(fetchBookmarks(idUser)); // j'ai besoin de l'id 
+  }, []);
   // console.log(mystate)
   const announce = useSelector((state) => findAnnounce(state.announces.list, Number(id)));
+  const match = useSelector((state) => findBookmarks(state.bookmarks.bookmarks, Number(id)));
+  // const announce = useSelector((state) => findAnnounce(state.announces.list, Number(id)));
   if (!announce) {
     return <Navigate to="/error" replace />;
   }
-
   const {
     title,
     image,
@@ -44,13 +42,11 @@ function Announce() {
     author,
     city,
     creation_date,
+    author_picture,
   } = announce;
-
   const myDate = new Date(creation_date);
   const formatedDate = new Intl.DateTimeFormat('fr-FR').format(myDate);
-
-  const toast = useToast()
-
+  const toast = useToast();
   return (
     <Container maxW="7xl" p="12">
       <Box
@@ -95,19 +91,22 @@ function Announce() {
           flex="1"
           flexDirection="column"
           justifyContent="center"
-          marginTop={{ base: '3', sm: '0' }}>
+          marginTop={{ base: '3', sm: '0' }}
+        >
           <HStack spacing={2} m={4} justifyContent="flex-end">
-            <Text color="#366d4b" fontWeight={700}>Ajouter aux favoris</Text>
-            <StarIcon  color="#366d4b" w={6} h={6}
-             _hover={{
-                    w:'8', h:'8',
-                    cursor: 'pointer',
-                    }} 
-                    onClick={() => dispatch(deleteBookmarks(id))}
+            <Text color="#366d4b" fontWeight={700}>{match ? 'Retirer des favoris' : 'Ajouter aux favoris'}</Text>
+            <StarIcon
+              color="#366d4b"
+              w={6}
+              h={6}
+              _hover={{
+                cursor: 'pointer',
+              }}
+              onClick={ async () => match ? dispatch(deleteBookmarks(id)) : dispatch(addBookmarks(id))}
             />
-          </HStack> 
-          <HStack spacing={2} m={4} justifyContent="center" >
-            <Tag size={'md'} variant="solid" colorScheme="orange">
+          </HStack>
+          <HStack spacing={2} m={4} justifyContent="center">
+            <Tag size="md" variant="solid" colorScheme="orange">
               {category}
             </Tag>
           </HStack>
@@ -134,9 +133,10 @@ function Announce() {
             flexDirection={{ base: 'column', sm: 'row' }}
           >
             <Image
+              as={Avatar}
               borderRadius="full"
               boxSize="40px"
-              src="https://100k-faces.glitch.me/random-image"
+              src={author_picture}
               alt={`Avatar of ${author}`}
             />
             <Box display="flex">
