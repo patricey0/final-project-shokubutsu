@@ -79,7 +79,7 @@ const MyAnnounces = () => {
             <Box
               key={el.id}
             >
-              <AnnounceCard
+              <AnnounceCard myAnnounce={true}
                 {...el}
               />
             </Box>
