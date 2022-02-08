@@ -1,7 +1,9 @@
 /* eslint-disable max-len */
 // == Import
 import './style.scss';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getUsers } from 'src/actions/users';
 import axios from 'axios';
 import {
   Table,
@@ -15,7 +17,12 @@ import {
 } from '@chakra-ui/react';
 import { EditIcon, CloseIcon, DeleteIcon } from '@chakra-ui/icons';
 // == Composant
+
 const Dashboard = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
   const announces = useSelector((state) => state.announces.list.sort((a, b) => b.id - a.id));
   const users = useSelector((state) => state.users.list.sort((a, b) => b.id - a.id));
 
@@ -66,7 +73,7 @@ const Dashboard = () => {
                 <Td>{user.nickname}</Td>
                 <Td>{user.mail}</Td>
                 <Td>
-                  <Button onClick={deleteUser(user.id)}>
+                  <Button onClick={() => deleteUser(user.id)}>
                     Supprimer
                   </Button>
                 </Td>

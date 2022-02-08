@@ -9,7 +9,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAnnounces } from 'src/actions/announces';
 import { fetchUser } from 'src/actions/user';
-import { getUsers, saveUsers } from 'src/actions/users';
 import Header from 'src/components/Header';
 import Home from 'src/components/Home';
 import Announces from 'src/components/Announces';
@@ -36,7 +35,6 @@ const App = () => {
   useEffect(() => {
     dispatch(fetchAnnounces());
     dispatch(fetchUser());
-    dispatch(getUsers());
   }, []);
   if (loading) {
     return <Loading />;
