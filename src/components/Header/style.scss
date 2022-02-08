@@ -1,10 +1,10 @@
 .header {
   background: linear-gradient(90deg, rgba(186,222,199,1) 0%, rgba(228,242,233,1) 100%);
-  border-bottom: 3px solid #366D4B;
+  border-bottom: 1.5px solid #366D4B;
   padding: 0.8rem 1rem;
   position: sticky;
   top:0;
-  z-index: 1;
+  z-index: 2;
   
   &__principal {
     display: flex;
@@ -88,7 +88,7 @@
   }
 
   .border {
-    border-bottom: 1px solid #366D4B;
+    border-bottom: 1px solid rgb(54, 109, 75);
     width: 90%;
     border-radius: 5px;
   };
@@ -130,7 +130,7 @@
       }
     }
     &__item{
-      color:rgb(84, 143, 105);
+      color:#366d4b;
     }
   };
 };

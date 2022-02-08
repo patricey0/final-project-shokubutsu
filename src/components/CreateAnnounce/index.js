@@ -99,7 +99,6 @@ const CreateAnnounce = () => {
         });
       });
   };
-  // ça marche la ?
   return (
     <div className="div">
       <Heading color="#366D4B" pt={10}>

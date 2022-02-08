@@ -38,6 +38,7 @@ const announces = (store) => (next) => (action) => {
     case GET_MY_ANNOUNCES: {
       // on veut récup l'id
       const state = store.getState();
+      console.log(state.user.id);
       const loadData = async (url) => {
         try {
           const res = await axios.get(url);

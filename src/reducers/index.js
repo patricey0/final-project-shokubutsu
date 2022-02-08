@@ -2,12 +2,12 @@
 import { combineReducers } from 'redux';
 import userReducer from './user';
 import announcesReducer from './announces';
-import usersReducer from './users';
+// import bookmarksReducer from './bookmarks';
 
 const rootReducer = combineReducers({
   announces: announcesReducer,
   user: userReducer,
-  users: usersReducer,
+  // bookmarks: bookmarksReducer,
 });
 
 export default rootReducer;

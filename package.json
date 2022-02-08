@@ -60,10 +60,15 @@
     "dotenv": "^16.0.0",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^5",
+<<<<<<< HEAD
     "n": "^8.0.2",
+=======
+    "global": "^4.4.0",
+>>>>>>> 7aec06c5692d908b962f96e41cb1784429dc6075
     "prop-types": "^15.8.1",
     "react": "*",
     "react-dom": "*",
+    "react-page-scroller": "^2.2.1",
     "react-redux": "^7.2.6",
     "react-router-dom": "6",
     "redux": "^4.1.2",

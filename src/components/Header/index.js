@@ -32,9 +32,9 @@ import {
   MenuItem,
 } from '@chakra-ui/react';
 
-import { ArrowForwardIcon } from '@chakra-ui/icons';
-
-export default function AppHeader() {
+import { ArrowForwardIcon } from '@chakra-ui/icons'
+import PropTypes from 'prop-types';
+export default function AppHeader({isSignUpOpen, onSignUpOpen, isSignUpClose}) {
   const {
     mail,
     password,
@@ -46,7 +46,7 @@ export default function AppHeader() {
 
   const dispatch = useDispatch();
   const { isOpen: isLoginOpen, onOpen: onLoginOpen, onClose: isLoginClose } = useDisclosure();
-  const { isOpen: isSignUpOpen, onOpen: onSignUpOpen, onClose: isSignUpClose } = useDisclosure();
+  // const { isOpen: isSignUpOpen, onOpen: onSignUpOpen, onClose: isSignUpClose } = useDisclosure();
 
   // Permet de changer l'icone du menu au click
   const [isClosed, setIsClosed] = useState(true);
@@ -197,6 +197,7 @@ export default function AppHeader() {
                 <button type="button" onClick={onSignUpOpen} className="header__button">
                   Créer un compte
                 </button>
+                {/* <ModalSignUp /> */}
                 <Modal
                   isOpen={isSignUpOpen}
                   onClose={isSignUpClose}
@@ -235,3 +236,9 @@ export default function AppHeader() {
     </header>
   );
 }
+AppHeader.propTypes = {
+  isSignUpOpen: PropTypes.bool.isRequired,
+  onSignUpOpen: PropTypes.func.isRequired,
+  isSignUpClose: PropTypes.func.isRequired,
+
+};

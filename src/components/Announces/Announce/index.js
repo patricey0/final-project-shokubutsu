@@ -9,15 +9,29 @@ import {
   Tag,
   useColorModeValue,
   Container,
+  Stack,
+  useToast,
 } from '@chakra-ui/react';
-import { useSelector } from 'react-redux';
+import { StarIcon } from '@chakra-ui/icons';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
 import { findAnnounce } from '../../../selectors/announces';
+import { addBookmarks, deleteBookmarks } from 'src/actions/bookmarks';
+import { fetchAnnounces } from 'src/actions/announces';
+import { fetchUser } from 'src/actions/user';
 
 function Announce() {
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   console.log("first display");
+  //   dispatch(fetchUser());
+  //   dispatch(fetchAnnounces());
+  // }, []);
   const { id } = useParams();
-  const announce = useSelector((state) => findAnnounce(state.announces.list, Number(id)));
 
+  // console.log(mystate)
+  const announce = useSelector((state) => findAnnounce(state.announces.list, Number(id)));
   if (!announce) {
     return <Navigate to="/error" replace />;
   }
@@ -34,6 +48,8 @@ function Announce() {
 
   const myDate = new Date(creation_date);
   const formatedDate = new Intl.DateTimeFormat('fr-FR').format(myDate);
+
+  const toast = useToast()
 
   return (
     <Container maxW="7xl" p="12">
@@ -79,10 +95,19 @@ function Announce() {
           flex="1"
           flexDirection="column"
           justifyContent="center"
-          marginTop={{ base: '3', sm: '0' }}
-        >
-          <HStack spacing={2} m={4} justifyContent="center">
-            <Tag size="md" variant="solid" colorScheme="orange">
+          marginTop={{ base: '3', sm: '0' }}>
+          <HStack spacing={2} m={4} justifyContent="flex-end">
+            <Text color="#366d4b" fontWeight={700}>Ajouter aux favoris</Text>
+            <StarIcon  color="#366d4b" w={6} h={6}
+             _hover={{
+                    w:'8', h:'8',
+                    cursor: 'pointer',
+                    }} 
+                    onClick={() => dispatch(deleteBookmarks(id))}
+            />
+          </HStack> 
+          <HStack spacing={2} m={4} justifyContent="center" >
+            <Tag size={'md'} variant="solid" colorScheme="orange">
               {category}
             </Tag>
           </HStack>
