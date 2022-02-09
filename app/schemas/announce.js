@@ -1,7 +1,7 @@
 const Joi = require(`joi`);
 
 const announce = Joi.object({
-    title: Joi.string().min(1).required(),
+    title: Joi.string().min(1).max(30).required(),
     image: [Joi.string().uri({
         scheme: [
             'http',
@@ -12,7 +12,7 @@ const announce = Joi.object({
     }).optional().allow(null)],
     creation_date: Joi.date().timestamp().required(),
     description: Joi.string().min(1).max(500).required(),
-    category: Joi.string().min(1).max(50).required(),
+    category: Joi.string().min(1).max(15).required(),
     author: Joi.number().positive().required()
 })
 

@@ -7,7 +7,6 @@ const {validateBody} = require('./services/validator');
 const {storeCache, flushCache} = require('./services/redisCache.js')
 
 const { jwt } = require(`./middlewares`);
-const announce = require('./schemas/announce');
 
 const router = Router();
 
@@ -131,7 +130,7 @@ router.route(`/announces`)
      * @returns {string} 404 - Page not found
      * @returns {string} 500 - Server or database error
      */
-    .post(flushCache, announceController.createAnnounce);
+    .post(validateBody(announceCheck, checkError), flushCache, announceController.createAnnounce);
 
 router.route(`/announces/:id`)
     /**

@@ -1,7 +1,7 @@
 const Joi = require(`joi`);
 
 const user = Joi.object({
-    nickname: Joi.string().min(1).max(15).required(),
+    nickname: Joi.string().min(1).max(20).required(),
     mail: Joi.string().email().required(),
     password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{6,30}$')).required(),
     city: Joi.string().min(1).max(30).required(),
