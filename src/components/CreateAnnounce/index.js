@@ -109,7 +109,7 @@ const CreateAnnounce = () => {
       <Container>
         <Box padding="4" bg="">
           <form action="" onSubmit={handleSubmit}>
-            <FormControl color="black" as="fieldset" border="black">
+            <FormControl color="black" as="fieldset" border="black" isRequired>
               <FormLabel htmlFor="category" pt={3}>
                 Type d'échange
               </FormLabel>
