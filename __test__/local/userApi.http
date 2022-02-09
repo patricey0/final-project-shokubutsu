@@ -49,12 +49,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjozLCJpYXQiOjE2NDMw
 
 
 ### Update user
-PATCH {{baseUrl}}/users/3 HTTP/1.1
+PATCH {{baseUrl}}/users/30 HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "Patrice2",
-    "mail": "non@non.fr",
+    "nickname": "Patrice",
+    "mail": "oui@non.fr",
     "password": "123qwe",
     "city": "Paris"
 }

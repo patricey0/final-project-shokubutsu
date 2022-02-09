@@ -13,8 +13,8 @@ POST https://shokubutsu.herokuapp.com/v1/users HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "Patrice123",
-    "mail": "patrice123@oclock.io",
+    "nickname": "Patrice",
+    "mail": "patrice@oclock.io",
     "password": "123qwe",
     "city": "Paris",
     "picture": "https://qweqwe",
@@ -49,14 +49,14 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjozLCJpYXQiOjE2NDMw
 
 
 ### Update user
-PATCH {{baseUrl}}/users/3 HTTP/1.1
+PATCH https://shokubutsu.herokuapp.com/v1/users/5 HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "Patrice2",
-    "mail": "non@non.fr",
+    "nickname": "Patrice",
+    "mail": "patrice@oclock.io",
     "password": "123qwe",
-    "city": "Paris"
+    "city": "Lille"
 }
 
 ### Delete user
