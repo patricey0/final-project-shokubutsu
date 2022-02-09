@@ -28,6 +28,7 @@ const Dashboard = () => {
 
   const deleteUser = async (userId) => {
     await axios.delete(`https://shokubutsu.herokuapp.com/v1/users/${userId}`);
+    dispatch(getUsers());
   };
   const deleteAnnounce = async (announceId) => {
     // console.log('je suis dans la fonction delete announce');
