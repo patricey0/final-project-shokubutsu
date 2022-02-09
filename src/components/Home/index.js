@@ -6,18 +6,18 @@ import './styles.scss';
 const team = [
   {
     id: 1,
-    name: 'Patrice',
-    job: 'Lead Dev Back',
+    name: 'Patrice | ',
+    job: 'Lead Dev Back | Git Master',
   },
   {
     id: 2,
-    name: 'Vincent',
-    job: 'Product Owner',
+    name: 'Vincent |',
+    job: 'Product Owner | Dev Front',
   },
   {
     id: 3,
-    name: 'Myriam',
-    job: 'Lead Dev Front',
+    name: 'Myriam |',
+    job: 'Lead Dev Front | Scrum Master',
   },
 ];
 

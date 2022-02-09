@@ -122,6 +122,21 @@ const Guide = ({ isSignUpOpen, onSignUpOpen, isSignUpClose }) => {
                 cliquant sur Ajouter une annonce, et remplissez y les
                 informations demandées.
               </Text>
+              <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
+                <Button
+                  onClick={onSignUpOpen}
+                  mx="auto"
+                  rounded="full"
+                  bg="#366d4b"
+                  color="white"
+                  _hover={{
+                    bg: '#BEE0CA',
+                    color: '#366d4b',
+                  }}
+                >
+                  Créer une annonce
+                </Button>
+              </Stack>
             </Stack>
           </Flex>
         </Stack>
@@ -130,7 +145,7 @@ const Guide = ({ isSignUpOpen, onSignUpOpen, isSignUpClose }) => {
             <Stack spacing={6} w="full" maxW="lg">
               <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
                 <Text color="#366d4b" as="span">
-                  Ici il y a un soucie
+                  Consultez
                 </Text>
                 <br />{' '}
                 <Text
@@ -146,14 +161,15 @@ const Guide = ({ isSignUpOpen, onSignUpOpen, isSignUpClose }) => {
                     left: 0,
                     bg: '#BEE0CA',
                     zIndex: -1,
+                    whitespace: "no-wrap",
                   }}
                 >
-                  Shokubutsu
+                  les annonces
                 </Text>{' '}
               </Heading>
               <Text fontSize={{ base: 'md', lg: 'lg' }} color="#366d4b">
-                Si vous souhaitez faire partie de la communauté et échanger ou
-                faire don de vos plantes, il faut commencer par créer un compte.
+                En consultant les annonces, les détails de celle ci seront accesibles.
+                Vous pourrez contacter l'auteur de l'annonce, ou l'ajouter a vos favoris.
               </Text>
               <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
                 <Button
@@ -167,7 +183,7 @@ const Guide = ({ isSignUpOpen, onSignUpOpen, isSignUpClose }) => {
                     color: '#366d4b',
                   }}
                 >
-                  Créer mon compte
+                  Les annonces
                 </Button>
               </Stack>
             </Stack>
@@ -176,7 +192,7 @@ const Guide = ({ isSignUpOpen, onSignUpOpen, isSignUpClose }) => {
             <Image
               alt="Login Image"
               objectFit="cover"
-              src="https://res.cloudinary.com/shokubutsu/image/upload/v1643969557/plant-16_ginbsv.jpg"
+              src="https://res.cloudinary.com/shokubutsu/image/upload/v1643969572/plant-6_brny8a.jpg"
             />
           </Flex>
         </Stack>

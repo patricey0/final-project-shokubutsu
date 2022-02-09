@@ -79,8 +79,8 @@ const CreateAnnounce = () => {
             // redirection vers la page des annonces ou Mes annonces
             // setTimeOut()
             // window.location.assign("/announces");
-            return <Navigate to="/announces" />;
-            // setTimeout(window.location.assign('/announces'), 3000);
+            // return <Navigate to="/announces" />;
+            setTimeout(window.location.assign('/announces'), 3000);
           })
           .catch((err) => {
             console.log(err.message);
@@ -118,9 +118,9 @@ const CreateAnnounce = () => {
                 name="category"
                 onChange={(e) => setCategory(e.target.value)}
               >
-                <option >Choissisez une catégorie</option>
-                <option value='Don'>Don</option>
-                <option value='Echange'>Echange</option>
+                <option>Choissisez une catégorie</option>
+                <option value="Don">Don</option>
+                <option value="Echange">Echange</option>
               </Select>
               <FormLabel htmlFor="title" pt={3}>
                 Titre

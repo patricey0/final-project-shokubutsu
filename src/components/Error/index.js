@@ -45,7 +45,7 @@ const Error = () => (
             p={4}
             fontSize={useBreakpointValue({ base: '2xl', md: '3xl' })}
           >
-            Cette page n'est pas accesible !
+            Oops, il y a quelques mauvaises herbes par ici..
           </Text>
           <Button
             as={NavLink}
@@ -55,7 +55,7 @@ const Error = () => (
             color="white"
             variant="solid"
           >
-            Go to Home
+            Retour a l'accueil
           </Button>
         </Stack>
       </VStack>

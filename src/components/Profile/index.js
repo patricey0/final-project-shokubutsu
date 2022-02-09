@@ -163,7 +163,7 @@ const Profile = () => {
           <Avatar
             rounded="md"
             alt="product image"
-            bg="#badec7"
+            bg="transparent"
             // name={nickname}
             src={picture}
             fit="cover"

@@ -32,7 +32,7 @@ import {
   MenuItem,
 } from '@chakra-ui/react';
 
-import { ArrowForwardIcon } from '@chakra-ui/icons'
+import { ArrowForwardIcon } from '@chakra-ui/icons';
 import PropTypes from 'prop-types';
 export default function AppHeader({isSignUpOpen, onSignUpOpen, isSignUpClose}) {
   const {
@@ -156,9 +156,9 @@ export default function AppHeader({isSignUpOpen, onSignUpOpen, isSignUpClose}) {
                     <MenuItem color="#366d4b" as={NavLink} to="/profile" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Mon profil</MenuItem>
                     <MenuItem color="#366d4b" as={NavLink} to="/my-announces" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Mes Annonces</MenuItem>
                     <MenuItem color="#366d4b" as={NavLink} to="/my-favorites" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Mes favoris</MenuItem>
-                    <MenuItem color="#366d4b" as="button" onClick={() => dispatch(logout())}>Déconnexion</MenuItem>
                     {isadmin &&
-                      <MenuItem color="#366d4b" as={NavLink} to="/dashboard">Dashboard</MenuItem>}
+                      <MenuItem color="#366d4b" as={NavLink} to="/dashboard" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Dashboard</MenuItem>}
+                    <MenuItem color="#366d4b" as="button" onClick={() => dispatch(logout())}>Déconnexion</MenuItem>
                   </MenuList>
                 </Menu>
               </Wrap>
@@ -176,7 +176,7 @@ export default function AppHeader({isSignUpOpen, onSignUpOpen, isSignUpClose}) {
                 >
                   <ModalOverlay />
                   <ModalContent>
-                    <ModalHeader>Connectez vous</ModalHeader>
+                    <ModalHeader color="#366d4b" textTransform="uppercase">Connectez vous</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
                       <FormControl>

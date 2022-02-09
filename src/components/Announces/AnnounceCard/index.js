@@ -86,6 +86,7 @@ function AnnounceCard({
               color="red.500"
               _hover={{
                 transform: 'scale(1.7)',
+                transition: '.2s all ease-in',
                 cursor: 'pointer',
               }}
               onClick={() => dispatch(deleteAnnounceInDb(id))}
