@@ -85,6 +85,7 @@ const userController = {
         try {
             const userBeforeUpdate = await User.findById(+req.params.id);
             //console.log(req.body);
+            if (userBeforeUpdate.isadmin === true) req.body["isadmin"] = true;
             const isNicknameExist = await User.findByName(req.body.nickname);
             if (isNicknameExist.nickname && userBeforeUpdate.nickname !== req.body.nickname) throw new Error().message = `Ce pseudo est déjà utilisé.`
             const isEmailExist = await User.findByEmail(req.body.mail);

@@ -5,7 +5,7 @@
 @baseUrl={{protocol}}{{host}}{{port}}{{prefix}}
 
 ### Test get bookmarks
-GET {{baseUrl}}/bookmarks/6 HTTP/1.1
+GET https://shokubutsu.herokuapp.com/v1/bookmarks/ HTTP/1.1
 
 ### Test post bookmarks
 POST {{baseUrl}}/bookmarks/1/4 HTTP/1.1

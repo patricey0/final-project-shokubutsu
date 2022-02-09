@@ -11,12 +11,12 @@ GET https://shokubutsu.herokuapp.com/v1/announces HTTP/1.1
 GET https://shokubutsu.herokuapp.com/v1/announces/471 HTTP/1.1
 
 ### Test create announce
-POST {{baseUrl}}/announces HTTP/1.1
+POST https://shokubutsu.herokuapp.com/v1/announces HTTP/1.1
 content-type: application/json
 
 ##{"title":"Penstemon baccharifolius Hook.","image":"http://dummyimage.com/173x100.png/dddddd/000000","creation_date":"2021-02-10 11:35:15","description":"In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.\n\nAliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.\n\nSed ante. Vivamus tortor. Duis mattis egestas metus.","category":"Landscaping & Irrigation", "visitor_id":"1"}
 
-{"title":"Croton tiglium L.","image":"http://dummyimage.com/161x100.png/5fa2dd/ffffff","creation_date":"2021-06-21 14:32:16","description":"Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla nisl. Nunc nisl.","category":"EIFS", "visitor_id":"1"}
+{"title":"Croton tiglium L.","image":"http://dummyimage.com/161x100.png/5fa2dd/ffffff","creation_date":"2021-06-21 14:32:16","description":"Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla nisl. Nunc nisl.","category":"EIFS", "visitor_id":"8"}
 
 ##{"title":"Orobanche parishii (Jeps.) Heckard ssp. brachyloba Heckard","image":"http://dummyimage.com/248x100.png/ff4444/ffffff","creation_date":"2021-04-04 09:42:32","description":"Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.\n\nDuis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.","category":"Framing (Wood)", "visitor_id":"6"}
 
