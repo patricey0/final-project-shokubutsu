@@ -130,7 +130,7 @@ router.route(`/announces`)
      * @returns {string} 404 - Page not found
      * @returns {string} 500 - Server or database error
      */
-    .post(validateBody(announceCheck, checkError), flushCache, announceController.createAnnounce);
+    .post(flushCache, announceController.createAnnounce);
 
 router.route(`/announces/:id`)
     /**
