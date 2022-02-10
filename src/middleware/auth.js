@@ -102,12 +102,21 @@ const auth = (store) => (next) => async (action) => {
       const state = store.getState();
       console.log(state.user.id);
       // delete la photo de l'user
-      axios.delete(`https://shokubutsu.herokuapp.com/v1/users/${state.user.id}`);
-      localStorage.removeItem('token');
-      axios.post('https://shokubutsu.herokuapp.com/v1/delete-image', {
-        image_url: state.user.picture,
-      });
-      window.location.assign('/');
+      axios.delete(`https://shokubutsu.herokuapp.com/v1/users/${state.user.id}`)
+        .then((res) => {
+          console.log(res);
+          console.log(res.data);
+          localStorage.removeItem('token');
+          axios.post('https://shokubutsu.herokuapp.com/v1/delete-image', {
+            image_url: state.user.picture,
+          });
+          window.location.assign('/');
+        // localStorage.setItem('token', res.data.jwt);
+        // store.dispatch(saveUser(res.data));
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
       // rédiriger l'user vers la page d'accueil
       // rendre lS
       next(action);

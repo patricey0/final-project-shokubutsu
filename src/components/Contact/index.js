@@ -118,7 +118,7 @@ const Contact = () => {
             <FormControl id="password" isRequired>
               <FormLabel>Votre message</FormLabel>
               <Textarea
-                placeholder="Here is a sample placeholder"
+                placeholder="Je trouve que le site est génial, félicitation"
                 name="user_message"
               />
             </FormControl>

@@ -13,6 +13,8 @@ import {
 import ReactPageScroller from 'react-page-scroller';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 import './styles.scss';
 
@@ -71,7 +73,7 @@ const Guide = ({ isSignUpOpen, onSignUpOpen, isSignUpClose }) => {
                     color: '#366d4b',
                   }}
                 >
-                  Créer mon compte
+                  {logged ? 'Vous avez déjà un compte' : ' Créer mon compte'}
                 </Button>
               </Stack>
             </Stack>
@@ -127,6 +129,8 @@ const Guide = ({ isSignUpOpen, onSignUpOpen, isSignUpClose }) => {
                   onClick={onSignUpOpen}
                   mx="auto"
                   rounded="full"
+                  as={Link}
+                  to='/create-announce'
                   bg="#366d4b"
                   color="white"
                   _hover={{

@@ -61,13 +61,13 @@ export default function AppHeader({isSignUpOpen, onSignUpOpen, isSignUpClose}) {
     },
     {
       id: 2,
-      path: '/announces',
-      name: 'Annonces',
+      path: '/guide',
+      name: 'Guide',
     },
     {
       id: 3,
-      path: '/guide',
-      name: 'Guide',
+      path: '/announces',
+      name: 'Annonces',
     },
     {
       id: 4,
@@ -154,7 +154,7 @@ export default function AppHeader({isSignUpOpen, onSignUpOpen, isSignUpClose}) {
                     </Center>
                     <br />
                     <MenuItem color="#366d4b" as={NavLink} to="/profile" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Mon profil</MenuItem>
-                    <MenuItem color="#366d4b" as={NavLink} to="/my-announces" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Mes Annonces</MenuItem>
+                    <MenuItem color="#366d4b" as={NavLink} to="/my-announces" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Mes annonces</MenuItem>
                     <MenuItem color="#366d4b" as={NavLink} to="/my-favorites" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Mes favoris</MenuItem>
                     {isadmin &&
                       <MenuItem color="#366d4b" as={NavLink} to="/dashboard" _hover={{ color: 'white', backgroundColor: '#366d4b' }}>Dashboard</MenuItem>}

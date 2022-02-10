@@ -10,6 +10,8 @@ import {
   // useColorModeValue,
 } from '@chakra-ui/react';
 import bcgImg from 'src/assets/img/plant-8.jpg';
+import { Link } from 'react-router-dom';
+
 import './styles.scss';
 // import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -77,6 +79,8 @@ const MyFavorites = () => {
             {myList.map((el) => (
               <Box
                 key={el.id}
+                as={Link}
+              to={`/announces/${el.id}`}
               >
                 <AnnounceCard
                   {...el}

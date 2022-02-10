@@ -7,6 +7,7 @@ import {
   Stack,
   Image,
   HStack,
+  Badge
 } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { DeleteIcon } from '@chakra-ui/icons';
@@ -70,9 +71,9 @@ function AnnounceCard({
           />
         </Box>
         <Stack pt={10} align="center">
-          <Text color="gray.500" fontSize="sm" textTransform="uppercase">
+          <Badge colorScheme="green" fontSize="sm" textTransform="uppercase">
             {category}
-          </Text>
+          </Badge>
           <Heading fontSize="2xl" fontFamily="body" fontWeight={500} color="#366d4b">
             {title}
           </Heading>

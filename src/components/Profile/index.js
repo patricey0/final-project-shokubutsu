@@ -163,7 +163,8 @@ const Profile = () => {
           <Avatar
             rounded="md"
             alt="product image"
-            bg="transparent"
+            bg={picture ? 'transparent' : '#366d4b'}
+            // color='green'
             // name={nickname}
             src={picture}
             fit="cover"
@@ -203,6 +204,7 @@ const Profile = () => {
                       <Avatar
                         size="xl"
                         src={previewSource || picture}
+                        color="green"
                       >
                         {!image && (
                           <AvatarBadge
