@@ -13,12 +13,12 @@ POST https://shokubutsu.herokuapp.com/v1/users HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "Patrice",
-    "mail": "patrice@oclock.io",
+    "nickname": "JeanMichel Apepré",
+    "mail": "jmapp@oclock.io",
     "password": "123qwe",
-    "city": "Paris",
-    "picture": "https://qweqwe",
-    "isAdmin": true
+    "city": "Au alentour de Lille",
+    "picture": "https://pbs.twimg.com/profile_images/378800000192910186/cec45bf40c21a40baed4dfd7163398f0_400x400.jpeg",
+    "isAdmin": false
 }
 
 

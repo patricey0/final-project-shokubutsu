@@ -10,7 +10,6 @@ const announce = Joi.object({
             /https\+https?/
         ]
     }).optional().allow(null)],
-    creation_date: Joi.date().timestamp().required(),
     description: Joi.string().min(1).max(500).required(),
     category: Joi.string().min(1).max(15).required(),
     author: Joi.number().positive().required()
