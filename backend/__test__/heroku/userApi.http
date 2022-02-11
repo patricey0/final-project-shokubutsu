@@ -1,0 +1,93 @@
+@protocol=http://
+@host=localhost
+@port=:5000
+@prefix=/v1
+@baseUrl={{protocol}}{{host}}{{port}}{{prefix}}
+
+### Test get users
+GET https://shokubutsu.herokuapp.com/v1/users HTTP/1.1
+
+
+### Test create user
+POST https://shokubutsu.herokuapp.com/v1/users HTTP/1.1
+content-type: application/json
+
+{
+    "nickname": "Hélène",
+    "mail": "helene@oclock.io",
+    "password": "123qwe",
+    "city": "Rennes",
+    "picture": "https://fr.web.img6.acsta.net/pictures/17/03/16/15/15/521846.jpg",
+    "isAdmin": false
+}
+
+# {
+#     "nickname": "JeanMichel Apepré",
+#     "mail": "jmapp@oclock.io",
+#     "password": "123qwe",
+#     "city": "Au alentour de Lille",
+#     "picture": "https://pbs.twimg.com/profile_images/378800000192910186/cec45bf40c21a40baed4dfd7163398f0_400x400.jpeg",
+#     "isAdmin": false
+# }
+
+
+
+
+### Test login
+POST https://shokubutsu.herokuapp.com/v1/login HTTP/1.1
+content-type: application/json
+
+{
+    "mail": "myriam123@myriam.com",
+    "password" : "Myriam123"
+}
+
+
+### Test CheckPWD
+POST {{baseUrl}}/users/2 HTTP/1.1
+content-type: application/json
+
+{
+    "id":2,
+    "password": "asdqwe123"
+}
+
+### Test reconnect with token
+GET {{baseUrl}}/login/reconnect HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjozLCJpYXQiOjE2NDMwMzc3NzAsImV4cCI6MTY0MzEyNDE3MH0.6YwFETAGxDiEZOXOCvQtBuQp0CthgoDzSXIHEJ1Cs04
+
+
+
+### Update user
+PATCH https://shokubutsu.herokuapp.com/v1/users/5 HTTP/1.1
+content-type: application/json
+
+{
+    "nickname": "Patrice",
+    "mail": "patrice@oclock.io",
+    "password": "123qwe",
+    "city": "Lille"
+}
+
+### Delete user
+DELETE {{baseUrl}}/users/2 HTTP/1.1
+content-type: application/json
+
+
+### Delete image
+
+DELETE https://shokubutsu.herokuapp.com/v1/delete-image/ HTTP/1.1
+content-type: application/json
+
+{
+    "image_url": "https://res.cloudinary.com/shokubutsu/image/upload/v1643367444/kwkgbk417iftmmt9t90h.jpg"
+}
+
+### update image user
+PATCH https://shokubutsu.herokuapp.com/v1/update-image HTTP/1.1
+Content-Type: application/json
+
+{   
+    "userId": 3,
+    "image_url": null
+}
