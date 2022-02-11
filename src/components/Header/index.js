@@ -34,6 +34,7 @@ import {
 
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 import PropTypes from 'prop-types';
+
 export default function AppHeader({isSignUpOpen, onSignUpOpen, isSignUpClose}) {
   const {
     mail,

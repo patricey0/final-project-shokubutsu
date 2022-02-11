@@ -126,10 +126,10 @@ const Guide = ({ isSignUpOpen, onSignUpOpen, isSignUpClose }) => {
               </Text>
               <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
                 <Button
-                  onClick={onSignUpOpen}
+                  // onClick={onSignUpOpen}
                   mx="auto"
                   rounded="full"
-                  as={Link}
+                  as={logged ? Link : 'button'}
                   to='/create-announce'
                   bg="#366d4b"
                   color="white"
@@ -177,7 +177,9 @@ const Guide = ({ isSignUpOpen, onSignUpOpen, isSignUpClose }) => {
               </Text>
               <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
                 <Button
-                  onClick={onSignUpOpen}
+                  // onClick={onSignUpOpen}
+                  as={Link}
+                  to='/announces'
                   mx="auto"
                   rounded="full"
                   bg="#366d4b"

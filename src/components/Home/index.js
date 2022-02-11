@@ -6,25 +6,25 @@ import './styles.scss';
 const team = [
   {
     id: 1,
-    name: 'Patrice | ',
-    job: 'Lead Dev Back | Git Master',
+    name: 'Patrice  ',
+    job: '  Lead Dev Back && Git Master',
   },
   {
     id: 2,
-    name: 'Vincent |',
-    job: 'Product Owner | Dev Front',
+    name: 'Myriam ',
+    job: ' Lead Dev Front && Scrum Master',
   },
   {
     id: 3,
-    name: 'Myriam |',
-    job: 'Lead Dev Front | Scrum Master',
+    name: 'Vincent ',
+    job: ' Product Owner && Dev Front',
   },
 ];
 
 const teamElementJSX = team.map(
   ({ id, name, job }) => (
     <p key={id} className="home__team__person padding">
-      {name} {job}
+      <strong>{name}</strong> {job}
     </p>
   ),
 );
@@ -38,10 +38,10 @@ const Home = () => (
     <section className="home__section__about">
       <div className="home__section__about__block">
         <p className="home__section__about__first padding">
-          Sho’Kubutsu propose de mettre en relation des personnes souhaitant acquérir de nouvelles plantes avec des personnes souhaitant se séparer de leurs plantes pour diverses raisons.
+          <strong>Sho’Kubutsu</strong> propose de mettre en relation des personnes souhaitant acquérir de nouvelles plantes avec des personnes souhaitant se séparer de leurs plantes pour diverses raisons.
         </p>
         <p className="home__section__about__second padding">
-          En France, ce sont 17 millions de déchets végétaux qui sont produits chaque année. Il a été constaté qu'une bonne partie représente des espèces végétales de petite à moyenne taille qui pourraient facilement trouver racine dans un autre lieu autrement que de se retrouver brûler.
+          En France, ce sont <strong>17 millions de déchets végétaux</strong> qui sont produits chaque année. Il a été constaté qu'une bonne partie représente des espèces végétales de petite à moyenne taille qui pourraient facilement trouver racine dans un autre lieu autrement que de se retrouver brûler.
         </p>
       </div>
     </section>
